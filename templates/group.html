@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, tel with context -%}
+{% block content %}
+{%- set PH = {'img': 'frosty_roof', 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
+{% include 'phero.html' %}
+
+<section class="s s--night" aria-labelledby="h-tree" style="padding-top:clamp(56px,6vw,96px)">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(D.structure.eyebrow), t(D.structure.title), id='h-tree') }}
+    {%- set m = COMPANY.aldawlia %}
+    <div class="tree">
+      <a class="tree__mother" href="aldawlia.html">{{ logo(m) }}<span><small>{{ t(UI.mother) }} · <span class="ltr">1986</span></small><strong>{{ t(m.name) }}</strong></span></a>
+      <div class="tree__stem" aria-hidden="true"></div>
+      <div class="tree__branches">
+        <div class="tree__sector">
+          <h3>{{ icon('snow') }}{{ t(UI.sector_cooling) }}</h3>
+          <div class="tree__cos">
+            {%- for k in ['ert', 'ets', 'nova-freeze'] %}{% set c = COMPANY[k] %}
+            <a class="tnode" href="{{ cohref(c) }}" style="{{ costyle(c) }}"><span class="tnode__logo">{{ logo(c, 'white') }}</span><span class="tnode__t"><strong>{{ t(c.short) }}{% if c.est_short %} <em>{{ t(c.est_short) }}</em>{% endif %}</strong><span class="tnode__r">{{ t(c.role) }}</span></span></a>
+            {%- endfor %}
+          </div>
+        </div>
+        <div class="tree__sector tree__sector--energy">
+          <h3>{{ icon('sun') }}{{ t(UI.sector_energy) }}</h3>
+          <div class="tree__cos">
+            {%- set c = COMPANY['jet-solar'] %}
+            <a class="tnode" href="{{ cohref(c) }}" style="{{ costyle(c) }}"><span class="tnode__logo">{{ logo(c, 'white') }}</span><span class="tnode__t"><strong>{{ t(c.short) }}{% if c.est_short %} <em>{{ t(c.est_short) }}</em>{% endif %}</strong><span class="tnode__r">{{ t(c.role) }}</span></span></a>
+            {%- for k in ['neo-energy', 'ggg'] %}{% set c = COMPANY[k] %}
+            <a class="tnode tnode--jv" href="{{ cohref(c) }}" style="{{ costyle(c) }}"><span class="tnode__logo">{{ logo(c, 'white') }}</span><span class="tnode__t"><strong>{{ t(c.short) }}</strong><span class="tnode__r">{{ t(c.role) }}</span></span></a>
+            {%- endfor %}
+            <p class="jvnote">{{ t(D.structure.jv_under) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--paper" aria-labelledby="h-cos">
+  <div class="wrap">
+    {{ sh(t(UI.companies), t(D.companies_title), id='h-cos') }}
+    <div class="cocards">
+      {%- for c in COMPANIES %}
+      <article class="cocard" id="{{ c.key }}" style="{{ costyle(c) }}">
+        <div class="cocard__logo">{{ logo(c) }}</div>
+        <p class="role">{{ t(c.role) }}{% if c.est_short %} · {{ t(c.est_short) }}{% endif %}</p>
+        <h3>{{ t(c.name) }}</h3>
+        <ul>{% for b in D.details[c.key] %}<li>{{ t(b) }}</li>{% endfor %}</ul>
+        <div class="cocard__f">
+          {%- if c.led %}<span class="led">{{ t(UI.led_by) }} {{ t(c.led) }}</span>{% endif %}
+          {%- if c.page %}<a class="tlink" href="{{ c.page }}">{{ t(UI.company_profile) }} {{ icon('arrow') }}</a>{% endif %}
+          <a class="tlink" href="{{ c.url }}" target="_blank" rel="noopener"><span class="ltr">{{ c.web }}</span> {{ icon('ext') }}</a>
+          {%- if not c.page %}<span class="led">{{ tel(c.phones[0]) }} · <a href="mailto:{{ c.email }}">{{ c.email }}</a></span>{% endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="s s--night" aria-labelledby="h-syn">
+  <div class="glow"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(D.synergy.eyebrow), t(D.synergy.title), id='h-syn') }}
+    <div class="syn">
+      {%- for sec in ['cooling', 'energy'] %}
+      <div class="syn__col syn__col--{{ sec }}">
+        <h3>{{ t(UI['sector_' ~ sec]) }}</h3>
+        {%- for k, verb, txt in D.synergy[sec] %}{% set c = COMPANY[k] %}
+        <div class="syn__row" style="{{ costyle(c) }}"><b>{{ t(verb) }}<small>{{ t(c.short) }}</small></b><span>{{ t(txt) }}</span></div>
+        {%- endfor %}
+      </div>
+      {%- endfor %}
+    </div>
+    <div class="meet">
+      <div class="meet__t">
+        {{ eyebrow(t(D.synergy.meet_title)) }}
+        <p class="h3" style="color:var(--white)">{{ t(D.synergy.meet) }}</p>
+        <hr class="spec-line">
+        <p class="quote-by" style="color:var(--sun)">{{ t(D.synergy.case_title) }}</p>
+        <p>{{ t(D.synergy.case) }}</p>
+        <p><a class="tlink" href="projects.html#p-frosty" style="--accent:var(--frost)">{{ t(UI.see_all_projects) }} {{ icon('arrow') }}</a></p>
+      </div>
+      <div class="meet__img">{{ img('frosty_roof', '(max-width:960px) 100vw, 50vw') }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--ice" aria-labelledby="h-vis">
+  <div class="wrap">
+    {{ sh(t(D.visions.eyebrow), t(D.visions.title), id='h-vis') }}
+    <div class="visions">
+      {%- for k, txt in D.visions['items'] %}{% set c = COMPANY[k] %}
+      <figure class="vision" style="{{ costyle(c) }}">{{ logo(c) }}<blockquote><p>{{ t(txt) }}</p></blockquote></figure>
+      {%- endfor %}
+    </div>
+    <p class="closing-line">{{ t(D.visions.closing) }}</p>
+  </div>
+</section>
+{% include 'cta.html' %}
+{% endblock %}

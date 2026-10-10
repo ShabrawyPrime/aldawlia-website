@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard, cotags, copybtn, tel, cardcols with context -%}
+{% block content %}
+{%- set c = CO -%}
+<div style="{{ costyle(c) }}">
+<section class="chero" aria-labelledby="h-co">
+  <div class="gridbg"></div>
+  <div class="wrap">
+    <div class="chero__in">
+      <div class="chero__txt">
+        <nav class="crumbs" aria-label="{{ t(UI.breadcrumb) }}"><a href="index.html">{{ t(SITE.name) }}</a>{{ icon('chev-r') }}<a href="group.html">{{ t(NAVD.group.label) }}</a>{{ icon('chev-r') }}<span aria-current="page">{{ t(c.short) }}</span></nav>
+        <div class="chero__logo">
+          {%- if c.key == 'aldawlia' %}<span style="background:#F4F6FA;border-radius:6px;padding:6px 10px;display:inline-flex">{{ logo(c) }}</span>{% else %}{{ logo(c, 'white') }}{% endif %}
+          <span class="endorse">{{ t(UI.group_company) if not c.mother else t(UI.mother) }}</span>
+        </div>
+        {{ eyebrow(t(D.hero.eyebrow)) }}
+        <h1 class="h1" id="h-co">{{ t(D.hero.title) }}</h1>
+        <p class="lead">{{ t(D.hero.lead) }}</p>
+        {%- if D.hero.powered %}
+        <div class="powered"><span>{{ t(POWERED) }}</span><span class="chip-logo"><img src="{{ A }}logos/elaraby.webp" width="{{ LOGO.elaraby.w }}" height="{{ LOGO.elaraby.h }}" alt="ELARABY Group"></span><span class="chip-logo"><img src="{{ A }}logos/aldawlia.webp" width="{{ LOGO.aldawlia.w }}" height="{{ LOGO.aldawlia.h }}" alt="{{ t(COMPANY.aldawlia.short) }}"></span></div>
+        {%- endif %}
+        <div class="btns">
+          <a class="btn btn--frost" href="#contact">{{ t(UI.get_in_touch) }} {{ icon('arrow') }}</a>
+          {%- if c.url and c.url.rstrip('/') != SITE.url.rstrip('/') %}
+          <a class="btn btn--ghost" href="{{ c.url }}" target="_blank" rel="noopener">{{ t(UI.visit_site) }} <span class="ltr">{{ c.web }}</span> {{ icon('ext') }}</a>
+          {%- else %}
+          <a class="btn btn--ghost" href="story.html">{{ t(UI.read_story) }} {{ icon('arrow') }}</a>
+          {%- endif %}
+        </div>
+      </div>
+      <figure class="chero__img">{{ img(D.hero.img, '(max-width:960px) 100vw, 42vw', eager=True) }}</figure>
+    </div>
+  </div>
+</section>
+<div class="kstrip">
+  <ul class="wrap">
+    {%- for n, l in D.kpis %}<li><span class="num">{{ n }}</span><span>{{ t(l) }}</span></li>{% endfor %}
+  </ul>
+</div>
+
+{%- for b in D.blocks %}
+{%- set bg = ['s--paper', 's--white', 's--ice'][loop.index0 % 3] if b.type not in ['timeline'] else 's--white' %}
+{%- set bid = 'b' ~ loop.index %}
+{%- if b.type == 'intro' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap intro">
+    <div class="intro__h">
+      {{ eyebrow(t(b.eyebrow)) }}
+      <h2 class="h2" id="{{ bid }}">{{ t(b.title) }}</h2>
+      {%- if b.led and c.led %}<p class="ledby"><small>{{ t(UI.led_by) }}</small><strong>{{ t(c.led) }}</strong></p>{% endif %}
+    </div>
+    <div class="intro__b">
+      <div class="prose lead" style="max-width:none">{% for p in b.paras %}<p>{{ t(p) }}</p>{% endfor %}</div>
+      {%- if b.img %}<figure>{{ img(b.img, '(max-width:960px) 100vw, 55vw') }}<figcaption class="figcap">{{ t(IMGALT[b.img]) }}</figcaption></figure>{% endif %}
+    </div>
+  </div>
+</section>
+{%- elif b.type == 'steps' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), id=bid) }}
+    {%- set items = SERVICES if b['items'] == 'SERVICES' else b['items'] %}
+    <ol class="steps">
+      {%- for title, txt in items %}<li><span class="n">{{ '%02d' % loop.index }}</span><h3>{{ t(title) }}</h3>{% if t(txt) %}<p>{{ t(txt) }}</p>{% endif %}</li>{% endfor %}
+    </ol>
+  </div>
+</section>
+{%- elif b.type == 'epc' %}
+<section class="s s--night" aria-labelledby="{{ bid }}">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(b.eyebrow), t(b.title), t(b.text), id=bid) }}
+    <div class="epc">
+      <div class="epc__imgs">{% for k in b.imgs %}{{ img(k, '(max-width:960px) 100vw, 55vw') }}{% endfor %}</div>
+      <div class="stack">
+        <ol class="steps">{% for title, txt in b.steps %}<li><span class="n">{{ '%02d' % loop.index }}</span><h3>{{ t(title) }}</h3><p>{{ t(txt) }}</p></li>{% endfor %}</ol>
+        <div class="yearpair"><div><span class="num">2009</span><span>{{ t(EPCY.civil) }}</span></div><div><span class="num">2023</span><span>{{ t(EPCY.epc) }}</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+{%- elif b.type == 'timeline' %}
+<section class="s s--white" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), id=bid) }}
+    <ol class="ptl">
+      {%- for y, name, txt in b['items'] %}<li><span class="num">{{ y }}</span><strong>{{ t(name) }}</strong><p>{{ t(txt) }}</p></li>{% endfor %}
+    </ol>
+    {%- if b.wall %}
+    <div class="wall wall--narrow" style="margin-top:clamp(32px,4vw,56px)">
+      <div class="wall__img"><img src="{{ A }}img/wall-{{ b.wall }}.webp" width="{{ WALLS[b.wall].w }}" height="{{ WALLS[b.wall].h }}" alt="{{ t(WALLALT[b.wall]) }}" loading="lazy" decoding="async"></div>
+      <p>{{ t(b.wall_note) }}</p>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+{%- elif b.type == 'sectors' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), None, b.link, t(UI.learn_more), split=True, id=bid) }}
+    <ul class="chips">{% for s in SECTORS %}<li><a class="chip" href="solutions.html#s-{{ s.key }}">{{ icon(s.icon) }}{{ t(s.name) }}</a></li>{% endfor %}</ul>
+  </div>
+</section>
+{%- elif b.type == 'projects' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), None, 'projects.html', t(UI.see_all_projects), split=True, id=bid) }}
+    <div class="pcards pcards--3">{% for k in b['keys'] %}{{ pcard(PROJECT[k], '(max-width:640px) 100vw, (max-width:1180px) 50vw, 33vw') }}{% endfor %}</div>
+  </div>
+</section>
+{%- elif b.type == 'wall' %}
+<section class="s s--white" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), id=bid) }}
+    <div class="wall__img"><img src="{{ A }}img/wall-{{ b.wall }}.webp" width="{{ WALLS[b.wall].w }}" height="{{ WALLS[b.wall].h }}" alt="{{ t(WALLALT[b.wall]) }}" loading="lazy" decoding="async"></div>
+  </div>
+</section>
+{%- elif b.type == 'table' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), id=bid) }}
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr>{% for h in b.head %}<th scope="col">{{ t(h) }}</th>{% endfor %}</tr></thead>
+      <tbody>{% for r in b.rows %}<tr>{% for cell in r %}<td data-label="{{ t(b.head[loop.index0]) }}">{% if cell is string %}<bdi dir="ltr">{{ cell }}</bdi>{% else %}{{ t(cell) }}{% endif %}</td>{% endfor %}</tr>{% endfor %}</tbody>
+    </table></div>
+    {%- if b.note %}<p class="tbl-note">{{ t(b.note) }}</p>{% endif %}
+  </div>
+</section>
+{%- elif b.type == 'cards' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), id=bid) }}
+    {%- if b.img %}<div class="media" style="align-items:start"><figure class="media__img">{{ img(b.img, '(max-width:960px) 100vw, 50vw') }}<figcaption class="figcap">{{ t(IMGALT[b.img]) }}</figcaption></figure><div>{% endif %}
+    <div class="cards {{ cardcols(b['items']|length, b.img) }}{% if b.dense %} cards--dense{% endif %}">
+      {%- for title, txt in b['items'] %}<div class="card"><span class="n">{{ '%02d' % loop.index }}</span><h3>{{ t(title) }}</h3><p>{{ t(txt) }}</p></div>{% endfor %}
+    </div>
+    {%- if b.img %}</div></div>{% endif %}
+    {%- if b.note %}<p class="tbl-note" style="margin-top:20px">{{ t(b.note) }}</p>{% endif %}
+  </div>
+</section>
+{%- elif b.type == 'chips' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), t(b.text) if b.text else None, id=bid) }}
+    <ul class="chips">{% for it in b['items'] %}<li><span class="chip">{{ icon('check') }}{{ t(it) }}</span></li>{% endfor %}</ul>
+  </div>
+</section>
+{%- elif b.type == 'media' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap media">
+    <figure class="media__img">{{ img(b.img, '(max-width:960px) 100vw, 50vw') }}<figcaption class="figcap">{{ t(IMGALT[b.img]) }}</figcaption></figure>
+    <div class="media__t">{{ eyebrow(t(b.eyebrow)) }}<h2 class="h2" id="{{ bid }}">{{ t(b.title) }}</h2><p class="lead">{{ t(b.text) }}</p></div>
+  </div>
+</section>
+{%- elif b.type == 'vm' %}
+<section class="s {{ bg }}" aria-label="{{ t(VMLAB.vision) }}">
+  <div class="wrap vm">
+    <div><h3>{{ t(VMLAB.vision) }}</h3><p>{{ t(b.vision) }}</p></div>
+    <div><h3>{{ t(VMLAB.mission) }}</h3><p>{{ t(b.mission) }}</p></div>
+  </div>
+</section>
+{%- endif %}
+{%- endfor %}
+
+<section class="s s--ice" id="contact" aria-labelledby="h-contact">
+  <div class="wrap">
+    {{ sh(t(UI.get_in_touch), t(c.name), id='h-contact') }}
+    <div class="mc">
+      <dl class="contact-card">
+        <div><dt>{{ t(UI.address) }}</dt><dd>{{ t(c.address) }}{% if c.map %} <a href="{{ c.map }}" target="_blank" rel="noopener">{{ t(UI.open_map) }}</a>{% endif %}</dd></div>
+        {%- if c.key == 'aldawlia' %}
+        <div><dt>{{ t(OFFICE2.label) }}</dt><dd>{{ t(OFFICE2.address) }} <a href="{{ OFFICE2.map }}" target="_blank" rel="noopener">{{ t(UI.open_map) }}</a></dd></div>
+        {%- endif %}
+        <div><dt>{{ t(UI.phone) }}</dt><dd>{% for p in c.phones %}<span class="ph">{{ tel(p) }} {{ copybtn(p) }}</span>{% endfor %}</dd></div>
+        <div><dt>{{ t(UI.email) }}</dt><dd><a href="mailto:{{ c.email }}">{{ c.email }}</a> {{ copybtn(c.email) }}</dd></div>
+        <div><dt>{{ t(UI.website) }}</dt><dd><a href="{{ c.url }}" target="_blank" rel="noopener" dir="ltr">{{ c.web }}</a></dd></div>
+        {%- if c.led %}<div><dt>{{ t(UI.led_by) }}</dt><dd>{{ t(c.led) }}</dd></div>{% endif %}
+      </dl>
+      <div class="stack">
+        <h3 class="h3">{{ t(MARKETS_LABEL) }}</h3>
+        <ul class="chips">{% for cc in MARKETS[c.key] %}<li><span class="chip">{{ icon('pin') }}{{ t(COUNTRIES[cc]) }}</span></li>{% endfor %}</ul>
+        <p><a class="btn btn--ink" href="contact.html">{{ t(UI.start_project) }} {{ icon('arrow') }}</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--paper s--tight" aria-labelledby="h-others">
+  <div class="wrap">
+    <h2 class="h3" id="h-others" style="margin-bottom:20px">{{ t(UI.other_companies) }}</h2>
+    <div class="others">
+      {%- for o in COMPANIES if o.key != c.key %}
+      <a class="other" href="{{ cohref(o) }}" style="{{ costyle(o) }}">{{ logo(o) }}<span>{{ t(o.role) }}</span></a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+</div>
+{% endblock %}

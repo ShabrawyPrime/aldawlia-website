@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard, cotags with context -%}
+{% block content %}
+{%- set H = D.hero -%}
+<section class="hero" data-hero aria-label="{{ t(SITE.name) }}">
+  <div class="hero__media">
+    {%- for s in H.slides %}
+    <figure class="hero__slide{% if loop.first %} is-on{% endif %}" data-pos="{{ s.pos }}" data-cap="{{ t(s.cap) }}" aria-hidden="{{ 'false' if loop.first else 'true' }}">{{ img(s.img, '100vw', eager=loop.first) }}</figure>
+    {%- endfor %}
+  </div>
+  <div class="hero__veil"></div><div class="gridbg"></div>
+  <div class="wrap hero__body">
+    {{ eyebrow(t(H.eyebrow)) }}
+    <h1 class="display">{{ t(H.title) }}</h1>
+    <p class="lead">{{ t(H.lead) }}</p>
+    <div class="btns">
+      <a class="btn btn--frost" href="group.html">{{ t(UI.explore_group) }} {{ icon('arrow') }}</a>
+      <a class="btn btn--ghost" href="contact.html">{{ t(UI.talk_engineer) }}</a>
+    </div>
+  </div>
+  <div class="wrap hero__foot">
+    <div class="spectrum" role="group" aria-label="{{ t(H.spectrum_label) }}">
+      <div class="spectrum__ends"><span>{{ t(UI.sector_cooling) }}</span><span class="mid">{{ t(UI.where_they_meet) }}</span><span>{{ t(UI.sector_energy) }}</span></div>
+      <div class="spectrum__bar"><i class="spectrum__marker" aria-hidden="true"></i></div>
+      <div class="spectrum__ticks">
+        {%- for k, x in D.spectrum %}{% set c = COMPANY[k] %}<a class="spectrum__tick" style="--x:{{ x }}" href="{{ cohref(c) }}">{{ t(c.short) }}</a>{% endfor %}
+      </div>
+    </div>
+    <ul class="kpis">
+      {%- for k in KPIS %}<li><span class="num">{{ k.n }}</span><span class="lbl">{{ t(k.l) }}</span></li>{% endfor %}
+    </ul>
+    <div class="hero__cap">
+      <span class="cap-t" data-cap aria-live="polite">{{ t(H.slides[0].cap) }}</span>
+      <div class="hero__ctrl">
+        {%- for s in H.slides %}<button type="button" class="dot" aria-label="{{ t(UI.slide_label) }} {{ loop.index }}" aria-current="{{ 'true' if loop.first else 'false' }}"><i></i></button>{% endfor %}
+        <button type="button" class="pp" data-pp aria-pressed="false" aria-label="{{ t(UI.pause) }}" data-l-pause="{{ t(UI.pause) }}" data-l-play="{{ t(UI.play) }}"><svg class="ic ic-pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="ic ic-play" aria-hidden="true" style="display:none"><use href="#i-play"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--ice" aria-labelledby="h-family">
+  <div class="wrap">
+    <div class="sh sh--split">
+      <div class="sh__t">{{ eyebrow(t(D.family.eyebrow)) }}<h2 class="h2" id="h-family">{{ t(D.family.title) }}</h2></div>
+      <p class="lead">{{ t(D.family.lead) }}</p>
+    </div>
+    {%- set m = COMPANY.aldawlia %}
+    <a class="mother" href="aldawlia.html">
+      <span class="mother__logo">{{ logo(m) }}</span>
+      <span>
+        <span class="mother__tag" style="display:block">{{ t(UI.mother) }} · <span class="ltr">{{ t(m.est_label) }}</span></span>
+        <h3 class="h3">{{ t(m.name) }}</h3>
+        <p>{{ t(m.line) }}</p>
+      </span>
+      <span class="arrowbox">{{ icon('arrow') }}</span>
+    </a>
+    <div class="family__cols">
+      {%- for sec in ['cooling', 'energy'] %}
+      <div class="family__col family__col--{{ sec }}">
+        <h3 class="family__sector"><i></i>{{ t(UI['sector_' ~ sec]) }}</h3>
+        <ul>
+          {%- for c in COMPANIES if c.sector == sec and not c.mother %}
+          <li><a class="corow" href="{{ cohref(c) }}" style="{{ costyle(c) }}">
+            <span class="corow__logo">{{ logo(c) }}</span>
+            <span class="corow__t"><strong>{{ t(c.short) }} <em>{{ t(c.est_label) }}</em></strong><span class="verb">{{ t(c.verb) }}</span><p>{{ t(c.line) }}</p></span>
+            <span class="arrowbox">{{ icon('arrow') }}</span>
+          </a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="s s--night" aria-labelledby="h-story">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    <div class="band">
+      <figure class="band__img">{{ img('founder', '(max-width:960px) 100vw, 45vw') }}<figcaption>{{ t(IMGALT.founder) }}</figcaption></figure>
+      <div class="stack" style="gap:26px">
+        {{ eyebrow(t(D.story.eyebrow)) }}
+        <h2 class="vh" id="h-story">{{ t(D.story.eyebrow) }}</h2>
+        <blockquote class="quote">{{ t(D.story.quote) }}</blockquote>
+        <p class="quote-by">{{ t(D.story.who) }}</p>
+        <p class="lead">{{ t(D.story.text) }}</p>
+        <p><a class="btn btn--ghost" href="story.html">{{ t(UI.read_story) }} {{ icon('arrow') }}</a></p>
+      </div>
+    </div>
+    <ol class="tline">
+      {%- for y, l in D.story.timeline %}<li class="{{ 'sun' if y == '2020' else '' }}"><b>{{ y }}</b><span>{{ t(l) }}</span></li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="s local" aria-labelledby="h-local">
+  <div class="local__img">{{ img('team_site', '(max-width:960px) 100vw, 42vw') }}</div>
+  <div class="wrap">
+    <div class="local__in">
+      {{ eyebrow(t(D.local.eyebrow)) }}
+      <div class="bignum"><span class="bignum__pre">{{ t(D.local.big_pre) }}</span><span class="num">{{ D.local.big }}</span><span class="bignum__l">{{ t(D.local.big_label) }}</span></div>
+      <h2 class="h2" id="h-local">{{ t(D.local.title) }}</h2>
+      <p class="lead">{{ t(D.local.text) }}</p>
+      <div class="split2">
+        <div><h4>{{ t(D.local.imported) }}</h4><p>{{ t(D.local.imported_items) }}</p></div>
+        <div><h4>{{ t(D.local.local) }}</h4><p>{{ t(D.local.local_items) }}</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--paper" aria-labelledby="h-sol">
+  <div class="wrap">
+    <div class="sh sh--split">
+      <div class="sh__t">{{ eyebrow(t(D.solutions.eyebrow)) }}<h2 class="h2" id="h-sol">{{ t(D.solutions.title) }}</h2></div>
+      <div class="stack"><p class="lead">{{ t(D.solutions.lead) }}</p><p><a class="tlink" href="solutions.html">{{ t(UI.explore_solutions) }} {{ icon('arrow') }}</a></p></div>
+    </div>
+    <div class="track__h"><i></i>{{ t(D.solutions.track_cooling) }}</div>
+    <ol class="steps steps--rail">
+      {%- for title, text in SERVICES %}<li><span class="n">{{ '%02d' % loop.index }}</span><h3>{{ t(title) }}</h3></li>{% endfor %}
+    </ol>
+    <div class="track">
+      <div class="track__h"><i class="sun"></i>{{ t(D.solutions.track_energy) }}</div>
+      <ol class="etrack">
+        {%- for title, text, k in D.solutions.energy_steps %}{% set c = COMPANY[k] %}
+        <li style="{{ costyle(c) }}"><h3>{{ t(title) }}</h3><p>{{ t(text) }}</p><span class="cotag">{{ t(c.short) }}</span></li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="s s--night" aria-labelledby="h-ind">
+  <div class="glow"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(D.industries.eyebrow), t(D.industries.title), t(D.industries.lead), 'solutions.html#industries', t(UI.learn_more), split=True, id='h-ind') }}
+    <div class="ix" data-ix>
+      {%- for s in SECTORS %}
+      <a class="ix__row" href="solutions.html#s-{{ s.key }}"{% if s.img %} data-img="{{ A }}img/{{ s.img }}-{{ IMG[s.img].widths[0] }}.webp" data-alt="{{ t(IMGALT[s.img]) }}"{% endif %}>
+        <span class="n">{{ '%02d' % loop.index }}</span>
+        <span><h3>{{ t(s.name) }}</h3><p>{{ t(s.short) }}</p></span>
+      </a>
+      {%- endfor %}
+      <div class="ix__pv" aria-hidden="true"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="300" height="225"></div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--ice" aria-labelledby="h-proj">
+  <div class="wrap">
+    {{ sh(t(D.projects.eyebrow), t(D.projects.title), None, 'projects.html', t(UI.see_all_projects), split=True, id='h-proj') }}
+    <div class="pcards pcards--4">
+      {%- for k in D.projects.featured %}{{ pcard(PROJECT[k]) }}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="s s--night" aria-labelledby="h-fp">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(D.footprint.eyebrow), t(D.footprint.title), t(D.footprint.lead), split=True, id='h-fp') }}
+    <div class="fp">
+      <div class="map" data-map>
+        {{ MAP_SVG }}
+        <div class="map__tip" role="status"></div>
+        <div class="map__legend"><span><i></i>{{ t(D.footprint.active) }}</span><span><i class="hub"></i>{{ t(D.footprint.hubs) }}</span></div>
+      </div>
+      <div class="fp__list">
+        <p class="fp__hint">{{ t(D.footprint.hint) }}</p>
+        {%- for c in COMPANIES %}
+        <button type="button" class="fp__co" data-fp="{{ c.key }}" style="{{ costyle(c) }}"><strong><i></i>{{ t(c.short) }}</strong><span>{{ MARKET_NAMES[c.key] }}</span></button>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="map-data">{{ MAP_JSON }}</script>
+</section>
+
+<section class="s s--white" aria-labelledby="h-pc">
+  <div class="wrap">
+    {{ sh(t(D.partners.eyebrow), t(D.partners.title), id='h-pc') }}
+    <div class="walls">
+      <div class="wall">
+        <h3>{{ t(D.partners.partners_label) }}</h3>
+        <div class="wall__img"><img src="{{ A }}img/wall-partners.webp" width="{{ WALLS.partners.w }}" height="{{ WALLS.partners.h }}" alt="{{ t(WALLALT.partners) }}" loading="lazy" decoding="async"></div>
+        <p>{{ t(D.partners.partners_text) }}</p>
+      </div>
+      <div class="wall">
+        <h3>{{ t(D.partners.clients_label) }}</h3>
+        <div class="wall__img"><img src="{{ A }}img/wall-clients.webp" width="{{ WALLS.clients.w }}" height="{{ WALLS.clients.h }}" alt="{{ t(WALLALT.clients) }}" loading="lazy" decoding="async"></div>
+        <p>{{ t(D.partners.clients_text) }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--ice s--tight" aria-labelledby="h-sus">
+  <div class="wrap">
+    {{ sh(t(D.sustain.eyebrow), t(D.sustain.title), None, 'sustainability.html', t(UI.learn_more), split=True, id='h-sus') }}
+    <ul class="stats">
+      {%- for n, l in D.sustain.stats %}<li><span class="num">{{ n }}</span><span>{{ t(l) }}</span></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% include 'cta.html' %}
+{% endblock %}

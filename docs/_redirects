@@ -1,0 +1,4 @@
+# Netlify: send the root to the right language by country. A saved choice (cookie ag_lang) is handled by the
+# edge function in netlify/edge-functions/lang.js; these rules are the fallback when edge functions are off.
+/  /ar/  302  Country=dz,bh,km,dj,eg,iq,jo,kw,lb,ly,mr,ma,om,ps,qa,sa,so,sd,sy,tn,ae,ye,eh,td
+/  /en/  302

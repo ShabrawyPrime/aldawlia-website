@@ -1,0 +1,13 @@
+{%- from 'macros.html' import icon, eyebrow, img with context -%}
+<section class="phero">
+  {%- if PH.img %}<div class="phero__img">{{ img(PH.img, '100vw', eager=True) }}</div><div class="phero__veil"></div>{% endif %}
+  <div class="gridbg"></div>
+  <div class="wrap">
+    <div class="phero__in">
+      <nav class="crumbs" aria-label="{{ t(UI.breadcrumb) }}"><a href="index.html">{{ t(SITE.name) }}</a>{{ icon('chev-r') }}<span aria-current="page">{{ t(PH.crumb) }}</span></nav>
+      {%- if t(PH.eyebrow) != t(PH.crumb) %}{{ eyebrow(t(PH.eyebrow)) }}{% endif %}
+      <h1 class="h1">{{ t(PH.title) }}</h1>
+      {%- if PH.lead %}<p class="lead">{{ t(PH.lead) }}</p>{% endif %}
+    </div>
+  </div>
+</section>

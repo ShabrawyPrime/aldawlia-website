@@ -1,0 +1,133 @@
+{%- if not ARTIFACT -%}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{%- endif %}
+<title>Aldawlia Group · مجموعة الدولية</title>
+{%- if not ARTIFACT %}
+<meta name="description" content="Aldawlia Group: industrial refrigeration and energy since 1983. مجموعة الدولية: التبريد الصناعي والطاقة منذ 1983.">
+<link rel="canonical" href="{{ SITE.url }}/">
+<link rel="alternate" hreflang="en" href="{{ SITE.url }}/en/">
+<link rel="alternate" hreflang="ar" href="{{ SITE.url }}/ar/">
+<link rel="alternate" hreflang="x-default" href="{{ SITE.url }}/">
+<meta name="theme-color" content="#070B14">
+<meta property="og:title" content="Aldawlia Group · مجموعة الدولية">
+<meta property="og:image" content="{{ SITE.url }}/assets/brand/og-en.jpg">
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+{%- endif %}
+{{ GATE_FONTS }}
+<style>
+:root{color-scheme:dark;--night:#070B14;--ice:#EEF3FA;--mist:#93A4BD;--frost:#22D3EE;--sun:#F6B61D;--line:rgba(255,255,255,.14)}
+html,body{margin:0;min-height:100%;background:var(--night);color:var(--ice)}
+body{font-family:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif}
+.g{position:relative;min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:40px 16px;overflow:hidden;box-sizing:border-box}
+.g::before{content:"";position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.045) 1px,transparent 1px);background-size:96px 96px;-webkit-mask-image:radial-gradient(70% 70% at 50% 45%,#000 20%,transparent 80%);mask-image:radial-gradient(70% 70% at 50% 45%,#000 20%,transparent 80%)}
+.g::after{content:"";position:absolute;inset:0;background:radial-gradient(40% 50% at 30% 30%,rgba(34,211,238,.14),transparent 70%),radial-gradient(40% 50% at 75% 80%,rgba(246,182,29,.10),transparent 70%);pointer-events:none}
+.c{position:relative;z-index:1;width:min(560px,100%);display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center}
+.marks{display:flex;flex-direction:column;align-items:center;gap:14px}
+.marks svg{height:34px;width:auto;max-width:100%}
+.marks svg+svg{height:40px}
+.bar{position:relative;width:min(360px,80vw);height:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--frost),var(--sun));transform-origin:0 50%;animation:fill 1.2s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.st{min-height:3.2em;font-size:15px;line-height:1.6;color:var(--mist)}
+.st b{color:var(--ice);font-weight:600}
+.btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.btns a{display:inline-flex;align-items:center;justify-content:center;min-width:150px;min-height:50px;padding:12px 22px;border:1px solid var(--line);border-radius:4px;color:var(--ice);text-decoration:none;font-weight:600;font-size:16px;transition:border-color .2s,color .2s,background-color .2s}
+.btns a:hover,.btns a:focus-visible{border-color:var(--frost);color:var(--frost);outline:none}
+.btns a.is-pick{background:var(--frost);border-color:var(--frost);color:#04212B}
+.btns a[lang="ar"]{font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-size:17px}
+.note{font-size:13px;line-height:1.7;color:var(--mist);max-width:44ch}
+.note span{display:block}
+.note span[lang="ar"]{font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-size:14px}
+@media (prefers-reduced-motion:reduce){.bar i{animation:none}}
+</style>
+{%- if not ARTIFACT %}
+</head>
+<body>
+{%- endif %}
+<main class="g">
+  <div class="c">
+    <div class="marks" role="img" aria-label="Aldawlia Group · مجموعة الدولية">{{ LOCKUP_EN }}{{ LOCKUP_AR }}</div>
+    <div class="bar" aria-hidden="true"><i></i></div>
+    <p class="st" id="st" role="status" aria-live="polite">Choose your language · اختر لغتك</p>
+    <div class="btns">
+      <a href="en/index.html" hreflang="en" lang="en" id="go-en">English</a>
+      <a href="ar/index.html" hreflang="ar" lang="ar" dir="rtl" id="go-ar">العربية</a>
+    </div>
+    <p class="note"><span lang="en">We choose the language from your device's region. You can switch at any time.</span><span lang="ar" dir="rtl">نختار اللغة وفق منطقة جهازك، ويمكنك التبديل في أي وقت.</span></p>
+  </div>
+</main>
+<script>
+(function () {
+  "use strict";
+  var ARAB = {{ ARAB_JSON }};
+  var TZ = {{ TZ_JSON }};
+  var AMBIG = {{ AMBIG_JSON }};
+  var doc = document, nav = navigator;
+  function inArab(cc) { return !!cc && ARAB.indexOf(String(cc).toUpperCase()) > -1; }
+  function saved() {
+    try { var v = localStorage.getItem("ag:lang"); if (v === "ar" || v === "en") return v; } catch (e) {}
+    try { var m = doc.cookie.match(/(?:^|;\s*)ag_lang=(ar|en)/); if (m) return m[1]; } catch (e) {}
+    return null;
+  }
+  function forced() {
+    var h = (location.hash || "").slice(1).toLowerCase(); if (h === "ar" || h === "en") return h;
+    try { var q = new URLSearchParams(location.search).get("lang"); if (q === "ar" || q === "en") return q; } catch (e) {}
+    return null;
+  }
+  function edgeCountry() {
+    var m = doc.querySelector('meta[name="ag:country"]'); var c = m && m.getAttribute("content");
+    if (c && /^[A-Za-z]{2}$/.test(c)) return c.toUpperCase();
+    try { var k = doc.cookie.match(/(?:^|;\s*)ag_cc=([A-Za-z]{2})/); if (k) return k[1].toUpperCase(); } catch (e) {}
+    return null;
+  }
+  function langs() { return (nav.languages && nav.languages.length) ? nav.languages : [nav.language || ""]; }
+  function localeRegion() {
+    var ls = langs();
+    for (var i = 0; i < ls.length; i++) { var m = /^[a-z]{2,3}(?:[-_][A-Za-z]{4})?[-_]([A-Za-z]{2})(?:$|[-_])/.exec(ls[i] || ""); if (m) return m[1].toUpperCase(); }
+    return null;
+  }
+  function speaksArabic() { return langs().some(function (l) { return /^ar(\b|[-_])/i.test(l || ""); }); }
+  function decide() {
+    var f = forced(); if (f) return { lang: f, why: "link" };
+    var s = saved(); if (s) return { lang: s, why: "saved" };
+    var cc = edgeCountry(); if (cc) return { lang: inArab(cc) ? "ar" : "en", why: "region", cc: cc };
+    var tz = ""; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    if (TZ[tz]) return { lang: "ar", why: "region", cc: TZ[tz], tz: tz };
+    if (tz && AMBIG.indexOf(tz) < 0) {
+      var r0 = localeRegion();
+      return { lang: "en", why: "region", tz: tz, cc: r0 && !inArab(r0) ? r0 : null };
+    }
+    var r = localeRegion(); if (r) return { lang: inArab(r) ? "ar" : "en", why: "region", cc: r, tz: tz };
+    return { lang: speaksArabic() ? "ar" : "en", why: "language", tz: tz };
+  }
+  function regionName(cc, lang) {
+    try { if (cc && Intl.DisplayNames) return new Intl.DisplayNames([lang], { type: "region" }).of(cc); } catch (e) {}
+    return cc || "";
+  }
+  var d = decide(), st = doc.getElementById("st"), target = d.lang + "/index.html";
+  var pick = doc.getElementById("go-" + d.lang); if (pick) pick.className = "is-pick";
+  var name = regionName(d.cc, d.lang);
+  st.innerHTML = d.lang === "ar"
+    ? '<span lang="ar" dir="rtl">' + (name ? "منطقتك: <b>" + name + "</b> · " : "") + "جارٍ فتح الموقع <b>العربي</b>…</span>"
+    : '<span lang="en">' + (name ? "Your region: <b>" + name + "</b> · " : "") + "Opening the <b>English</b> site…</span>";
+  function remember(l) {
+    try { localStorage.setItem("ag:lang", l); } catch (e) {}
+    try { doc.cookie = "ag_lang=" + l + ";path=/;max-age=31536000;SameSite=Lax"; } catch (e) {}
+  }
+  ["en", "ar"].forEach(function (l) { var a = doc.getElementById("go-" + l); if (a) a.addEventListener("click", function () { remember(l); }); });
+  if (d.why === "link") remember(d.lang);
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  setTimeout(function () { location.replace(target); }, (reduce || d.why === "saved") ? 150 : 900);
+})();
+</script>
+{%- if not ARTIFACT %}
+</body>
+</html>
+{%- endif %}

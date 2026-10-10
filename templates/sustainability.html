@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, sh, cardcols with context -%}
+{% block content %}
+{%- set PH = {'img': 'frosty_solar', 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
+{% include 'phero.html' %}
+<section class="s s--night s--tight" aria-label="{{ t(D.hero.eyebrow) }}">
+  <div class="wrap">
+    <ul class="stats stats--5">{% for n, l in D.stats %}<li><span class="num">{{ n }}</span><span>{{ t(l) }}</span></li>{% endfor %}</ul>
+    <p class="fine" style="margin-top:20px">{{ t(D.stats_note) }}</p>
+  </div>
+</section>
+<section class="s s--paper" aria-labelledby="h-nh3">
+  <div class="wrap">
+    {{ sh(t(D.ammonia.eyebrow), t(D.ammonia.title), id='h-nh3') }}
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr>{% for h in D.ammonia.head %}<th scope="col">{{ t(h) }}</th>{% endfor %}</tr></thead>
+      <tbody>{% for r in D.ammonia.rows %}<tr>{% for cell in r %}<td data-label="{{ t(D.ammonia.head[loop.index0]) }}">{{ t(cell) }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+    </table></div>
+  </div>
+</section>
+<section class="s s--white" aria-label="{{ t(D.hero.eyebrow) }}">
+  <div class="wrap">
+    <div class="cards {{ cardcols(D.pillars|length) }}">{% for p in D.pillars %}<div class="card">{{ icon(p.icon) }}<h3>{{ t(p.title) }}</h3><p>{{ t(p.text) }}</p></div>{% endfor %}</div>
+  </div>
+</section>
+<section class="s s--ice" aria-labelledby="h-std">
+  <div class="wrap">
+    {{ sh(t(D.standards.eyebrow), t(D.standards.title), t(D.standards.lead), id='h-std') }}
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr>{% for h in D.standards.head %}<th scope="col">{{ t(h) }}</th>{% endfor %}</tr></thead>
+      <tbody>{% for r in D.standards.rows %}<tr><td data-label="{{ t(D.standards.head[0]) }}">{{ t(r[0]) }}</td><td data-label="{{ t(D.standards.head[1]) }}">{{ t(r[1]) }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+  </div>
+</section>
+<section class="s s--night" aria-labelledby="h-safe">
+  <div class="gridbg"></div>
+  <div class="wrap media" style="position:relative">
+    <figure class="media__img">{{ img('piping', '(max-width:960px) 100vw, 50vw') }}<figcaption class="figcap">{{ t(IMGALT.piping) }}</figcaption></figure>
+    <div class="media__t">{{ icon('shield') }}<h2 class="h2" id="h-safe">{{ t(D.safety.title) }}</h2><p class="lead">{{ t(D.safety.text) }}</p></div>
+  </div>
+</section>
+{% include 'cta.html' %}
+{% endblock %}

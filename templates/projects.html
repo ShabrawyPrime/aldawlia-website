@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard with context -%}
+{% block content %}
+{%- set PH = {'img': 'mars_crane', 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
+{% include 'phero.html' %}
+<section class="s s--ice" aria-label="{{ t(D.filter_label) }}">
+  <div class="wrap">
+    <div class="filters" data-filters role="group" aria-label="{{ t(D.filter_label) }}">
+      <button type="button" class="chipbtn" data-f="all" aria-pressed="true">{{ t(UI.all) }}</button>
+      {%- for k, v in CATS.items() %}<button type="button" class="chipbtn" data-f="{{ k }}" aria-pressed="false">{{ t(v) }}</button>{% endfor %}
+      {%- for c in COMPANIES if c.key in PROJECT_COS %}<button type="button" class="chipbtn" data-f="{{ c.key }}" aria-pressed="false" style="{{ costyle(c) }}"><i></i>{{ t(c.short) }}</button>{% endfor %}
+      <span class="count" data-count data-plural='{{ t(D.count)|tojson }}' aria-live="polite">{{ t(D.count)['other' if L == 'en' else 'many']|replace('{n}', PROJECTS|length) }}</span>
+    </div>
+    <div class="pcards">
+      {%- for p in PROJECTS %}{{ pcard(p, '(max-width:640px) 100vw, (max-width:1180px) 50vw, 33vw') }}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="s s--white" aria-labelledby="h-refs">
+  <div class="wrap">
+    {{ sh(t(D.refs_eyebrow), t(D.refs_title), t(D.refs_note), id='h-refs') }}
+    <ul class="reflist">{% for n, pl in REFERENCES %}<li><strong>{{ t(n) }}</strong><span>{{ t(pl) }}</span></li>{% endfor %}</ul>
+  </div>
+</section>
+{% include 'cta.html' %}
+{% endblock %}

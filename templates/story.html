@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh with context -%}
+{% block content %}
+{%- set PH = {'img': 'founder_expo', 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
+{% include 'phero.html' %}
+
+<section class="s s--paper" aria-labelledby="h-founder">
+  <div class="wrap">
+    <div class="band">
+      <figure class="band__img">{{ img('elgammal_founder', '(max-width:960px) 100vw, 45vw') }}<figcaption>{{ t(IMGALT.elgammal_founder) }}</figcaption></figure>
+      <div class="stack" style="gap:24px">
+        {{ eyebrow(t(D.founder.eyebrow)) }}
+        <h2 class="vh" id="h-founder">{{ t(D.founder.eyebrow) }}</h2>
+        <blockquote class="quote" style="color:var(--navy)">{{ t(D.founder.quote) }}</blockquote>
+        <div><p class="h4">{{ t(D.founder.name) }}</p><p class="muted">{{ t(D.founder.role) }}</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--white" aria-label="{{ t(D.hero.eyebrow) }}">
+  <div class="wrap">
+    <div class="chapters">
+      {%- for ch in D.chapters %}
+      <article class="chapter">
+        <figure class="chapter__img">{{ img(ch.img, '(max-width:960px) 100vw, 50vw') }}<figcaption class="figcap">{{ t(IMGALT[ch.img]) }}</figcaption></figure>
+        <div class="chapter__t"><span class="n">{{ ch.n }}</span><h2 class="h2">{{ t(ch.title) }}</h2><p class="lead">{{ t(ch.text) }}</p></div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="s s--night" aria-labelledby="h-ms" id="milestones">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(D.milestones_eyebrow), t(D.milestones_title), id='h-ms') }}
+    <ol class="ms">
+      {%- for y, k, txt in D.milestones %}{% set c = COMPANY[k] %}
+      <li style="{{ costyle(c) }}"><b>{{ y }}</b><p>{{ t(txt) }}</p><span class="cotag">{{ t(c.short) }}</span></li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="s s--ice" aria-labelledby="h-vm">
+  <div class="wrap">
+    {{ sh(t(D.mission.eyebrow), t(D.mission.title), id='h-vm') }}
+    <div class="vm" style="margin-bottom:clamp(32px,4vw,56px)">
+      <div><h3>{{ t(D.mission.mission_label) }}</h3><p>{{ t(D.mission.mission) }}</p></div>
+      <div><h3>{{ t(D.mission.vision_label) }}</h3><p>{{ t(D.mission.vision) }}</p></div>
+    </div>
+    <ol class="values">
+      {%- for title, txt in D['values'] %}<li><span class="n">{{ '%02d' % loop.index }}</span><h3 class="h3">{{ t(title) }}</h3><p>{{ t(txt) }}</p></li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="s s--white" aria-labelledby="h-people">
+  <div class="wrap">
+    <div class="media">
+      <div class="media__t">
+        {{ eyebrow(t(D.people.eyebrow)) }}
+        <h2 class="h2" id="h-people">{{ t(D.people.title) }}</h2>
+        <p class="lead">{{ t(D.people.text) }}</p>
+        <ul class="stats" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+          {%- for n, l in D.people.kpis %}<li><span class="num">{{ n }}</span><span>{{ t(l) }}</span></li>{% endfor %}
+        </ul>
+      </div>
+      <figure class="media__img">{{ img('booth', '(max-width:960px) 100vw, 50vw') }}<figcaption class="figcap">{{ t(IMGALT.booth) }}</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="s s--night" aria-labelledby="h-next">
+  <div class="glow"></div>
+  <div class="wrap" style="position:relative">
+    <div class="media media--rev">
+      <figure class="media__img">{{ img('next_gen', '(max-width:960px) 100vw, 50vw') }}<figcaption class="figcap">{{ t(IMGALT.next_gen) }}</figcaption></figure>
+      <div class="media__t">
+        {{ eyebrow(t(D.nextgen.eyebrow)) }}
+        <h2 class="h2" id="h-next">{{ t(D.nextgen.title) }}</h2>
+        <p class="lead">{{ t(D.nextgen.text) }}</p>
+      </div>
+    </div>
+    <h3 class="h3" style="margin:clamp(40px,5vw,64px) 0 18px">{{ t(D.nextgen.leaders_title) }}</h3>
+    <div class="leaders">
+      {%- for name, role in D.nextgen.leaders %}<div class="leader"><strong>{{ t(name) }}</strong><span>{{ t(role) }}</span></div>{% endfor %}
+    </div>
+  </div>
+</section>
+{% include 'cta.html' %}
+{% endblock %}

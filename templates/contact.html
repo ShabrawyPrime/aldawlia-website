@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, copybtn, tel with context -%}
+{% block content %}
+{%- set PH = {'img': None, 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
+{% include 'phero.html' %}
+{%- set F = D.form %}
+<section class="s s--paper" aria-labelledby="h-form" style="padding-top:clamp(48px,5vw,80px)">
+  <div class="wrap cform">
+    <form class="form" data-form novalidate{% if FORM_ENDPOINT %} data-endpoint="{{ FORM_ENDPOINT }}"{% endif %}>
+      <h2 class="h3" id="h-form">{{ t(F.title) }}</h2>
+      <div class="field"><label for="f-name">{{ t(F.name) }}<span class="req">*</span></label><input id="f-name" name="name" autocomplete="name" required><span class="err">{{ t(F.err_name) }}</span></div>
+      <div class="field"><label for="f-company">{{ t(F.company) }}</label><input id="f-company" name="company" autocomplete="organization"></div>
+      <div class="field"><label for="f-email">{{ t(F.email) }}<span class="req">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" dir="ltr" required><span class="err">{{ t(F.err_email) }}</span></div>
+      <div class="field"><label for="f-phone">{{ t(F.phone) }}</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" dir="ltr"></div>
+      <div class="field"><label for="f-country">{{ t(F.country) }}</label><input id="f-country" name="country" autocomplete="country-name"></div>
+      <div class="field"><label for="f-need">{{ t(F.need) }}<span class="req">*</span></label>
+        <select id="f-need" name="need" required><option value="">{{ t(F.need_ph) }}</option>{% for k, lab, co in D.needs %}<option value="{{ k }}">{{ t(lab) }}</option>{% endfor %}</select>
+        <span class="err">{{ t(F.err_need) }}</span></div>
+      <div class="field field--full"><label for="f-msg">{{ t(F.message) }}<span class="req">*</span></label><textarea id="f-msg" name="message" placeholder="{{ t(F.message_ph) }}" required></textarea><span class="err">{{ t(F.err_message) }}</span></div>
+      <label class="check" for="f-ok"><input type="checkbox" id="f-ok" name="consent" required><span>{{ t(F.consent) }}</span></label>
+      <div class="form__f">
+        <p class="route" data-route hidden><img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="110" height="26"><span>{{ t(F.routes_to) }} <b data-route-name></b> · <span data-route-mail dir="ltr"></span></span></p>
+        <button class="btn btn--ink" type="submit">{{ t(F.submit) }} {{ icon('arrow') }}</button>
+      </div>
+      <div class="ready" data-ready hidden role="status">
+        <h3>{{ t(F.ready_title) }}</h3>
+        <p>{{ t(F.ready_text) }} <span class="to" data-to dir="ltr"></span></p>
+        <pre></pre>
+        <div class="btns">
+          <a class="btn btn--ink" data-mailto href="#">{{ icon('mail') }} {{ t(F.open_mail) }}</a>
+          <button type="button" class="btn btn--line" data-copy-msg data-copy="" data-done="{{ t(UI.copied) }}">{{ icon('copy') }} <span data-t>{{ t(F.copy_msg) }}</span></button>
+          <button type="button" class="btn btn--line" data-edit>{{ t(F.edit) }}</button>
+        </div>
+      </div>
+    </form>
+    <aside class="aside-c">
+      {%- for o in OFFICES %}
+      <div class="card">
+        {% if loop.first %}<span class="n">{{ t(UI.head_office) }}</span>{% endif %}
+        <h3>{{ t(o.name) }}</h3>
+        <p>{{ t(o.address) }}</p>
+        <p>{{ tel(o.phone) }} {{ copybtn(o.phone) }}</p>
+        <p><a href="mailto:{{ o.email }}" style="color:var(--frost-ink);font-weight:500">{{ o.email }}</a> {{ copybtn(o.email) }}</p>
+        <p><a class="tlink" href="{{ o.map }}" target="_blank" rel="noopener">{{ t(UI.open_map) }} {{ icon('ext') }}</a></p>
+      </div>
+      {%- endfor %}
+    </aside>
+  </div>
+  <script type="application/json" id="route-data">{{ ROUTE_JSON }}</script>
+</section>
+<section class="s s--white" aria-labelledby="h-dir">
+  <div class="wrap">
+    {{ sh(t(D.directory.eyebrow), t(D.directory.title), id='h-dir') }}
+    <div class="offices">
+      {%- for c in COMPANIES %}
+      <article class="office" style="{{ costyle(c) }}">
+        <div class="office__h">{{ logo(c) }}{% if c.page %}<a class="tlink" href="{{ c.page }}" aria-label="{{ t(c.short) }}">{{ icon('arrow') }}</a>{% endif %}</div>
+        <h3>{{ t(c.name) }}</h3>
+        <p>{{ t(c.address) }}</p>
+        <ul>
+          {%- for p in c.phones %}<li>{{ icon('phone') }}{{ tel(p) }}</li>{% endfor %}
+          <li>{{ icon('mail') }}<a href="mailto:{{ c.email }}">{{ c.email }}</a> {{ copybtn(c.email) }}</li>
+          <li>{{ icon('globe') }}<a href="{{ c.url }}" target="_blank" rel="noopener" dir="ltr">{{ c.web }}</a></li>
+        </ul>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

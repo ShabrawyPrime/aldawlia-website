@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, cotags with context -%}
+{% block content %}
+{%- set PH = {'img': 'compressors', 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
+{% include 'phero.html' %}
+
+<section class="s s--paper" aria-labelledby="h-cool" id="cooling">
+  <div class="wrap">
+    {{ sh(t(D.cooling.eyebrow), t(D.cooling.title), t(D.cooling.lead), id='h-cool') }}
+    <ol class="steps steps--rail steps--text" style="margin-bottom:clamp(40px,5vw,72px)">
+      {%- for title, txt in SERVICES %}<li><span class="n">{{ '%02d' % loop.index }}</span><h3>{{ t(title) }}</h3><p>{{ t(txt) }}</p></li>{% endfor %}
+    </ol>
+    <div class="caps">
+      {%- for cp in D.capabilities %}
+      <article class="cap">
+        <div class="cap__img">{{ img(cp.img, '(max-width:640px) 100vw, (max-width:1180px) 50vw, 33vw') }}</div>
+        <div class="cap__b"><h3 class="h3">{{ t(cp.title) }}</h3><p>{{ t(cp.text) }}</p>{{ cotags(cp.cos) }}</div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="s s--night" aria-labelledby="h-energy" id="energy">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(D.energy.eyebrow), t(D.energy.title), id='h-energy') }}
+    <div class="caps">
+      {%- for cp in D.energy['items'] %}
+      <article class="cap" style="background:rgba(255,255,255,.035);border-color:var(--line-d)">
+        <div class="cap__img">{{ img(cp.img, '(max-width:640px) 100vw, 33vw') }}</div>
+        <div class="cap__b"><h3 class="h3">{{ t(cp.title) }}</h3><p style="color:var(--mist)">{{ t(cp.text) }}</p>{{ cotags(cp.cos) }}</div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="s s--white" aria-labelledby="h-meet" id="hybrid">
+  <div class="wrap media">
+    <figure class="media__img">{{ img('frosty_roof', '(max-width:960px) 100vw, 50vw') }}<figcaption class="figcap">{{ t(IMGALT.frosty_roof) }}</figcaption></figure>
+    <div class="media__t">
+      {{ eyebrow(t(D.meet.eyebrow)) }}
+      <h2 class="h2" id="h-meet">{{ t(D.meet.title) }}</h2>
+      <p class="lead">{{ t(D.meet.text) }}</p>
+      <ul class="chips">{% for pnt in D.meet.points %}<li><span class="chip">{{ icon('check') }}{{ t(pnt) }}</span></li>{% endfor %}</ul>
+    </div>
+  </div>
+</section>
+
+<section class="s s--ice" aria-labelledby="h-ind" id="industries">
+  <div class="wrap">
+    {{ sh(t(D.industries.eyebrow), t(D.industries.title), id='h-ind') }}
+    <div class="sectors">
+      {%- for s in SECTORS %}
+      <article class="sector" id="s-{{ s.key }}">
+        {%- if s.img %}<div class="sector__img">{{ img(s.img, '(max-width:640px) 100vw, (max-width:1180px) 50vw, 33vw') }}</div>
+        {%- else %}<div class="sector__img sector__img--icon">{{ icon(s.icon) }}</div>{% endif %}
+        <div class="sector__b"><span class="n">{{ '%02d' % loop.index }}</span><h3 class="h3">{{ t(s.name) }}</h3><p>{{ t(s.text) }}</p></div>
+      </article>
+      {%- endfor %}
+      <aside class="sector sector--cta" aria-label="{{ t(D.industries.cta_eyebrow) }}">
+        <div class="gridbg"></div>
+        <div class="sector__b">
+          {{ eyebrow(t(D.industries.cta_eyebrow)) }}
+          <h3 class="h3">{{ t(D.industries.cta_title) }}</h3>
+          <p>{{ t(D.industries.cta_text) }}</p>
+          <div class="btns"><a class="btn btn--frost" href="contact.html">{{ t(UI.start_project) }} {{ icon('arrow') }}</a><a class="btn btn--ghost" href="projects.html">{{ t(UI.see_all_projects) }}</a></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{% include 'cta.html' %}
+{% endblock %}

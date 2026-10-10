@@ -1,0 +1,73 @@
+{% macro icon(name, cls='') -%}
+<svg class="ic ic--{{ name }} {{ cls }}" aria-hidden="true" focusable="false"><use href="#i-{{ name }}"/></svg>
+{%- endmacro %}
+
+{% macro eyebrow(text, cls='') -%}
+<p class="eyebrow {{ cls }}">{{ text }}</p>
+{%- endmacro %}
+
+{% macro img(key, sizes='100vw', cls='', eager=False, alt=None, ratio=None) -%}
+{%- set m = IMG[key] -%}
+{%- set ws = m.widths -%}
+{%- set big = ws[-1] -%}
+{%- set mid = ws[0] if ws|length == 1 else ws[-1] -%}
+<img src="{{ A }}img/{{ key }}-{{ ws[0] if ws|length > 1 and not eager else big }}.webp" srcset="{% for w in ws %}{{ A }}img/{{ key }}-{{ w }}.webp {{ w }}w{% if not loop.last %}, {% endif %}{% endfor %}" sizes="{{ sizes }}" width="{{ big }}" height="{{ (m.h * big / m.w)|round|int }}" alt="{{ alt if alt is not none else t(IMGALT[key]) }}" style="object-position:{{ m.focal }}"{% if cls %} class="{{ cls }}"{% endif %} {% if eager %}fetchpriority="high" decoding="async"{% else %}loading="lazy" decoding="async"{% endif %}>
+{%- endmacro %}
+
+{% macro logo(c, variant='color', cls='') -%}
+{%- if c.logo -%}
+{%- set lm = LOGO[c.logo] -%}
+<img src="{{ A }}logos/{{ c.logo }}{{ '-white' if variant == 'white' else '' }}.webp" width="{{ lm.w }}" height="{{ lm.h }}" alt="{{ t(c.short) }}"{% if cls %} class="{{ cls }}"{% endif %} loading="lazy" decoding="async">
+{%- else -%}
+<b lang="en" dir="ltr">{{ c.short.en }}</b>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro costyle(c) -%}--co:{{ c.on_dark }};--co-ink:{{ c.on_light }}{%- endmacro %}
+
+{% macro cohref(c) -%}{{ c.page if c.page else 'group.html#' ~ c.key }}{%- endmacro %}
+
+{% macro sh(eb, title, lead=None, more=None, more_label=None, split=False, h='h2', id=None) -%}
+<div class="sh{% if split %} sh--split{% endif %}">
+  {%- if split %}<div class="sh__t">{% endif %}
+  {{ eyebrow(eb) }}
+  <{{ h }} class="h2"{% if id %} id="{{ id }}"{% endif %}>{{ title }}</{{ h }}>
+  {%- if split %}</div><div class="stack">{% endif %}
+  {%- if lead %}<p class="lead">{{ lead }}</p>{% endif %}
+  {%- if more %}<p class="sh__more"><a class="tlink" href="{{ more }}">{{ more_label }} {{ icon('arrow') }}</a></p>{% endif %}
+  {%- if split %}</div>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro cotags(keys) -%}
+<div class="cotags">{% for k in keys %}{% set c = COMPANY[k] %}<span class="cotag" style="{{ costyle(c) }}">{{ t(c.short) }}</span>{% endfor %}</div>
+{%- endmacro %}
+
+{% macro pcard(p, sizes='(max-width:640px) 100vw, (max-width:1180px) 50vw, 25vw') -%}
+{%- set c0 = COMPANY[p.cos[0]] -%}
+<article class="pcard" data-pcard data-cat="{{ p.cat }}" data-cos="{{ p.cos|join(' ') }}" style="{{ costyle(c0) }}" id="p-{{ p.key }}">
+  <div class="pcard__media">
+    {%- if p.imgs %}{{ img(p.imgs[0], sizes) }}{% else %}
+    <div class="pcard__big"><span class="num">{{ p.big }}</span><small>{{ t(p.metric) }}</small></div>
+    {%- endif %}
+    {%- if p.status %}<span class="pcard__status">{{ t(p.status) }}</span>{% endif %}
+  </div>
+  <div class="pcard__b">
+    <p class="pcard__place">{{ t(p.place) }}{% if p.year %} · <span class="ltr">{{ p.year }}</span>{% endif %}</p>
+    <h3>{{ t(p.title) }}</h3>
+    {%- if p.imgs %}<p class="pcard__metric">{% if p.big %}<span class="num">{{ p.big }}</span> · {% endif %}{{ t(p.metric) }}</p>{% endif %}
+    {%- if p.text %}<p>{{ t(p.text) }}</p>{% endif %}
+    {{ cotags(p.cos) }}
+  </div>
+</article>
+{%- endmacro %}
+
+{% macro copybtn(value) -%}
+<button type="button" class="copy" data-copy="{{ value }}" data-done="{{ t(UI.copied) }}" aria-label="{{ t(UI['copy']) }} {{ value }}">{{ icon('copy') }}<span data-t>{{ t(UI['copy']) }}</span></button>
+{%- endmacro %}
+
+{% macro tel(p) -%}<a href="tel:{{ p|replace(' ', '') }}" dir="ltr">{{ p }}</a>{%- endmacro %}
+
+{% macro cardcols(n, narrow=False) -%}
+{%- if narrow -%}cards--c2{%- elif n % 4 == 0 -%}cards--c4{%- elif n == 2 -%}cards--c2{%- else -%}cards--c3{%- endif -%}
+{%- endmacro %}

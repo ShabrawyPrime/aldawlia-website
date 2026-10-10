@@ -1,0 +1,135 @@
+{%- from 'macros.html' import icon, logo, costyle, cohref, tel with context -%}
+<!doctype html>
+<html lang="{{ L }}" dir="{{ DIR }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ t(meta.title) }}</title>
+<meta name="description" content="{{ t(meta.desc) }}">
+<link rel="canonical" href="{{ URL(L, file) }}">
+<link rel="alternate" hreflang="en" href="{{ URL('en', file) }}">
+<link rel="alternate" hreflang="ar" href="{{ URL('ar', file) }}">
+<link rel="alternate" hreflang="x-default" href="{{ SITE.url }}/">
+<meta name="theme-color" content="#070B14">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ t(SITE.name) }}">
+<meta property="og:title" content="{{ t(meta.title) }}">
+<meta property="og:description" content="{{ t(meta.desc) }}">
+<meta property="og:url" content="{{ URL(L, file) }}">
+<meta property="og:image" content="{{ SITE.url }}/assets/brand/og-{{ L }}.jpg">
+<meta property="og:locale" content="{{ 'ar_EG' if L == 'ar' else 'en_US' }}">
+<meta property="og:locale:alternate" content="{{ 'en_US' if L == 'ar' else 'ar_EG' }}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="{{ A }}brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{{ A }}brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="{{ A }}brand/apple-touch-icon.png">
+{% if MODE == 'prod' %}<link rel="manifest" href="{{ ROOT }}site.webmanifest">{% endif %}
+{{ HEAD_ASSETS }}
+<script type="application/ld+json">{{ JSONLD }}</script>
+</head>
+<body class="p-{{ page }}">
+<a class="skip" href="#main">{{ t(UI.skip) }}</a>
+{% include 'icons.html' %}
+<header class="hdr" data-hdr>
+  <div class="wrap hdr__in">
+    <a class="hdr__brand" href="index.html" aria-label="{{ t(SITE.name) }}, {{ t(UI.home) }}">{{ LOCKUP_LIGHT }}</a>
+    <nav class="hdr__nav" aria-label="{{ t(UI.main_nav) }}">
+      <ul>
+        {%- for n in NAV %}
+        {%- if n.mega %}
+        <li class="has-mega">
+          <a href="{{ n.href }}"{% if page in GROUP_PAGES %} aria-current="page"{% endif %}>{{ t(n.label) }}</a>
+          <button class="mega-tg" type="button" aria-expanded="false" aria-controls="mega" aria-label="{{ t(UI.companies) }}">{{ icon('chev-d') }}</button>
+          <div class="mega" id="mega">
+            <div class="wrap mega__in">
+              {%- for sec in ['cooling', 'energy'] %}
+              <div class="mega__col">
+                <h3><i class="{{ 'sun' if sec == 'energy' else '' }}"></i>{{ t(UI['sector_' ~ sec]) }}</h3>
+                {%- for c in COMPANIES if c.sector == sec %}
+                <a class="mco" href="{{ cohref(c) }}" style="{{ costyle(c) }}">
+                  <span class="mco__logo">{{ logo(c, 'white') if c.key != 'aldawlia' else '' }}{% if c.key == 'aldawlia' %}<img src="{{ A }}logos/aldawlia.webp" width="{{ LOGO.aldawlia.w }}" height="{{ LOGO.aldawlia.h }}" alt="{{ t(c.short) }}" style="max-height:34px;background:#F4F6FA;border-radius:4px;padding:2px 4px" loading="lazy">{% endif %}</span>
+                  <span><strong>{{ t(c.short) }}</strong><span>{{ t(c.role) }}</span></span>
+                </a>
+                {%- endfor %}
+              </div>
+              {%- endfor %}
+              <div class="mega__aside">
+                <p>{{ t(MEGA_TEXT) }}</p>
+                <a class="tlink" href="group.html" style="--accent:var(--frost)">{{ t(UI.back_to_group) }} {{ icon('arrow') }}</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        {%- else %}
+        <li><a href="{{ n.href }}"{% if page == n.key %} aria-current="page"{% endif %}>{{ t(n.label) }}</a></li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+    </nav>
+    <div class="hdr__tools">
+      <a class="hdr__lang" href="../{{ OTHER }}/{{ file }}" hreflang="{{ OTHER }}" lang="{{ OTHER }}" data-setlang="{{ OTHER }}" aria-label="{{ t(UI.lang_switch_label) }}">{{ icon('globe') }}<span>{{ t(UI.lang_other) }}</span></a>
+      <a class="btn btn--frost btn--sm" href="contact.html">{{ t(UI.start_project) }}</a>
+      <button class="burger" type="button" data-burger aria-controls="drawer" aria-expanded="false" aria-label="{{ t(UI.menu) }}"><svg class="ic ic-menu" aria-hidden="true"><use href="#i-menu"/></svg><svg class="ic ic-close" aria-hidden="true" style="display:none"><use href="#i-close"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <nav class="drawer__nav" aria-label="{{ t(UI.main_nav) }}">
+    <a href="index.html">{{ t(UI.home) }} {{ icon('arrow') }}</a>
+    {%- for n in NAV %}<a href="{{ n.href }}">{{ t(n.label) }} {{ icon('arrow') }}</a>{% endfor %}
+  </nav>
+  <div class="drawer__cos">
+    {%- for c in COMPANIES %}<a href="{{ cohref(c) }}">{{ t(c.short) }}<small>{{ t(c.role) }}</small></a>{% endfor %}
+  </div>
+  <div class="drawer__foot">
+    <a class="hdr__lang" href="../{{ OTHER }}/{{ file }}" hreflang="{{ OTHER }}" lang="{{ OTHER }}" data-setlang="{{ OTHER }}">{{ icon('globe') }}<span>{{ t(UI.lang_other) }}</span></a>
+    <a class="btn btn--frost" href="contact.html">{{ t(UI.start_project) }}</a>
+  </div>
+</div>
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        {{ LOCKUP_LIGHT }}
+        <p>{{ t(FOOT_TEXT) }}</p>
+        <div class="social">{% for s in SOCIAL %}<a href="{{ s.url }}" target="_blank" rel="noopener" aria-label="{{ s.name }}">{{ icon(s.icon) }}</a>{% endfor %}</div>
+      </div>
+      <div>
+        <h3>{{ t(UI.explore) }}</h3>
+        <ul>
+          {%- for n in NAV %}<li><a href="{{ n.href }}">{{ t(n.label) }}</a></li>{% endfor %}
+          <li><a href="brand.html">{{ t(UI.brand_link) }}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>{{ t(UI.companies) }}</h3>
+        <ul>
+          {%- for c in COMPANIES %}<li><a href="{{ cohref(c) }}">{{ t(c.short) }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3>{{ t(UI.head_office) }}</h3>
+        <p class="addr">{{ t(COMPANY.aldawlia.address) }}<br>{{ tel('+20 2 3836 7822') }}<br><a href="mailto:info@aldawlia.org">info@aldawlia.org</a></p>
+      </div>
+    </div>
+    <div class="ftr__bot">
+      <div class="ftr__legal">
+        <span>© 2026 {{ t(SITE.name) }}. {{ t(UI.rights) }}</span>
+        <span><a href="brand.html">{{ t(UI.brand_link) }}</a> · <a href="../{{ OTHER }}/{{ file }}" hreflang="{{ OTHER }}" lang="{{ OTHER }}" data-setlang="{{ OTHER }}">{{ t(UI.lang_other) }}</a></span>
+      </div>
+      <dl class="tblock" aria-label="{{ t(UI.drawing) }}">
+        <div><dt>{{ t(TB.project) }}</dt><dd>{{ t(SITE.name) }}</dd></div>
+        <div><dt>{{ t(UI.drawing) }}</dt><dd dir="ltr">AG-WEB-{{ SHEET }}</dd></div>
+        <div><dt>{{ t(UI.sheet) }}</dt><dd dir="ltr">{{ SHEET }} / {{ SHEETS }}</dd></div>
+        <div><dt>{{ t(UI.rev) }}</dt><dd dir="ltr">{{ SITE.revision }}</dd></div>
+        <div><dt>{{ t(TB.date) }}</dt><dd dir="ltr">{{ SITE.rev_date }}</dd></div>
+      </dl>
+    </div>
+  </div>
+</footer>
+{{ FOOT_ASSETS }}
+</body>
+</html>

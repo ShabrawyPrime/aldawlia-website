@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, cardcols with context -%}
+{% block content %}
+{%- set PH = {'img': None, 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
+{% include 'phero.html' %}
+<section class="s s--paper" style="padding-top:clamp(40px,5vw,72px)">
+  <div class="wrap bk">
+    <nav class="toc" data-toc aria-label="{{ t(D.hero.eyebrow) }}">{% for k, l in D.toc %}<a href="#{{ k }}">{{ t(l) }}</a>{% endfor %}</nav>
+    <div>
+      <!-- 01 idea -->
+      <section class="bsec" id="idea" aria-labelledby="h-idea">
+        {{ eyebrow(t(D.idea.eyebrow)) }}<h2 class="h2" id="h-idea">{{ t(D.idea.title) }}</h2>
+        <p class="prose lead">{{ t(D.idea.text) }}</p>
+        <div class="specbar" role="img" aria-label="{{ t(D.colour.spectrum_label) }}"></div>
+        <div class="specbar-l"><span>{{ t(UI.sector_cooling) }}</span><span>{{ t(UI.sector_energy) }}</span></div>
+        <div class="cards {{ cardcols(D.idea.cards|length) }}">{% for k, v in D.idea.cards %}<div class="card"><span class="n">{{ t(k) }}</span><h3>{{ t(v) }}</h3></div>{% endfor %}</div>
+        <h3 class="h3">{{ t(D.idea.traits_title) }}</h3>
+        <ul class="chips">{% for a, b in D.idea.traits %}<li><span class="chip"><strong>{{ t(a) }}</strong> <span class="muted">{{ t(b) }}</span></span></li>{% endfor %}</ul>
+      </section>
+
+      <!-- 02 architecture -->
+      <section class="bsec" id="architecture" aria-labelledby="h-arch">
+        {{ eyebrow(t(D.architecture.eyebrow)) }}<h2 class="h2" id="h-arch">{{ t(D.architecture.title) }}</h2>
+        <p class="prose">{{ t(D.architecture.text) }}</p>
+        <div class="demo demo--d" style="flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:20px">
+          <div class="lockup" style="display:flex;justify-content:center">{{ LOCKUP_LIGHT }}</div>
+          <div class="cards cards--dense">
+            {%- for c in COMPANIES %}
+            <div class="card" style="{{ costyle(c) }};align-items:flex-start">
+              <div style="height:34px;display:flex;align-items:center">{% if c.key == 'aldawlia' %}<span style="background:#F4F6FA;border-radius:4px;padding:2px 6px;display:inline-flex">{{ logo(c) }}</span>{% else %}{{ logo(c, 'white') }}{% endif %}</div>
+              <p style="font:500 11.5px/1.4 var(--f-label);letter-spacing:{{ '0' if L == 'ar' else '.1em' }};text-transform:{{ 'none' if L == 'ar' else 'uppercase' }};color:var(--mist)">{{ t(UI.group_company) if not c.mother else t(UI.mother) }}</p>
+            </div>
+            {%- endfor %}
+          </div>
+        </div>
+        <p class="fine"><strong>{{ t(D.architecture.endorse_label) }}:</strong> “An Aldawlia Group company” · «إحدى شركات مجموعة الدولية»</p>
+        {%- set style_logo = 'max-height:30px;width:auto' %}
+      </section>
+
+      <!-- 03 signature -->
+      <section class="bsec" id="signature" aria-labelledby="h-sig">
+        {{ eyebrow(t(D.signature.eyebrow)) }}<h2 class="h2" id="h-sig">{{ t(D.signature.title) }}</h2>
+        <p class="prose">{{ t(D.signature.text) }}</p>
+        <div class="sigs">
+          <div class="sig sig--d">{{ BRAND_SVGS.en_light }}</div>
+          <div class="sig sig--l">{{ BRAND_SVGS.en_dark }}</div>
+          <div class="sig sig--d">{{ BRAND_SVGS.ar_light }}</div>
+          <div class="sig sig--l">{{ BRAND_SVGS.ar_dark }}</div>
+          <div class="sig sig--l sig--cs"><span class="cs" aria-hidden="true"></span>{{ BRAND_SVGS.en_dark }}</div>
+          <div class="sig sig--d sig--mono">{{ BRAND_SVGS.monogram }}</div>
+        </div>
+        <div class="rules">{% for k, v in D.signature.rules %}<div class="card"><h3>{{ t(k) }}</h3><p>{{ t(v) }}</p></div>{% endfor %}</div>
+        <h3 class="h3">{{ t(D.signature.donts_title) }}</h3>
+        <ul class="donts">{% for x in D.signature.donts %}<li>{{ icon('x') }}<span>{{ t(x) }}</span></li>{% endfor %}</ul>
+      </section>
+
+      <!-- 04 colour -->
+      <section class="bsec" id="colour" aria-labelledby="h-col">
+        {{ eyebrow(t(D.colour.eyebrow)) }}<h2 class="h2" id="h-col">{{ t(D.colour.title) }}</h2>
+        <p class="prose">{{ t(D.colour.text) }}</p>
+        <div class="swatches">
+          {%- for k, en, ar, hexv, rgb, use in D.colour.core %}
+          <div class="sw"><div class="sw__c" style="--c:{{ hexv }}{% if k in ['ice','paper'] %};box-shadow:inset 0 -1px 0 var(--line-l){% endif %}"></div><div class="sw__b"><strong>{{ en if L == 'en' else ar }}</strong><code dir="ltr">{{ hexv }}</code><code dir="ltr">RGB {{ rgb }}</code><span>{{ t(use) }}</span></div></div>
+          {%- endfor %}
+        </div>
+        <div><div class="specbar" role="img" aria-label="{{ t(D.colour.spectrum_label) }}"></div><div class="specbar-l"><span dir="ltr">#22D3EE</span><span>{{ t(D.colour.spectrum_label) }}</span><span dir="ltr">#F6B61D</span></div></div>
+        <p class="fine">{{ t(D.colour.ratio) }}</p>
+        <h3 class="h3">{{ t(D.colour.companies_title) }}</h3>
+        <p class="fine">{{ t(D.colour.companies_text) }}</p>
+        <div class="swatches">
+          {%- for c in COMPANIES %}
+          <div class="sw"><div class="sw__c" style="--c:{{ c.color }}"></div><div class="sw__b"><strong>{{ t(c.short) }}</strong><code dir="ltr">{{ c.color }}</code><span dir="ltr">on dark {{ c.on_dark }} · on light {{ c.on_light }}</span></div></div>
+          {%- endfor %}
+        </div>
+        <h3 class="h3">{{ t(D.colour.contrast_title) }}</h3>
+        <div class="cards cards--dense">
+          <div class="card" style="background:#070B14;border-color:#070B14;color:#EEF3FA"><h3>Ice / Night</h3><p style="color:#93A4BD" dir="ltr">17.6 : 1 · AAA</p></div>
+          <div class="card" style="background:#070B14;border-color:#070B14;color:#22D3EE"><h3>Frost / Night</h3><p style="color:#93A4BD" dir="ltr">10.9 : 1 · AAA</p></div>
+          <div class="card" style="background:#FFFFFF;color:#0B1B2E"><h3>Ink / White</h3><p dir="ltr">17.4 : 1 · AAA</p></div>
+          <div class="card" style="background:#FFFFFF;color:#0E7490"><h3>Frost Ink / White</h3><p dir="ltr">5.4 : 1 · AA</p></div>
+        </div>
+      </section>
+
+      <!-- 05 type -->
+      <section class="bsec" id="type" aria-labelledby="h-type">
+        {{ eyebrow(t(D.type.eyebrow)) }}<h2 class="h2" id="h-type">{{ t(D.type.title) }}</h2>
+        <p class="prose">{{ t(D.type.text) }}</p>
+        <div class="fam">
+          {%- for k, name, use, sample in D.type.families %}
+          <div class="fam__row"><div><strong dir="ltr">{{ name }}</strong><span>{{ t(use) }}</span></div><div class="spec f-{{ k }}"{% if k.endswith('-ar') %} lang="ar" dir="rtl"{% else %} lang="en" dir="ltr"{% endif %}>{{ sample }}</div></div>
+          {%- endfor %}
+        </div>
+        <div class="scale">
+          <div><code>Display</code><span class="display" style="font-size:clamp(2rem,1.4rem + 2vw,3.2rem)">{{ t(SITE.tagline) }}</span></div>
+          <div><code>H2</code><span class="h2">{{ t(D.idea.title) }}</span></div>
+          <div><code>H3</code><span class="h3">{{ t(D.idea.cards[0][1]) }}</span></div>
+          <div><code>Lead</code><span class="lead">{{ t(D.hero.lead) }}</span></div>
+          <div><code>Label</code><span class="eyebrow">{{ t(D.hero.eyebrow) }}</span></div>
+        </div>
+        <h3 class="h3">{{ t(D.type.rules_title) }}</h3>
+        <ul class="donts dos">{% for r in D.type.rules %}<li>{{ icon('check') }}<span>{{ t(r) }}</span></li>{% endfor %}</ul>
+      </section>
+
+      <!-- 06 layout -->
+      <section class="bsec" id="layout" aria-labelledby="h-lay">
+        {{ eyebrow(t(D.layout.eyebrow)) }}<h2 class="h2" id="h-lay">{{ t(D.layout.title) }}</h2>
+        <div class="cards {{ cardcols(D.layout['items']|length) }}">{% for k, v in D.layout['items'] %}<div class="card"><h3>{{ t(k) }}</h3><p>{{ t(v) }}</p></div>{% endfor %}</div>
+        <div class="demo demo--d" style="position:relative;overflow:hidden;min-height:160px;align-items:flex-end;justify-content:flex-end"><div class="gridbg" style="-webkit-mask-image:none;mask-image:none"></div>
+          <dl class="tblock" style="position:relative"><div><dt>{{ t(TB.project) }}</dt><dd>{{ t(SITE.name) }}</dd></div><div><dt>{{ t(UI.drawing) }}</dt><dd dir="ltr">AG-WEB-14</dd></div><div><dt>{{ t(UI.sheet) }}</dt><dd dir="ltr">14 / 14</dd></div><div><dt>{{ t(UI.rev) }}</dt><dd dir="ltr">1.0</dd></div><div><dt>{{ t(TB.date) }}</dt><dd dir="ltr">2026-10</dd></div></dl>
+        </div>
+      </section>
+
+      <!-- 07 imagery -->
+      <section class="bsec" id="imagery" aria-labelledby="h-img">
+        {{ eyebrow(t(D.imagery.eyebrow)) }}<h2 class="h2" id="h-img">{{ t(D.imagery.title) }}</h2>
+        <div class="grid g3">{% for k in ['machine_room','team_site','js_factory'] %}<figure>{{ img(k, '(max-width:960px) 100vw, 30vw') }}<figcaption class="figcap">{{ t(IMGALT[k]) }}</figcaption></figure>{% endfor %}</div>
+        <div class="grid g2">
+          <ul class="donts dos">{% for x in D.imagery.do %}<li>{{ icon('check') }}<span>{{ t(x) }}</span></li>{% endfor %}</ul>
+          <ul class="donts">{% for x in D.imagery.dont %}<li>{{ icon('x') }}<span>{{ t(x) }}</span></li>{% endfor %}</ul>
+        </div>
+      </section>
+
+      <!-- 08 voice -->
+      <section class="bsec" id="voice" aria-labelledby="h-voice">
+        {{ eyebrow(t(D.voice.eyebrow)) }}<h2 class="h2" id="h-voice">{{ t(D.voice.title) }}</h2>
+        <div class="cards {{ cardcols(D.voice.principles|length) }}">{% for k, v in D.voice.principles %}<div class="card"><h3>{{ t(k) }}</h3><p>{{ t(v) }}</p></div>{% endfor %}</div>
+        {%- for w, a in D.voice.examples %}
+        <div class="ex"><div class="w"><small>{{ t(D.voice.write) }}</small>{{ t(w) }}</div><div class="a"><small>{{ t(D.voice.avoid) }}</small>{{ t(a) }}</div></div>
+        {%- endfor %}
+        <h3 class="h3">{{ t(D.voice.names_title) }}</h3>
+        <div class="names">{% for n, note in D.voice.names %}<div><strong>{{ n }}</strong><span>{{ t(note) }}</span></div>{% endfor %}</div>
+      </section>
+
+      <!-- 09 components -->
+      <section class="bsec" id="components" aria-labelledby="h-comp">
+        {{ eyebrow(t(D.components.eyebrow)) }}<h2 class="h2" id="h-comp">{{ t(D.components.title) }}</h2>
+        <div class="demo demo--d">
+          <span class="eyebrow">{{ t(UI.sector_cooling) }}</span>
+          <a class="btn btn--frost" href="contact.html">{{ t(UI.start_project) }} {{ icon('arrow') }}</a>
+          <a class="btn btn--ghost" href="group.html">{{ t(UI.explore_group) }}</a>
+          <span style="display:flex;flex-direction:column"><span class="num" style="font-size:2.4rem;color:var(--frost)">165+ MW</span><span class="fine">{{ t(KPIS[4].l) }}</span></span>
+        </div>
+        <div class="demo">
+          <span class="eyebrow">{{ t(UI.sector_energy) }}</span>
+          <a class="btn btn--ink" href="contact.html">{{ t(UI.start_project) }} {{ icon('arrow') }}</a>
+          <a class="btn btn--line" href="projects.html">{{ t(UI.see_all_projects) }}</a>
+          <a class="tlink" href="story.html">{{ t(UI.read_story) }} {{ icon('arrow') }}</a>
+          <span class="chip">{{ icon('check') }}NH₃ · R717</span>
+        </div>
+      </section>
+
+      <!-- 10 assets -->
+      <section class="bsec" id="assets" aria-labelledby="h-assets" style="border-bottom:0">
+        {{ eyebrow(t(D.assets.eyebrow)) }}<h2 class="h2" id="h-assets">{{ t(D.assets.title) }}</h2>
+        <p class="prose">{{ t(D.assets.text) }}</p>
+        <div class="assets">
+          {%- for f, dark in [('group-en-light.svg', True), ('group-en-dark.svg', False), ('group-ar-light.svg', True), ('group-ar-dark.svg', False), ('monogram.svg', False)] %}
+          <div class="asset"><div class="asset__p{{ ' d' if dark else '' }}"><img src="{{ A }}brand/{{ f }}" alt="{{ f }}" loading="lazy"></div><div class="asset__b" dir="ltr">{% if MODE == 'prod' %}<a href="{{ A }}brand/{{ f }}" download>assets/brand/<wbr>{{ f }}</a>{% else %}assets/brand/<wbr>{{ f }}{% endif %}</div></div>
+          {%- endfor %}
+          {%- for c in COMPANIES if c.logo %}
+          <div class="asset"><div class="asset__p"><img src="{{ A }}logos/{{ c.logo }}.png" alt="{{ t(c.short) }}" loading="lazy"></div><div class="asset__b" dir="ltr">{% if MODE == 'prod' %}<a href="{{ A }}logos/{{ c.logo }}.png" download>assets/logos/<wbr>{{ c.logo }}.png</a>{% else %}assets/logos/<wbr>{{ c.logo }}.png{% endif %}</div></div>
+          {%- endfor %}
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+{% endblock %}
