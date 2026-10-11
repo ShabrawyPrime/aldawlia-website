@@ -1,4 +1,5 @@
-{%- from 'macros.html' import icon with context -%}
+{%- from 'macros.html' import icon, tel with context -%}
+{%- set m = COMPANY.aldawlia %}
 <section class="s cta" aria-labelledby="h-cta">
   <div class="glow"></div><div class="gridbg"></div>
   <div class="wrap" style="position:relative">
@@ -11,6 +12,11 @@
         <a class="btn btn--frost" href="contact.html">{{ t(UI.start_project) }} {{ icon('arrow') }}</a>
         <a class="btn btn--ghost" href="group.html">{{ t(UI.explore_group) }}</a>
       </div>
+    </div>
+    <div class="quick" role="group" aria-label="{{ t(UI.quick_contact) }}">
+      <a class="quick__i" href="{{ m.map }}" target="_blank" rel="noopener">{{ icon('pin') }}<span><small>{{ t(UI.head_office) }}</small>{{ t(m.address) }}</span></a>
+      <a class="quick__i" href="tel:{{ m.phones[0]|replace(' ', '') }}">{{ icon('phone') }}<span><small>{{ t(UI.landline) }}</small><bdi dir="ltr">{{ m.phones[0] }}</bdi></span></a>
+      <a class="quick__i" href="tel:{{ m.mobile|replace(' ', '') }}">{{ icon('phone') }}<span><small>{{ t(m.mobile_role) }} · {{ t(m.mobile_name) }}</small><bdi dir="ltr">{{ m.mobile }}</bdi></span></a>
     </div>
   </div>
 </section>

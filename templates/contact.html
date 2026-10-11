@@ -39,7 +39,10 @@
         {% if loop.first %}<span class="n">{{ t(UI.head_office) }}</span>{% endif %}
         <h3>{{ t(o.name) }}</h3>
         <p>{{ t(o.address) }}</p>
-        <p>{{ tel(o.phone) }} {{ copybtn(o.phone) }}</p>
+        <p class="phl"><small>{{ t(UI.landline) }}</small><span class="ph">{{ tel(o.phone) }} {{ copybtn(o.phone) }}</span></p>
+        {%- if o.mobile %}
+        <p class="phl"><small>{{ t(o.mobile_role) }} · {{ t(o.mobile_name) }}</small><span class="ph">{{ tel(o.mobile) }} {{ copybtn(o.mobile) }}</span></p>
+        {%- endif %}
         <p><a href="mailto:{{ o.email }}" style="color:var(--frost-ink);font-weight:500">{{ o.email }}</a> {{ copybtn(o.email) }}</p>
         <p><a class="tlink" href="{{ o.map }}" target="_blank" rel="noopener">{{ t(UI.open_map) }} {{ icon('ext') }}</a></p>
       </div>
@@ -59,6 +62,7 @@
         <p>{{ t(c.address) }}</p>
         <ul>
           {%- for p in c.phones %}<li>{{ icon('phone') }}{{ tel(p) }}</li>{% endfor %}
+          {%- if c.mobile %}<li>{{ icon('phone') }}{{ tel(c.mobile) }} <small class="who">{{ t(c.mobile_role) }} · {{ t(c.mobile_name) }}</small></li>{% endif %}
           <li>{{ icon('mail') }}<a href="mailto:{{ c.email }}">{{ c.email }}</a> {{ copybtn(c.email) }}</li>
           <li>{{ icon('globe') }}<a href="{{ c.url }}" target="_blank" rel="noopener" dir="ltr">{{ c.web }}</a></li>
         </ul>

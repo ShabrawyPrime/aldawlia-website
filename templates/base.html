@@ -114,7 +114,13 @@
       </div>
       <div>
         <h3>{{ t(UI.head_office) }}</h3>
-        <p class="addr">{{ t(COMPANY.aldawlia.address) }}<br>{{ tel('+20 2 3836 7822') }}<br><a href="mailto:info@aldawlia.org">info@aldawlia.org</a></p>
+        {%- set m = COMPANY.aldawlia %}
+        <p class="addr">{{ t(m.address) }}</p>
+        <ul class="ftr__ct">
+          <li><small>{{ t(UI.landline) }}</small>{{ tel(m.phones[0]) }}</li>
+          <li><small>{{ t(m.mobile_role) }} · {{ t(m.mobile_name) }}</small>{{ tel(m.mobile) }}</li>
+          <li><a href="mailto:{{ m.email }}">{{ m.email }}</a></li>
+        </ul>
       </div>
     </div>
     <div class="ftr__bot">

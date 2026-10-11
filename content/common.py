@@ -92,6 +92,8 @@ UI = {
     "pause": T("Pause slideshow", "إيقاف العرض"),
     "play": T("Play slideshow", "تشغيل العرض"),
     "legend": T("Key to the drawing", "دليل الرسم"),
+    "landline": T("Landline", "هاتف أرضي"),
+    "quick_contact": T("Reach the head office", "تواصل مع المقر الرئيسي"),
 }
 
 # Accent colours per company: brand (logo colour), on_dark (accent on night backgrounds),
@@ -110,6 +112,7 @@ COMPANIES = [
         "web": "aldawlia.org", "url": "https://www.aldawlia.org",
         "email": "info@aldawlia.org",
         "phones": ["+20 2 3836 7822", "+20 50 233 0872"],
+        "mobile": "+20 121 301 3861", "mobile_role": T("Office Manager", "مدير المكتب"), "mobile_name": T("Mr. Mohamed Reda", "أ. محمد رضا"),
         "address": T("5 Solimar Buildings, Central Axis, Office 101, 6th of October City, Giza, Egypt",
                      "مباني سوليمار 5، المحور المركزي، مكتب 101، مدينة السادس من أكتوبر، الجيزة، مصر"),
         "map": "https://www.google.com/maps/search/?api=1&query=Solimar+Buildings+Central+Axis+6th+of+October+City+Giza",
@@ -224,6 +227,7 @@ COMPANY = {c["key"]: c for c in COMPANIES}
 OFFICES = [
     {"key": "october", "name": T("Aldawlia · 6th of October office", "الدولية · مكتب السادس من أكتوبر"),
      "address": COMPANY["aldawlia"]["address"], "phone": "+20 2 3836 7822", "email": "info@aldawlia.org",
+     "mobile": COMPANY["aldawlia"]["mobile"], "mobile_role": COMPANY["aldawlia"]["mobile_role"], "mobile_name": COMPANY["aldawlia"]["mobile_name"],
      "map": COMPANY["aldawlia"]["map"]},
     {"key": "mansoura", "name": T("Aldawlia · Mansoura office", "الدولية · مكتب المنصورة"),
      "address": T("Abo Samra Towers, 7th floor, Happy Land Square, Mansoura, Dakahlia, Egypt",

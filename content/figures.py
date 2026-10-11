@@ -123,8 +123,8 @@ FIG3D = {
     },
     "dabaa": {
         "img": "r3d_dabaa",
-        "eyebrow": T("Flagship · Future of Egypt Authority · Egyptian Air Force", "مشروع رائد · جهاز مستقبل مصر · القوات الجوية المصرية"),
-        "title": T("Al Dabaa: a national project drawn in 3D by Aldawlia.", "الضبعة: مشروع قومي رسمته الدولية ثلاثي الأبعاد."),
+        "eyebrow": T("Flagship · Future of Egypt", "مشروع رائد · مستقبل مصر"),
+        "title": T("Al Dabaa: a national project designed by Aldawlia.", "الضبعة: مشروع قومي صمّمته الدولية."),
         "marks": [(0.219, 0.548), (0.469, 0.569), (0.575, 0.688), (0.635, 0.538), (0.400, 0.688), (0.919, 0.799)],
         "items": [
             (T("Frozen-food block", "مجمع الأغذية المجمدة"),
@@ -142,12 +142,12 @@ FIG3D = {
             (T("Residential and mosque", "السكن والمسجد"),
              T("Staff housing, mosque, utilities, water tanks and fuel station inside the perimeter.",
                "سكن العاملين والمسجد والمرافق وخزانات المياه ومحطة الوقود داخل السور.")),
-            (T("Future extension", "التوسعة المستقبلية"),
-             T("Two reserved pads for the next phases, inside the same wall.",
-               "قطعتان محجوزتان للمراحل التالية داخل السور نفسه.")),
+            (T("Expansion, built and running", "التوسعة مُنفَّذة وتعمل"),
+             T("The expansion phase inside the same wall is already built and in operation.",
+               "مرحلة التوسعة داخل السور نفسه مُنفَّذة بالفعل وفي التشغيل.")),
         ],
-        "note": T("Owner: Egyptian Air Force, Future of Egypt. Aldawlia: consultant and 3D design (general layout, March 2023). Johnson Controls: refrigeration contractor.",
-                  "المالك: القوات الجوية المصرية، مستقبل مصر. الدولية: الاستشاري والتصميم ثلاثي الأبعاد (المخطط العام، مارس 2023). جونسون كنترولز: مقاول التبريد."),
+        "note": T("Owner: Future of Egypt. Aldawlia designed the project (general layout, March 2023) and was its consultant. Johnson Controls: refrigeration contractor.",
+                  "المالك: مستقبل مصر. صمّمت الدولية المشروع (المخطط العام، مارس 2023) وكانت الاستشاري. جونسون كنترولز: مقاول التبريد."),
     },
 }
 

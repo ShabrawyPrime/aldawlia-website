@@ -195,6 +195,9 @@
         <div><dt>{{ t(OFFICE2.label) }}</dt><dd>{{ t(OFFICE2.address) }} <a href="{{ OFFICE2.map }}" target="_blank" rel="noopener">{{ t(UI.open_map) }}</a></dd></div>
         {%- endif %}
         <div><dt>{{ t(UI.phone) }}</dt><dd>{% for p in c.phones %}<span class="ph">{{ tel(p) }} {{ copybtn(p) }}</span>{% endfor %}</dd></div>
+        {%- if c.mobile %}
+        <div><dt>{{ t(c.mobile_role) }}</dt><dd><span class="ph">{{ tel(c.mobile) }} {{ copybtn(c.mobile) }}</span> <span class="who">{{ t(c.mobile_name) }}</span></dd></div>
+        {%- endif %}
         <div><dt>{{ t(UI.email) }}</dt><dd><a href="mailto:{{ c.email }}">{{ c.email }}</a> {{ copybtn(c.email) }}</dd></div>
         <div><dt>{{ t(UI.website) }}</dt><dd><a href="{{ c.url }}" target="_blank" rel="noopener" dir="ltr">{{ c.web }}</a></dd></div>
         {%- if c.led %}<div><dt>{{ t(UI.led_by) }}</dt><dd>{{ t(c.led) }}</dd></div>{% endif %}
