@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard with context -%}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard, fig3d with context -%}
 {% block content %}
 {%- set PH = {'img': 'mars_crane', 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
 {% include 'phero.html' %}
@@ -14,6 +14,14 @@
     <div class="pcards">
       {%- for p in PROJECTS %}{{ pcard(p, '(max-width:640px) 100vw, (max-width:1180px) 50vw, 33vw') }}{% endfor %}
     </div>
+  </div>
+</section>
+{%- set F = FIG3D.dabaa %}
+<section class="s s--night s--fig" id="dabaa" aria-labelledby="h-dabaa">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(F.eyebrow), t(F.title), id='h-dabaa') }}
+    {{ fig3d(F, 'h-dabaa') }}
   </div>
 </section>
 <section class="s s--white" aria-labelledby="h-refs">

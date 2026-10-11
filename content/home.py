@@ -3,16 +3,16 @@ from .common import T
 
 HOME = {
     "meta": {
-        "title": T("Aldawlia Group | Industrial refrigeration and energy since 1983",
-                   "مجموعة الدولية | التبريد الصناعي والطاقة منذ 1983"),
-        "desc": T("Aldawlia Group: four decades of industrial refrigeration, turnkey EPC and a new generation of companies in solar energy and global supply, from Egypt to 17 countries.",
-                  "مجموعة الدولية: أربعة عقود من التبريد الصناعي ومشروعات تسليم المفتاح، وجيل جديد من الشركات في الطاقة الشمسية والتوريد العالمي، من مصر إلى 17 دولة."),
+        "title": T("Aldawlia for Cooling Corporation | Industrial refrigeration and energy since 1983",
+                   "المؤسسة الدولية للتبريد | التبريد الصناعي والطاقة منذ 1983"),
+        "desc": T("Aldawlia for Cooling Corporation: four decades of industrial refrigeration and turnkey EPC, and a family of companies in solar energy, refrigeration contracting and global supply, from Egypt to 17 countries.",
+                  "المؤسسة الدولية للتبريد: أربعة عقود من التبريد الصناعي ومشروعات تسليم المفتاح، وعائلة من الشركات في الطاقة الشمسية ومقاولات التبريد والتوريد العالمي، من مصر إلى 17 دولة."),
     },
     "hero": {
-        "eyebrow": T("Aldawlia Group · Since 1983", "مجموعة الدولية · منذ 1983"),
+        "eyebrow": T("Aldawlia for Cooling Corporation · Since 1983", "المؤسسة الدولية للتبريد · منذ 1983"),
         "title": T("We build the infrastructure of the future.", "نبني البنية التحتية للمستقبل."),
-        "lead": T("Four decades of industrial refrigeration, and a new generation of companies in solar energy and global supply. One family of engineers, from Egypt to 17 countries.",
-                  "أربعة عقود من التبريد الصناعي، وجيل جديد من الشركات في الطاقة الشمسية والتوريد العالمي. عائلة واحدة من المهندسين، من مصر إلى 17 دولة."),
+        "lead": T("Four decades of industrial refrigeration, and a new generation of companies in solar energy, refrigeration contracting and global supply. One family of engineers, from Egypt to 17 countries.",
+                  "أربعة عقود من التبريد الصناعي، وجيل جديد من الشركات في الطاقة الشمسية ومقاولات التبريد والتوريد العالمي. عائلة واحدة من المهندسين، من مصر إلى 17 دولة."),
         "slides": [
             {"img": "piping", "pos": 0.08, "cap": T("Natural-refrigerant plants · NH₃", "محطات بغازات تبريد طبيعية · NH₃")},
             {"img": "machine_room", "pos": 0.32, "cap": T("Machine rooms engineered in-house", "غرف ماكينات مصممة داخليًا")},
@@ -25,8 +25,8 @@ HOME = {
     "family": {
         "eyebrow": T("One family, two sectors", "عائلة واحدة وقطاعان"),
         "title": T("A mother company, and the companies built on its legacy.", "شركة أم، وشركات قامت على إرثها."),
-        "lead": T("Aldawlia has engineered industrial refrigeration since 1983. Its next generation has built new companies in refrigeration supply, national-scale projects and solar energy.",
-                  "تعمل الدولية في هندسة التبريد الصناعي منذ 1983، وأسّس جيلها الجديد شركات في توريد معدات التبريد والمشروعات القومية الكبرى والطاقة الشمسية."),
+        "lead": T("Aldawlia has engineered industrial refrigeration since 1983. Its next generation has built new companies in solar energy, refrigeration contracting, global supply and national-scale projects.",
+                  "تعمل الدولية في هندسة التبريد الصناعي منذ 1983، وأسّس جيلها الجديد شركات في الطاقة الشمسية ومقاولات التبريد والتوريد العالمي والمشروعات القومية الكبرى."),
     },
     "story": {
         "eyebrow": T("Our story", "قصتنا"),
@@ -76,20 +76,20 @@ HOME = {
     },
     "industries": {
         "eyebrow": T("Industries", "القطاعات"),
-        "title": T("Thirteen sectors that leave no room for error.", "ثلاثة عشر قطاعًا لا تحتمل الخطأ."),
-        "lead": T("Refrigeration engineered around each product's biology, from potatoes in controlled atmosphere to vaccines and petrochemical processes.",
-                  "تبريد مُهندَس وفق طبيعة كل منتج، من البطاطس في الجو المتحكم فيه إلى اللقاحات وعمليات البتروكيماويات."),
+        "title": T("Fourteen sectors that leave no room for error.", "أربعة عشر قطاعًا لا تحتمل الخطأ."),
+        "lead": T("Cooling engineered around what each sector protects, from potatoes in controlled atmosphere to vaccines, petrochemical processes and data halls.",
+                  "تبريد مُهندَس وفق ما يحميه كل قطاع، من البطاطس في الجو المتحكم فيه إلى اللقاحات وعمليات البتروكيماويات وقاعات الخوادم."),
     },
     "projects": {
         "eyebrow": T("Projects", "المشروعات"),
         "title": T("References that tell the story.", "مشروعات تروي القصة."),
-        "featured": ["frosty", "plc-potato", "wadi-natrun", "al-feda"],
+        "featured": ["future-egypt", "frosty", "dabaa", "wadi-natrun"],
     },
     "footprint": {
         "eyebrow": T("Footprint", "الانتشار"),
         "title": T("17 countries. Hubs in Egypt and the UAE.", "17 دولة، ومراكز في مصر والإمارات."),
-        "lead": T("From 6th of October City and Mansoura in Egypt, and Ras Al Khaimah in the UAE, the group has delivered work from Morocco to Mauritius.",
-                  "من مدينة السادس من أكتوبر والمنصورة في مصر، ورأس الخيمة في الإمارات، نفّذت المجموعة أعمالها من المغرب إلى موريشيوس."),
+        "lead": T("From 6th of October City and Mansoura in Egypt, and Ras Al Khaimah and Dubai in the UAE, the group has delivered work from Morocco to Mauritius.",
+                  "من مدينة السادس من أكتوبر والمنصورة في مصر، ورأس الخيمة ودبي في الإمارات، نفّذت المجموعة أعمالها من المغرب إلى موريشيوس."),
         "hint": T("Select a country to see which companies work there.", "اختر دولة لترى الشركات العاملة فيها."),
         "hubs": T("Hubs", "المراكز"),
         "active": T("Active country", "دولة نعمل بها"),
@@ -121,7 +121,7 @@ HOME = {
     },
 }
 
-# Thirteen sectors (Aldawlia profile 2026), shared by Home and Solutions.
+# Fourteen sectors (the thirteen of the Aldawlia profile 2026, plus data centres), shared by Home, Solutions and Aldawlia.
 SECTORS = [
     {"key": "logistics", "img": "s_logistics", "icon": "box",
      "name": T("Logistics cold storage", "التخزين اللوجستي المبرّد"),
@@ -188,4 +188,9 @@ SECTORS = [
      "short": T("Long shelf life with nutrition preserved", "عمر تخزيني طويل مع الحفاظ على القيمة الغذائية"),
      "text": T("Exceptionally long shelf life that preserves nutritional value and molecular structure, for world-class freeze-dried fruit, dates, molokhia, cured meat and pet food.",
                "عمر تخزيني طويل للغاية مع الحفاظ على القيمة الغذائية والبنية الجزيئية، لإنتاج فواكه وتمور وملوخية ولحوم مقددة وأغذية حيوانات أليفة مجففة بالتجميد بجودة عالمية.")},
+    {"key": "datacentre", "img": None, "icon": "server",
+     "name": T("Data centres", "مراكز البيانات"),
+     "short": T("Precision cooling for IT and AI loads", "تبريد دقيق لأحمال تقنية المعلومات والذكاء الاصطناعي"),
+     "text": T("Precision cooling and thermal management for data halls: chilled-water plants, dry coolers with free cooling, and air or liquid cooling for high-density IT and AI racks, engineered with redundancy for uninterrupted uptime.",
+               "تبريد دقيق وإدارة حرارية لقاعات الخوادم: محطات مياه مبرّدة، ومبردات جافة مع التبريد الحر، وتبريد بالهواء أو بالسوائل لخوادم تقنية المعلومات والذكاء الاصطناعي عالية الكثافة، بتصميم احتياطي يضمن تشغيلًا دون انقطاع.")},
 ]

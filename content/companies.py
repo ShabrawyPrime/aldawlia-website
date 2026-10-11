@@ -6,13 +6,13 @@ COMPANY_PAGES = {}
 
 # ---------------------------------------------------------------- Aldawlia
 COMPANY_PAGES["aldawlia"] = {
-    "meta": {"title": T("Aldawlia for Cooling Corporation | Aldawlia Group", "المؤسسة الدولية للتبريد | مجموعة الدولية"),
-             "desc": T("Aldawlia for Cooling Corporation: Egypt's engineering hub for industrial refrigeration since 1986. Design, supply, contracting, automation, maintenance and turnkey EPC.",
-                       "المؤسسة الدولية للتبريد: المركز الهندسي للتبريد الصناعي في مصر منذ 1986. التصميم والتوريد والمقاولات والأتمتة والصيانة ومشروعات تسليم المفتاح.")},
+    "meta": {"title": T("Industrial refrigeration since 1986 | Aldawlia for Cooling Corporation", "التبريد الصناعي منذ 1986 | المؤسسة الدولية للتبريد"),
+             "desc": T("Aldawlia for Cooling Corporation: Egypt's engineering hub for industrial refrigeration since 1986. Consultancy, design, local contracting, automation, maintenance and turnkey EPC.",
+                       "المؤسسة الدولية للتبريد: المركز الهندسي للتبريد الصناعي في مصر منذ 1986. الاستشارات والتصميم والمقاولات المحلية والأتمتة والصيانة ومشروعات تسليم المفتاح.")},
     "hero": {"eyebrow": T("Mother company · Est. 1986", "الشركة الأم · تأسست 1986"),
              "title": T("Cooling excellence, since 1986.", "التميز في التبريد منذ 1986."),
-             "lead": T("Aldawlia for Cooling Corporation is the engineering hub of the group. It designs, supplies, builds and maintains large-scale industrial refrigeration for plants that leave no room for error.",
-                       "المؤسسة الدولية للتبريد هي المركز الهندسي للمجموعة؛ تصمم أنظمة التبريد الصناعي الكبرى وتورّدها وتنفذها وتصونها، لمنشآت لا تحتمل الخطأ."),
+             "lead": T("Aldawlia for Cooling Corporation is the engineering hub of the group. It provides consultancy, design, local contracting and maintenance for large-scale industrial refrigeration, in plants that leave no room for error.",
+                       "المؤسسة الدولية للتبريد هي المركز الهندسي للمجموعة؛ تقدّم الاستشارات والتصميم والمقاولات المحلية والصيانة لأنظمة التبريد الصناعي الكبرى، في منشآت لا تحتمل الخطأ."),
              "img": "sign"},
     "kpis": [("40+", T("years of refrigeration, since 1983", "عامًا في التبريد منذ 1983")),
              ("3,000+", T("dedicated employees", "موظف")),
@@ -31,13 +31,10 @@ COMPANY_PAGES["aldawlia"] = {
          "items": "SERVICES"},
         {"type": "epc", "eyebrow": T("Civil Department since 2009 · Turnkey EPC since 2023", "قسم مدني منذ 2009 · تسليم مفتاح منذ 2023"),
          "title": T("We build the infrastructure of the future.", "نبني البنية التحتية للمستقبل."),
-         "text": T("Aldawlia delivers turnkey projects as EPC starting from empty land: design and consultancy, construction, the supply of all construction materials, and then the machines for each industry.",
-                   "تنفّذ الدولية مشروعات تسليم المفتاح بنظام EPC بدءًا من الأرض الفضاء: التصميم والاستشارات، ثم الإنشاء، ثم توريد جميع مواد البناء، وأخيرًا ماكينات كل صناعة."),
-         "steps": [(T("Design and consultancy", "التصميم والاستشارات"), T("The whole plant engineered before the first pour", "تصميم المصنع بالكامل قبل صب أول خرسانة")),
-                   (T("Construction", "الإنشاء"), T("Civil, architecture, MEP and HVACR works", "الأعمال المدنية والمعمارية والكهروميكانيكية والتكييف والتبريد")),
-                   (T("Supply of all materials", "توريد جميع المواد"), T("Sandwich panels, doors and every building material", "ألواح السندويتش والأبواب وجميع مواد البناء")),
-                   (T("Machines", "الماكينات"), T("The process machinery for each industry", "ماكينات التشغيل الخاصة بكل صناعة"))],
+         "text": T("Aldawlia delivers turnkey projects as EPC starting from empty land, in four stages and under one contract: from the first drawing to the first pallet in the cold store.",
+                   "تنفّذ الدولية مشروعات تسليم المفتاح بنظام EPC بدءًا من الأرض الفضاء، على أربع مراحل وبعقد واحد: من الرسم الأول إلى أول بالتة في الثلاجة."),
          "imgs": ["epc1", "epc2", "epc3"]},
+        {"type": "fig3d", "fig": "plant"},
         {"type": "timeline", "eyebrow": T("Technology partners", "شركاء التكنولوجيا"),
          "title": T("Global technology, delivered locally.", "تكنولوجيا عالمية بتنفيذ محلي."),
          "items": [("1986–2004", T("Sabroe · Denmark", "سابرو · الدنمارك"), T("Regional technical partner; major plants in Libya, Yemen, Saudi Arabia and the UAE", "شريك فني إقليمي؛ ومحطات كبرى في ليبيا واليمن والسعودية والإمارات")),
@@ -46,12 +43,13 @@ COMPANY_PAGES["aldawlia"] = {
                    ("2015", T("Snowman · China", "سنومان · الصين"), T("Swedish compressor technology with advanced production capabilities", "تكنولوجيا ضواغط سويدية بقدرات إنتاج متقدمة"))],
          "wall": "partners", "wall_note": T("Component and equipment partners across Europe, Japan and the US: compressors, heat exchangers, valves, controls and instrumentation.",
                                             "شركاء المكونات والمعدات في أوروبا واليابان والولايات المتحدة: الضواغط والمبادلات الحرارية والصمامات وأنظمة التحكم والقياس.")},
+        {"type": "fig3d", "fig": "potato"},
         {"type": "sectors", "eyebrow": T("Sectors", "القطاعات"),
-         "title": T("Thirteen sectors served.", "ثلاثة عشر قطاعًا نخدمها."),
+         "title": T("Fourteen sectors served.", "أربعة عشر قطاعًا نخدمها."),
          "link": "solutions.html#industries"},
         {"type": "projects", "eyebrow": T("Selected projects", "مشروعات مختارة"),
          "title": T("Landmark projects across the region.", "مشروعات بارزة في أنحاء المنطقة."),
-         "keys": ["frosty", "plc-potato", "mars", "frozena", "el-gammal", "hadramout"], "more": True},
+         "keys": ["future-egypt", "frosty", "dabaa", "frozena", "plc-potato", "mars"], "more": True},
         {"type": "wall", "eyebrow": T("Clients", "العملاء"),
          "title": T("Trusted by the region's leading names.", "موضع ثقة كبرى الأسماء في المنطقة."),
          "wall": "clients"},
@@ -62,7 +60,7 @@ COMPANY_PAGES["aldawlia"] = {
 SERVICES = [
     (T("Engineering consultation", "الاستشارات الهندسية"), T("Feasibility studies and system evaluations that support strategic decisions and select the most efficient solution for each project.", "دراسات جدوى فنية وتقييم للأنظمة يدعم القرارات الاستراتيجية ويختار الحل الأكفأ لكل مشروع.")),
     (T("Integrated engineering design", "التصميم الهندسي المتكامل"), T("Detailed layouts and shop drawings for every mechanical, electrical and civil aspect, to the highest international refrigeration standards.", "مخططات تفصيلية ورسومات تنفيذية لكل الجوانب الميكانيكية والكهربائية والمدنية، وفق أعلى المعايير الدولية للتبريد.")),
-    (T("Strategic procurement and supply", "التوريد والمشتريات الاستراتيجية"), T("Cold-room equipment, freezing systems, compressors and production lines from the world's most trusted brands.", "معدات غرف التبريد وأنظمة التجميد والضواغط وخطوط الإنتاج من أكثر العلامات العالمية موثوقية.")),
+    (T("Strategic procurement", "المشتريات الاستراتيجية"), T("Specifications, sourcing and procurement management for cold-room equipment, freezing systems, compressors and production lines, with equipment supplied through ETS.", "إعداد المواصفات وإدارة الشراء لمعدات غرف التبريد وأنظمة التجميد والضواغط وخطوط الإنتاج، مع توريد المعدات عبر ETS.")),
     (T("Contracting", "المقاولات"), T("Complete electromechanical and civil field execution, from construction through testing and commissioning.", "تنفيذ ميداني كامل للأعمال الكهروميكانيكية والمدنية، من الإنشاء حتى الاختبار والتشغيل.")),
     (T("Project management and supervision", "إدارة المشروعات والإشراف"), T("Precise coordination across all disciplines, so projects are delivered on schedule.", "تنسيق دقيق بين جميع التخصصات لتسليم المشروعات في مواعيدها.")),
     (T("Maintenance and operation", "الصيانة والتشغيل"), T("Preventive maintenance packages, operational support and specialised compressor overhauls for the longest equipment life.", "برامج صيانة وقائية ودعم تشغيلي وعمرات متخصصة للضواغط لأطول عمر ممكن للمعدات.")),
@@ -71,7 +69,7 @@ SERVICES = [
 
 # ---------------------------------------------------------------- JET Solar
 COMPANY_PAGES["jet-solar"] = {
-    "meta": {"title": T("JET Solar | Aldawlia Group", "جيت سولار | مجموعة الدولية"),
+    "meta": {"title": T("JET Solar | Aldawlia for Cooling Corporation", "جيت سولار | المؤسسة الدولية للتبريد"),
              "desc": T("JET Solar manufactures high-performance photovoltaic modules in Abu Rawash, Egypt: standard and custom modules, BIPV and turnkey solar projects, TÜV and ISO certified.",
                        "تُصنّع جيت سولار ألواحًا كهروضوئية عالية الأداء في أبو رواش بمصر: ألواح قياسية ومخصصة وحلول BIPV ومشروعات طاقة شمسية متكاملة، معتمدة من TÜV وISO.")},
     "hero": {"eyebrow": T("Energy &amp; renewables · Est. 2020", "الطاقة والطاقة المتجددة · تأسست 2020"),
@@ -111,6 +109,7 @@ COMPANY_PAGES["jet-solar"] = {
         {"type": "projects", "eyebrow": T("Turnkey projects", "مشروعات متكاملة"),
          "title": T("Mega-scale projects.", "مشروعات كبرى."),
          "keys": ["wadi-natrun", "nac-3mw", "minya-pump", "sadat", "sodic"]},
+        {"type": "fig3d", "fig": "solar"},
         {"type": "table", "eyebrow": T("More systems", "أنظمة أخرى"),
          "title": T("On-grid, off-grid and solar pumping.", "أنظمة متصلة بالشبكة ومنفصلة عنها وضخ بالطاقة الشمسية."),
          "head": [T("System", "النظام"), T("Location", "الموقع"), T("Size", "القدرة")],
@@ -125,8 +124,8 @@ COMPANY_PAGES["jet-solar"] = {
                   [T("Solar pumping", "ضخ بالطاقة الشمسية"), T("Ismailia", "الإسماعيلية"), "30 kW"]]},
         {"type": "media", "eyebrow": T("JET Solar Academy", "أكاديمية جيت سولار"),
          "title": T("Training the next generation of solar professionals.", "تدريب الجيل القادم من متخصصي الطاقة الشمسية."),
-         "text": T("The academy bridges academic learning and industry through hands-on manufacturing experience, industry-focused training, technical workshops and expert-led sessions, in partnership with universities, educational institutions and student organizations.",
-                   "تربط الأكاديمية بين التعلم الأكاديمي والصناعة عبر خبرة عملية في التصنيع، وتدريب يركز على احتياجات الصناعة، وورش فنية، وجلسات يقودها خبراء، بالشراكة مع الجامعات والمؤسسات التعليمية والمنظمات الطلابية."),
+         "text": T("The academy bridges academic learning and industry through hands-on manufacturing experience, industry-focused training, technical workshops and expert-led sessions, with 14 academic partners: universities, educational institutions and student organizations.",
+                   "تربط الأكاديمية بين التعلم الأكاديمي والصناعة عبر خبرة عملية في التصنيع، وتدريب يركز على احتياجات الصناعة، وورش فنية، وجلسات يقودها خبراء، مع 14 شريكًا أكاديميًا من الجامعات والمؤسسات التعليمية والمنظمات الطلابية."),
          "img": "js_academy"},
         {"type": "cards", "eyebrow": T("Core values", "القيم"),
          "title": T("Credibility, creativity, responsibility, devotion.", "المصداقية والإبداع والمسؤولية والإخلاص."),
@@ -140,9 +139,9 @@ COMPANY_PAGES["jet-solar"] = {
 
 # ---------------------------------------------------------------- ETS
 COMPANY_PAGES["ets"] = {
-    "meta": {"title": T("ETS Engineering Trading Solutions | Aldawlia Group", "ETS Engineering Trading Solutions | مجموعة الدولية"),
-             "desc": T("ETS is the Aldawlia Group's refrigeration EPC and global supply arm, registered in Ras Al Khaimah: European-standard systems with local market flexibility.",
-                       "ETS ذراع مجموعة الدولية لمقاولات التبريد بنظام EPC والتوريد العالمي، ومقرها رأس الخيمة: أنظمة بمعايير أوروبية ومرونة السوق المحلية.")},
+    "meta": {"title": T("ETS Engineering Trading Solutions | Aldawlia for Cooling Corporation", "ETS Engineering Trading Solutions | المؤسسة الدولية للتبريد"),
+             "desc": T("ETS is the refrigeration EPC and global supply arm of the Aldawlia family of companies, registered in Ras Al Khaimah: European-standard systems with local market flexibility.",
+                       "ETS ذراع عائلة شركات الدولية لمقاولات التبريد بنظام EPC والتوريد العالمي، ومقرها رأس الخيمة: أنظمة بمعايير أوروبية ومرونة السوق المحلية.")},
     "hero": {"eyebrow": T("Cooling &amp; refrigeration · Est. mid-2023 · Ras Al Khaimah", "التبريد والتجميد · تأسست منتصف 2023 · رأس الخيمة"),
              "title": T("Egyptian expertise. European standards.", "خبرة مصرية. ومعايير أوروبية."),
              "lead": T("ETS is the group's refrigeration EPC and its technical and logistical arm. It sources premium equipment from Europe, China and Japan and delivers it with the flexibility of the local market.",
@@ -179,7 +178,7 @@ COMPANY_PAGES["ets"] = {
 
 # ---------------------------------------------------------------- Nova Freeze
 COMPANY_PAGES["nova-freeze"] = {
-    "meta": {"title": T("Nova Freeze | Aldawlia Group", "نوفا فريز | مجموعة الدولية"),
+    "meta": {"title": T("Nova Freeze | Aldawlia for Cooling Corporation", "نوفا فريز | المؤسسة الدولية للتبريد"),
              "desc": T("Nova Freeze, the joint venture of ELARABY Group and Aldawlia: integrated cooling EPC with natural refrigerants for strategic, mega and state-led projects.",
                        "نوفا فريز، المشروع المشترك بين مجموعة العربي والدولية: حلول EPC متكاملة للتبريد بغازات طبيعية للمشروعات الاستراتيجية والكبرى والتي تقودها الدولة.")},
     "hero": {"eyebrow": T("Joint venture with ELARABY Group · Est. 2025", "مشروع مشترك مع مجموعة العربي · تأسست 2025"),
@@ -198,6 +197,14 @@ COMPANY_PAGES["nova-freeze"] = {
                    "تلتقي قدرات مجموعة العربي في الإنشاء والبحث والتطوير والتصنيع مع خبرة الدولية في الأعمال الكهروميكانيكية والتبريد، مدعومة بشراكات دولية والتزام بالابتكار المحلي."),
          "items": [T("Strategic projects", "المشروعات الاستراتيجية"), T("Mega projects", "المشروعات الكبرى"), T("Sovereign-backed projects", "المشروعات المدعومة سياديًا"),
                    T("National strategic projects", "المشروعات القومية الاستراتيجية"), T("State-led strategic projects", "المشروعات الاستراتيجية التي تقودها الدولة")]},
+        {"type": "feature", "eyebrow": T("Flagship · Nova Freeze with Aldawlia", "مشروع رائد · نوفا فريز مع الدولية"),
+         "title": T("Future of Egypt cold stores.", "ثلاجات مستقبل مصر."),
+         "text": T("Two projects for the Future of Egypt Authority, running since February 2026.",
+                   "مشروعان لجهاز مستقبل مصر يعملان منذ فبراير 2026."),
+         "stats": [(T("€25M+", "+25"), T("value of the two projects", "مليون يورو، قيمة المشروعين")),
+                   (T("58,000+ t", "+58,000 طن"), T("of cold storage", "سعة تخزين مبرّد")),
+                   (T("10 t/h", "10 طن/ساعة"), T("strawberry line", "خط فراولة")),
+                   ("2026", T("running since February", "يعملان منذ فبراير"))]},
         {"type": "cards", "eyebrow": T("Services", "الخدمات"),
          "title": T("From empty land to packed product.", "من الأرض الفضاء إلى المنتج المعبأ."),
          "items": [(T("Turnkey cold storage", "مخازن تبريد متكاملة"), T("Cold stores, pre-coolers, blast and spiral freezers, IQF, production lines, concentrate and juice plants, vacuum freeze-dry.", "مخازن تبريد ومبردات أولية وأنفاق تجميد سريع ومجمدات حلزونية وIQF وخطوط إنتاج ومصانع مركّزات وعصائر وتجفيف بالتجميد.")),
@@ -236,15 +243,15 @@ COMPANY_PAGES["nova-freeze"] = {
          "items": [T("Food and beverage processing", "تصنيع الأغذية والمشروبات"), T("Cold chain logistics and distribution centres", "سلاسل التبريد ومراكز التوزيع"),
                    T("Pharmaceuticals and medical storage", "الأدوية والتخزين الطبي"), T("Petrochemical and process industries", "البتروكيماويات والصناعات التحويلية"),
                    T("Hospitality and district cooling", "الضيافة والتبريد المركزي")],
-         "text": T("Seven logistic and service centres in Egypt: Cairo, Alexandria, Port Said, Mansoura, Tanta, Menoufia and Qalyubia.",
-                   "سبعة مراكز لوجستية وخدمية في مصر: القاهرة والإسكندرية وبورسعيد والمنصورة وطنطا والمنوفية والقليوبية.")},
+         "text": T("Seven logistic and service centres in Egypt: Cairo, Alexandria, Port Said, Mansoura, Tanta, Menoufia and Qalyubia, plus a Dubai office in Jebel Ali.",
+                   "سبعة مراكز لوجستية وخدمية في مصر: القاهرة والإسكندرية وبورسعيد والمنصورة وطنطا والمنوفية والقليوبية، إضافة إلى مكتب في دبي بجبل علي.")},
     ],
     "markets": ["EG", "SA", "YE", "LB", "SL", "ET"],
 }
 
 # ---------------------------------------------------------------- NEO Energy
 COMPANY_PAGES["neo-energy"] = {
-    "meta": {"title": T("NEO Energy Solutions | Aldawlia Group", "نيو إنرجي سوليوشنز | مجموعة الدولية"),
+    "meta": {"title": T("NEO Energy Solutions | Aldawlia for Cooling Corporation", "نيو إنرجي سوليوشنز | المؤسسة الدولية للتبريد"),
              "desc": T("NEO Energy distributes premium solar products across seven markets: modules, inverters, storage, pumping, lighting and cables, with 150 MW supplied to Syria, Iraq and Lebanon.",
                        "توزّع نيو إنرجي منتجات طاقة شمسية متميزة في سبعة أسواق: ألواح وعواكس وتخزين وضخ وإنارة وكابلات، و150 ميجاواط وُرّدت إلى سوريا والعراق ولبنان.")},
     "hero": {"eyebrow": T("Energy &amp; renewables · Joint venture · Solar distribution", "الطاقة والطاقة المتجددة · مشروع مشترك · توزيع"),
@@ -283,7 +290,7 @@ COMPANY_PAGES["neo-energy"] = {
 
 # ---------------------------------------------------------------- GGG
 COMPANY_PAGES["ggg"] = {
-    "meta": {"title": T("Green Global Group (GGG) | Aldawlia Group", "جرين جلوبال جروب (GGG) | مجموعة الدولية"),
+    "meta": {"title": T("Green Global Group (GGG) | Aldawlia for Cooling Corporation", "جرين جلوبال جروب (GGG) | المؤسسة الدولية للتبريد"),
              "desc": T("GGG delivers turnkey solar EPC for Egypt's productive sectors: 5,027 kW installed across 18 projects, 7.79 GWh a year of clean energy.",
                        "تقدّم GGG محطات طاقة شمسية متكاملة بنظام EPC للقطاعات الإنتاجية في مصر: 5,027 كيلوواط مركّبة في 18 مشروعًا، و7.79 جيجاواط ساعة من الطاقة النظيفة سنويًا.")},
     "hero": {"eyebrow": T("Energy &amp; renewables · Joint venture · Turnkey solar EPC", "الطاقة والطاقة المتجددة · مشروع مشترك · مقاولات EPC شمسية"),

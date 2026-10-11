@@ -5,16 +5,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 {%- endif %}
-<title>Aldawlia Group · مجموعة الدولية</title>
+<title>Aldawlia for Cooling Corporation · المؤسسة الدولية للتبريد</title>
 {%- if not ARTIFACT %}
-<meta name="description" content="Aldawlia Group: industrial refrigeration and energy since 1983. مجموعة الدولية: التبريد الصناعي والطاقة منذ 1983.">
+<meta name="description" content="Aldawlia for Cooling Corporation: industrial refrigeration and energy since 1983. المؤسسة الدولية للتبريد: التبريد الصناعي والطاقة منذ 1983.">
 <link rel="canonical" href="{{ SITE.url }}/">
 <link rel="alternate" hreflang="en" href="{{ SITE.url }}/en/">
 <link rel="alternate" hreflang="ar" href="{{ SITE.url }}/ar/">
 <link rel="alternate" hreflang="x-default" href="{{ SITE.url }}/">
 <meta name="theme-color" content="#070B14">
-<meta property="og:title" content="Aldawlia Group · مجموعة الدولية">
-<meta property="og:image" content="{{ SITE.url }}/assets/brand/og-en.jpg">
+<meta property="og:title" content="Aldawlia for Cooling Corporation · المؤسسة الدولية للتبريد">
+<meta property="og:image" content="{{ SITE.deploy }}/assets/brand/og-en.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
@@ -30,6 +33,9 @@ body{font-family:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,-apple-system,
 .g::after{content:"";position:absolute;inset:0;background:radial-gradient(40% 50% at 30% 30%,rgba(34,211,238,.14),transparent 70%),radial-gradient(40% 50% at 75% 80%,rgba(246,182,29,.10),transparent 70%);pointer-events:none}
 .c{position:relative;z-index:1;width:min(560px,100%);display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center}
 .marks{display:flex;flex-direction:column;align-items:center;gap:14px}
+.emb{background:#FFFFFF;border-radius:16px;padding:12px 16px;box-shadow:0 14px 40px rgba(0,0,0,.45);margin-bottom:10px;animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+.emb img{display:block;width:clamp(132px,34vw,168px);height:auto}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .marks svg{height:34px;width:auto;max-width:100%}
 .marks svg+svg{height:40px}
 .bar{position:relative;width:min(360px,80vw);height:2px;background:rgba(255,255,255,.12);overflow:hidden}
@@ -45,7 +51,7 @@ body{font-family:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,-apple-system,
 .note{font-size:13px;line-height:1.7;color:var(--mist);max-width:44ch}
 .note span{display:block}
 .note span[lang="ar"]{font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-size:14px}
-@media (prefers-reduced-motion:reduce){.bar i{animation:none}}
+@media (prefers-reduced-motion:reduce){.bar i,.emb{animation:none}}
 </style>
 {%- if not ARTIFACT %}
 </head>
@@ -53,7 +59,7 @@ body{font-family:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,-apple-system,
 {%- endif %}
 <main class="g">
   <div class="c">
-    <div class="marks" role="img" aria-label="Aldawlia Group · مجموعة الدولية">{{ LOCKUP_EN }}{{ LOCKUP_AR }}</div>
+    <div class="marks" role="img" aria-label="Aldawlia for Cooling Corporation · المؤسسة الدولية للتبريد"><div class="emb"><img src="assets/logos/aldawlia.webp" width="{{ LOGO_W }}" height="{{ LOGO_H }}" alt=""></div>{{ LOCKUP_EN }}{{ LOCKUP_AR }}</div>
     <div class="bar" aria-hidden="true"><i></i></div>
     <p class="st" id="st" role="status" aria-live="polite">Choose your language · اختر لغتك</p>
     <div class="btns">

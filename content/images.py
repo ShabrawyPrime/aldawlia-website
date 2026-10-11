@@ -3,6 +3,7 @@
 from .common import T
 
 S = "/home/claude/work/src_img/"
+D = S + "deck_r4/"                                    # Group Presentation R4.0 assets
 G = "/home/claude/prev/etsae_website/assets/img/gallery/"
 P = "/home/claude/prev/shabrawyprime_dawlia/img/"
 
@@ -18,8 +19,6 @@ IMAGES = {
                     T("Frosty Foods plant roof: solar array beside the evaporative condensers and ammonia piping", "سطح مصنع فروستي فودز: ألواح شمسية بجوار المكثفات التبخيرية وخطوط الأمونيا")),
     "frosty_machine": (S + "blob_9d7743b6be02a6064d6317b3c630f8b9.jpg", "50% 50%",
                        T("Ammonia machine room at Frosty Foods", "غرفة ماكينات الأمونيا في فروستي فودز")),
-    "frosty_line": (S + "blob_22c6594b7cd1c6ca17012ec87c04fa32.jpg", "50% 50%",
-                    T("Stainless-steel processing line inside the Frosty Foods plant", "خط تصنيع من الصلب المقاوم للصدأ داخل مصنع فروستي فودز")),
     "frosty_solar": (S + "blob_fafbc322e3902038197fe55ff9a8fcab.jpg", "50% 60%",
                      T("Rooftop solar array on the Frosty Foods plant", "ألواح شمسية على سطح مصنع فروستي فودز")),
     "founder": (S + "ald_founder.jpg", "35% 40%",
@@ -42,8 +41,33 @@ IMAGES = {
                   T("Aldawlia site team in front of evaporative condensers at the Mars Egypt project", "فريق الدولية أمام المكثفات التبخيرية في مشروع مارس مصر")),
     "next_gen": (S + "next_gen.jpg", "50% 35%",
                  T("The next generation of the El Shabrawy family at an international trade fair", "الجيل الجديد من عائلة الشبراوي في معرض دولي")),
-    "booth": (S + "tp/booth.jpg", "50% 40%",
-              T("The Aldawlia team at an industry exhibition", "فريق الدولية في أحد المعارض المتخصصة")),
+    "hvacr_2026": (D + "hvacr_2026.jpg", "50% 35%",
+                   T("The group team at the Aldawlia stand, HVAC-R Egypt 2026", "فريق المجموعة في جناح الدولية بمعرض HVAC-R Egypt 2026")),
+    "frozena_aerial": (D + "frozena_aerial.jpg", "50% 50%",
+                       T("Aerial view of the Frozena frozen-food plant with its refrigeration plant, cold stores and reefer loading docks", "منظر جوي لمصنع فروزينا للأغذية المجمدة بمحطة التبريد والثلاجات وأرصفة التحميل المبرّدة")),
+    # --- 3D drawings (deck R4.0)
+    "r3d_plant": (D + "r3d_plant.jpg", "50% 50%",
+                  T("3D cutaway of an ammonia machine room: six screw compressor packages, three surge drums with ammonia pumps, the high-pressure receiver, colour-coded headers and evaporative condensers on the platform outside",
+                    "مقطع ثلاثي الأبعاد لغرفة ماكينات أمونيا: ست وحدات ضواغط لولبية، وثلاثة خزانات فصل بمضخات الأمونيا، وخزان الاستقبال، وخطوط رئيسية ملوّنة، ومكثفات تبخيرية على المنصة في الخارج")),
+    "r3d_potato": (D + "r3d_potato.jpg", "50% 50%",
+                   T("3D section through a bulk potato store cell during filling: fan wall with axial fans, underground grated ducts, a six-metre potato pile and ceiling-hung air coolers",
+                     "مقطع ثلاثي الأبعاد في خلية ثلاجة بطاطس سائبة أثناء التعبئة: حائط المراوح المحورية، والمجاري الأرضية المشبّكة، وكومة بطاطس بعمق ستة أمتار، ومبردات هواء معلّقة")),
+    "r3d_solar": (D + "r3d_solar.jpg", "50% 50%",
+                  T("3D aerial of a ground-mounted solar plant: rows of PV tables, inverter stations on the central road, the medium-voltage substation and the control room at the gate",
+                    "منظر جوي ثلاثي الأبعاد لمحطة شمسية أرضية: صفوف طاولات الألواح، ومحطات العواكس على الطريق الأوسط، ومحطة الجهد المتوسط، وغرفة التحكم عند البوابة")),
+    "r3d_site": (D + "r3d_site.jpg", "50% 50%",
+                 T("3D cutaway of a complete frozen-food plant: solar on the roof slopes, cold-store cells cut open with racking and air coolers, the machine room with its condensers, docks and offices",
+                   "مقطع ثلاثي الأبعاد لمصنع أغذية مجمدة متكامل: ألواح شمسية على ميلَي السطح، وخلايا الثلاجات مفتوحة بأرففها ومبرداتها، وغرفة الماكينات بمكثفاتها، والأرصفة والمكاتب")),
+    "r3d_dabaa": (D + "r3d_dabaa.jpg", "50% 50%",
+                  T("3D view of the Al Dabaa cold-store complex: a frozen-food block and two potato sorting and cold-store blocks with their machine rooms, administration and staff housing inside one perimeter",
+                    "منظر ثلاثي الأبعاد لمجمع ثلاجات الضبعة: مجمع للأغذية المجمدة ومجمعان لفرز البطاطس وتخزينها بغرف ماكيناتهما، والإدارة وسكن العاملين داخل سور واحد")),
+    "r3d_frosty": (D + "r3d_frosty.jpg", "50% 50%",
+                   T("3D view of the finished Frosty Foods plant: solar on every roof slope, the ammonia plant beside it, docks, offices and plantation designed together",
+                     "مصنع فروستي فودز بعد اكتماله بالرسم ثلاثي الأبعاد: ألواح شمسية على كل ميل من الأسطح، ومحطة الأمونيا بجواره، والأرصفة والمكاتب والتشجير مصممة معًا")),
+    "r3d_stage1": (D + "r3d_stage1.png", "50% 50%", T("3D drawing, stage 01: design and consultancy", "رسم ثلاثي الأبعاد، المرحلة 01: التصميم والاستشارات")),
+    "r3d_stage2": (D + "r3d_stage2.png", "50% 50%", T("3D drawing, stage 02: construction", "رسم ثلاثي الأبعاد، المرحلة 02: الإنشاءات")),
+    "r3d_stage3": (D + "r3d_stage3.png", "50% 50%", T("3D drawing, stage 03: supply of all materials", "رسم ثلاثي الأبعاد، المرحلة 03: توريد جميع المواد")),
+    "r3d_stage4": (D + "r3d_stage4.png", "50% 50%", T("3D drawing, stage 04: machines and commissioning", "رسم ثلاثي الأبعاد، المرحلة 04: الماكينات والتشغيل")),
     "epc1": (S + "blob_e8f985154b055ccb2dae0b082fdd9de3.jpg", "50% 50%",
              T("Steel-frame erection with a mobile crane on a turnkey plant site", "تركيب الهيكل المعدني بالرافعة في موقع مشروع تسليم مفتاح")),
     "epc2": (S + "blob_b33ff34266f9260bd4fbada2eb6a2dd9.jpg", "50% 50%",

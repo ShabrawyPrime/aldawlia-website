@@ -1,8 +1,8 @@
-# Aldawlia Group website
+# Aldawlia for Cooling Corporation website
 
-Bilingual website (English, and Arabic right-to-left) for the Aldawlia Group: Aldawlia for Cooling Corporation
-and the group companies ERT, ETS, Nova Freeze, JET Solar, NEO Energy and GGG. It also carries the group's
-brand guidelines. Version 1.0, October 2026.
+Bilingual website (English, and Arabic right-to-left) for Aldawlia for Cooling Corporation
+(المؤسسة الدولية للتبريد) and its family of companies: ERT, ETS, Nova Freeze, JET Solar, NEO Energy and GGG.
+It also carries the brand guidelines. Version 1.1, October 2026, updated to the Group Presentation R4.0.
 
 The site is static: plain HTML, CSS and a small script, generated from one bilingual content source.
 
@@ -14,9 +14,9 @@ The site is static: plain HTML, CSS and a small script, generated from one bilin
 | `content/` | All text, as English/Arabic pairs: `T("English", "العربية")`. |
 | `templates/` | Page layouts (Jinja2). |
 | `static/` | `css/site.css` and `js/site.js`. |
-| `build/` | Processed photos, company logos, group signature files, fonts and the map. Used as they are. |
+| `build/` | Processed photos and 3D drawings, company logos, signature files, fonts and the map. Used as they are. |
 | `deploy/` | Optional edge redirects for Cloudflare Pages and Netlify. |
-| `tools/` | One-off scripts that produced `build/` from the original photos and company files. |
+| `tools/` | Scripts that produced `build/` from the original photos and company files (`tools/images.py` adds new photos). |
 | `build.py` | The generator. |
 
 ## Pages
@@ -45,6 +45,10 @@ python3 build.py
 This regenerates `docs/` (and `dist-artifact/`, a single-folder preview that is not committed). Commit the
 updated `docs/` with the source change.
 
+To add a photo, register it in `content/images.py` and run `python3 tools/images.py build/img`: it builds the
+WebP sizes for new photos only and removes photos that are no longer registered. The 3D drawings with numbered
+callouts are described in `content/figures.py`; marker positions are fractions of the image width and height.
+
 ## Publishing
 
 - **GitHub Pages:** Settings › Pages › Build and deployment › Deploy from a branch › `main` and `/docs`.
@@ -61,4 +65,4 @@ Without a form service the form prepares the enquiry for the visitor's email app
 company inbox. To receive submissions directly, set `FORM_ENDPOINT` in `build.py` to a form service URL
 (Formspree, Basin or your own endpoint) and rebuild; the form then posts JSON to it.
 
-© 2026 Aldawlia Group. All rights reserved.
+© 2026 Aldawlia for Cooling Corporation. All rights reserved.

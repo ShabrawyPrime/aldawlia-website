@@ -23,6 +23,32 @@
 {%- endif -%}
 {%- endmacro %}
 
+{#- A figure: a plain string ("40+", "165+ MW") is shown left to right in both languages; T(en, ar) carries an
+    Arabic unit ("+750,000 طن") and is shown right to left on Arabic pages. -#}
+{% macro numv(v, cls='num', style='') -%}
+{%- if v is mapping -%}<span class="{{ cls }}"{% if L == 'ar' %} dir="rtl"{% endif %}{% if style %} style="{{ style }}"{% endif %}>{{ t(v) }}</span>
+{%- else -%}<span class="{{ cls }}"{% if style %} style="{{ style }}"{% endif %}>{{ v }}</span>{%- endif -%}
+{%- endmacro %}
+
+{#- 3D drawing with numbered callouts. Markers sit at fixed physical positions on the image (never mirrored). -#}
+{% macro fig3d(F, id) -%}
+<div class="f3d" data-f3d>
+  <div class="f3d__img">
+    {{ img(F.img, '(max-width:1320px) 100vw, 1320px') }}
+    {%- for x, y in F.marks %}<span class="f3d__mk" data-n="{{ loop.index }}" style="left:{{ (x * 100)|round(2) }}%;top:{{ (y * 100)|round(2) }}%" aria-hidden="true">{{ loop.index }}</span>{% endfor %}
+  </div>
+  <ol class="f3d__list" aria-label="{{ t(UI.legend) }}">
+    {%- for a, b in F['items'] %}<li data-n="{{ loop.index }}"><span class="f3d__n" aria-hidden="true">{{ loop.index }}</span><div><h3>{{ t(a) }}</h3><p>{{ t(b) }}</p></div></li>{% endfor %}
+  </ol>
+  {%- if F.legend or F.note %}
+  <div class="f3d__foot">
+    {%- if F.legend %}<ul class="f3d__key">{% for col, lab in F.legend %}<li><i style="background:{{ col }}"></i>{{ t(lab) }}</li>{% endfor %}</ul>{% endif %}
+    {%- if F.note %}<p class="f3d__note">{{ t(F.note) }}</p>{% endif %}
+  </div>
+  {%- endif %}
+</div>
+{%- endmacro %}
+
 {% macro costyle(c) -%}--co:{{ c.on_dark }};--co-ink:{{ c.on_light }}{%- endmacro %}
 
 {% macro cohref(c) -%}{{ c.page if c.page else 'group.html#' ~ c.key }}{%- endmacro %}
@@ -48,14 +74,14 @@
 <article class="pcard" data-pcard data-cat="{{ p.cat }}" data-cos="{{ p.cos|join(' ') }}" style="{{ costyle(c0) }}" id="p-{{ p.key }}">
   <div class="pcard__media">
     {%- if p.imgs %}{{ img(p.imgs[0], sizes) }}{% else %}
-    <div class="pcard__big"><span class="num">{{ p.big }}</span><small>{{ t(p.metric) }}</small></div>
+    <div class="pcard__big">{{ numv(p.big) }}<small>{{ t(p.metric) }}</small></div>
     {%- endif %}
     {%- if p.status %}<span class="pcard__status">{{ t(p.status) }}</span>{% endif %}
   </div>
   <div class="pcard__b">
     <p class="pcard__place">{{ t(p.place) }}{% if p.year %} · <span class="ltr">{{ p.year }}</span>{% endif %}</p>
     <h3>{{ t(p.title) }}</h3>
-    {%- if p.imgs %}<p class="pcard__metric">{% if p.big %}<span class="num">{{ p.big }}</span> · {% endif %}{{ t(p.metric) }}</p>{% endif %}
+    {%- if p.imgs %}<p class="pcard__metric">{% if p.big %}{{ numv(p.big) }} · {% endif %}{{ t(p.metric) }}</p>{% endif %}
     {%- if p.text %}<p>{{ t(p.text) }}</p>{% endif %}
     {{ cotags(p.cos) }}
   </div>

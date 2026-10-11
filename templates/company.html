@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard, cotags, copybtn, tel, cardcols with context -%}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard, cotags, copybtn, tel, cardcols, numv, fig3d with context -%}
 {% block content %}
 {%- set c = CO -%}
 <div style="{{ costyle(c) }}">
@@ -8,7 +8,7 @@
   <div class="wrap">
     <div class="chero__in">
       <div class="chero__txt">
-        <nav class="crumbs" aria-label="{{ t(UI.breadcrumb) }}"><a href="index.html">{{ t(SITE.name) }}</a>{{ icon('chev-r') }}<a href="group.html">{{ t(NAVD.group.label) }}</a>{{ icon('chev-r') }}<span aria-current="page">{{ t(c.short) }}</span></nav>
+        <nav class="crumbs" aria-label="{{ t(UI.breadcrumb) }}"><a href="index.html">{{ t(UI.home) }}</a>{{ icon('chev-r') }}<a href="group.html">{{ t(NAVD.group.label) }}</a>{{ icon('chev-r') }}<span aria-current="page">{{ t(c.short) }}</span></nav>
         <div class="chero__logo">
           {%- if c.key == 'aldawlia' %}<span style="background:#F4F6FA;border-radius:6px;padding:6px 10px;display:inline-flex">{{ logo(c) }}</span>{% else %}{{ logo(c, 'white') }}{% endif %}
           <span class="endorse">{{ t(UI.group_company) if not c.mother else t(UI.mother) }}</span>
@@ -40,6 +40,7 @@
 
 {%- for b in D.blocks %}
 {%- set bg = ['s--paper', 's--white', 's--ice'][loop.index0 % 3] if b.type not in ['timeline'] else 's--white' %}
+{%- set F = FIG3D[b.fig] if b.type == 'fig3d' else None %}
 {%- set bid = 'b' ~ loop.index %}
 {%- if b.type == 'intro' %}
 <section class="s {{ bg }}" aria-labelledby="{{ bid }}">
@@ -70,10 +71,15 @@
   <div class="gridbg"></div>
   <div class="wrap" style="position:relative">
     {{ sh(t(b.eyebrow), t(b.title), t(b.text), id=bid) }}
+    <ol class="stages">
+      {%- for title, txt, im in STAGES['items'] %}
+      <li><figure class="stages__img">{{ img(im, '(max-width:640px) 100vw, (max-width:1180px) 50vw, 25vw', alt=t(IMGALT[im])) }}</figure><span class="n">{{ '%02d' % loop.index }}</span><h3>{{ t(title) }}</h3><p>{{ t(txt) }}</p></li>
+      {%- endfor %}
+    </ol>
     <div class="epc">
       <div class="epc__imgs">{% for k in b.imgs %}{{ img(k, '(max-width:960px) 100vw, 55vw') }}{% endfor %}</div>
       <div class="stack">
-        <ol class="steps">{% for title, txt in b.steps %}<li><span class="n">{{ '%02d' % loop.index }}</span><h3>{{ t(title) }}</h3><p>{{ t(txt) }}</p></li>{% endfor %}</ol>
+        <div class="contract"><h3>{{ t(STAGES.contract_title) }}</h3><p>{{ t(STAGES.contract) }}</p></div>
         <div class="yearpair"><div><span class="num">2009</span><span>{{ t(EPCY.civil) }}</span></div><div><span class="num">2023</span><span>{{ t(EPCY.epc) }}</span></div></div>
       </div>
     </div>
@@ -150,6 +156,23 @@
   <div class="wrap media">
     <figure class="media__img">{{ img(b.img, '(max-width:960px) 100vw, 50vw') }}<figcaption class="figcap">{{ t(IMGALT[b.img]) }}</figcaption></figure>
     <div class="media__t">{{ eyebrow(t(b.eyebrow)) }}<h2 class="h2" id="{{ bid }}">{{ t(b.title) }}</h2><p class="lead">{{ t(b.text) }}</p></div>
+  </div>
+</section>
+{%- elif b.type == 'fig3d' %}
+<section class="s s--night s--fig" aria-labelledby="{{ bid }}">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(F.eyebrow), t(F.title), id=bid) }}
+    {{ fig3d(F, bid) }}
+  </div>
+</section>
+{%- elif b.type == 'feature' %}
+<section class="s {{ bg }}" aria-labelledby="{{ bid }}">
+  <div class="wrap">
+    {{ sh(t(b.eyebrow), t(b.title), t(b.text), id=bid) }}
+    <ul class="stats stats--4">
+      {%- for n, l in b.stats %}<li>{{ numv(n) }}<span>{{ t(l) }}</span></li>{% endfor %}
+    </ul>
   </div>
 </section>
 {%- elif b.type == 'vm' %}

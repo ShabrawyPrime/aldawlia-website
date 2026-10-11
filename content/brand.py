@@ -2,13 +2,13 @@
 from .common import T
 
 BRAND = {
-    "meta": {"title": T("Brand Guidelines | Aldawlia Group", "دليل الهوية | مجموعة الدولية"),
-             "desc": T("The Aldawlia Group brand system: idea, architecture, signature, colour, typography, imagery, voice and bilingual rules for English and Arabic.",
-                       "نظام هوية مجموعة الدولية: الفكرة والبنية والتوقيع والألوان والخطوط والصور ونبرة الكتابة وقواعد الاستخدام باللغتين العربية والإنجليزية.")},
+    "meta": {"title": T("Brand Guidelines | Aldawlia for Cooling Corporation", "دليل الهوية | المؤسسة الدولية للتبريد"),
+             "desc": T("The brand system of Aldawlia for Cooling Corporation and its family of companies: idea, architecture, signature, colour, typography, imagery, voice and bilingual rules for English and Arabic.",
+                       "نظام هوية المؤسسة الدولية للتبريد وعائلة شركاتها: الفكرة والبنية والتوقيع والألوان والخطوط والصور ونبرة الكتابة وقواعد الاستخدام باللغتين العربية والإنجليزية.")},
     "hero": {"eyebrow": T("Brand guidelines · Version 1.0 · October 2026", "دليل الهوية · الإصدار 1.0 · أكتوبر 2026"),
              "title": T("One brand system for one family of companies.", "نظام هوية واحد لعائلة واحدة من الشركات."),
-             "lead": T("How the Aldawlia Group looks, speaks and signs its work, in English and in Arabic. Use this page for the website, presentations, documents, signage and social media.",
-                       "كيف تبدو مجموعة الدولية وكيف تتحدث وكيف توقّع أعمالها بالعربية والإنجليزية. استخدم هذه الصفحة للموقع والعروض التقديمية والمستندات واللافتات ووسائل التواصل الاجتماعي.")},
+             "lead": T("How Aldawlia for Cooling Corporation and its family of companies look, speak and sign their work, in English and in Arabic. Use this page for the website, presentations, documents, signage and social media.",
+                       "كيف تبدو المؤسسة الدولية للتبريد وعائلة شركاتها، وكيف تتحدث وتوقّع أعمالها بالعربية والإنجليزية. استخدم هذه الصفحة للموقع والعروض التقديمية والمستندات واللافتات ووسائل التواصل الاجتماعي.")},
     "toc": [("idea", T("Brand idea", "فكرة العلامة")), ("architecture", T("Architecture", "بنية العلامة")), ("signature", T("Signature", "التوقيع")),
             ("colour", T("Colour", "الألوان")), ("type", T("Typography", "الخطوط")), ("layout", T("Layout", "التخطيط")),
             ("imagery", T("Imagery", "الصور")), ("voice", T("Voice", "نبرة الكتابة")), ("components", T("Components", "العناصر")), ("assets", T("Assets", "الملفات"))],
@@ -21,7 +21,7 @@ BRAND = {
             (T("Positioning", "التموضع"), T("Egyptian engineering, world technology, one family.", "هندسة مصرية، وتكنولوجيا عالمية، وعائلة واحدة.")),
             (T("Tagline", "الشعار اللفظي"), T("We build the infrastructure of the future.", "نبني البنية التحتية للمستقبل.")),
             (T("Promise", "الوعد"), T("Uninterrupted stability.", "استقرار دون انقطاع.")),
-            (T("Proof", "الدليل"), T("Since 1983 · 3,000+ people at Aldawlia · 17 countries · 165+ MW of solar", "منذ 1983 · أكثر من 3,000 موظف في الدولية · 17 دولة · أكثر من 165 ميجاواط من الطاقة الشمسية")),
+            (T("Proof", "الدليل"), T("Since 1983 · 500+ projects · 3,000+ people at Aldawlia · 17 countries · 165+ MW of solar", "منذ 1983 · أكثر من 500 مشروع · أكثر من 3,000 موظف في الدولية · 17 دولة · أكثر من 165 ميجاواط من الطاقة الشمسية")),
         ],
         "traits_title": T("Personality", "الشخصية"),
         "traits": [
@@ -34,20 +34,20 @@ BRAND = {
     "architecture": {
         "eyebrow": T("02 · Architecture", "02 · بنية العلامة"),
         "title": T("An endorsed family.", "عائلة من العلامات تحت مظلة واحدة."),
-        "text": T("The Aldawlia Group signature speaks for the group. Each company keeps its own logo and colour, and is endorsed by the group with one line. Aldawlia for Cooling Corporation keeps its heritage emblem as its company logo; it is not used as the group signature.",
-                  "يمثل توقيع مجموعة الدولية المجموعة كلها، وتحتفظ كل شركة بشعارها ولونها، وتُنسب إلى المجموعة بسطر واحد. وتحتفظ المؤسسة الدولية للتبريد بشعارها التاريخي شعارًا للشركة، ولا يُستخدم توقيعًا للمجموعة."),
+        "text": T("The Aldawlia signature speaks for Aldawlia for Cooling Corporation and its family of companies. Each company keeps its own logo and colour, and is endorsed with one line. The heritage emblem stays the corporation's company logo beside the other company logos; it is not used in place of the signature.",
+                  "يمثّل توقيع الدولية المؤسسةَ الدولية للتبريد وعائلة شركاتها، وتحتفظ كل شركة بشعارها ولونها وتُنسب إلى العائلة بسطر واحد. ويبقى الشعار التاريخي شعارًا للمؤسسة بجوار شعارات الشركات الأخرى، ولا يُستخدم بديلًا عن التوقيع."),
         "endorse_label": T("Endorsement line", "سطر الانتساب"),
     },
     "signature": {
         "eyebrow": T("03 · Signature", "03 · التوقيع"),
         "title": T("A wordmark, a descriptor and the Spectrum.", "اسم مكتوب، ووصف، والطيف."),
-        "text": T("The group signature sets ALDAWLIA in Space Grotesk Bold, the descriptor GROUP in IBM Plex Mono, and joins them with the Spectrum bar, which runs from Frost to Sun. In Arabic, «الدولية» is set in Readex Pro Bold with «مجموعة» as the descriptor, and the order mirrors.",
-                  "يُكتب توقيع المجموعة بكلمة ALDAWLIA بخط Space Grotesk العريض، والوصف GROUP بخط IBM Plex Mono، ويربط بينهما شريط الطيف الذي يمتد من لون «الصقيع» إلى لون «الشمس». وفي العربية تُكتب «الدولية» بخط Readex Pro العريض و«مجموعة» وصفًا، مع عكس الترتيب."),
+        "text": T("The signature sets ALDAWLIA in Space Grotesk Bold and the descriptor FOR COOLING CORPORATION on two lines in IBM Plex Mono, joined by the Spectrum bar, which runs from Frost to Sun. In Arabic, «المؤسسة الدولية» is set in Readex Pro with «الدولية» in bold, and «للتبريد» follows the Spectrum bar; the order mirrors.",
+                  "يُكتب التوقيع بكلمة ALDAWLIA بخط Space Grotesk العريض، والوصف FOR COOLING CORPORATION على سطرين بخط IBM Plex Mono، ويربط بينهما شريط الطيف الذي يمتد من لون «الصقيع» إلى لون «الشمس». وفي العربية تُكتب «المؤسسة الدولية» بخط Readex Pro مع «الدولية» بالوزن العريض، وتأتي «للتبريد» بعد شريط الطيف، مع عكس الترتيب."),
         "rules": [
             (T("Clear space", "المساحة الخالية"), T("Keep a margin equal to the cap height of the wordmark on every side.", "اترك هامشًا يساوي ارتفاع الحروف الكبيرة في الاسم من كل جانب.")),
-            (T("Minimum size", "الحد الأدنى للحجم"), T("120 px wide on screen, 30 mm in print. Below that, use the monogram.", "عرض 120 بكسل على الشاشة و30 مم في الطباعة، وما دون ذلك استخدم الحرف المختصر.")),
+            (T("Minimum size", "الحد الأدنى للحجم"), T("160 px wide on screen, 40 mm in print. Below that, use ALDAWLIA alone or the monogram.", "عرض 160 بكسل على الشاشة و40 مم في الطباعة، وما دون ذلك استخدم كلمة ALDAWLIA وحدها أو الحرف المختصر.")),
             (T("Colour", "اللون"), T("Ice on dark backgrounds, Ink on light. The Spectrum bar never changes colour.", "لون «الجليد» على الخلفيات الداكنة و«الحبر» على الفاتحة، ولا يتغير لون شريط الطيف أبدًا.")),
-            (T("Monogram", "الحرف المختصر"), T("The A with the Spectrum underline, for favicons, app icons and social avatars.", "حرف A مع خط الطيف أسفله، لأيقونات المتصفح والتطبيقات وصور الحسابات.")),
+            (T("Monogram and emblem", "الحرف المختصر والشعار"), T("The A with the Spectrum underline, for social avatars and small marks. The website icon, its loading screen and its link previews use the Aldawlia emblem.", "حرف A مع خط الطيف أسفله، لصور الحسابات والعلامات الصغيرة. أما أيقونة الموقع وشاشة تحميله وصور معاينة روابطه فتستخدم شعار الدولية.")),
         ],
         "donts_title": T("Do not", "تجنّب"),
         "donts": [T("Recolour, outline or add effects to the wordmark", "تغيير لون الاسم أو تحديده أو إضافة مؤثرات"),
@@ -55,7 +55,7 @@ BRAND = {
                   T("Separate the Spectrum bar from the wordmark", "فصل شريط الطيف عن الاسم"),
                   T("Letter-space the Arabic signature", "إضافة تباعد بين حروف التوقيع العربي"),
                   T("Place it on a busy photo without a Night overlay", "وضعه على صورة مزدحمة دون طبقة داكنة"),
-                  T("Use the Aldawlia heritage emblem as the group signature", "استخدام الشعار التاريخي للدولية توقيعًا للمجموعة")],
+                  T("Use the heritage emblem in place of the signature", "استخدام الشعار التاريخي بديلًا عن التوقيع")],
     },
     "colour": {
         "eyebrow": T("04 · Colour", "04 · الألوان"),
@@ -142,8 +142,8 @@ BRAND = {
         "names_title": T("Names and terms", "الأسماء والمصطلحات"),
         "names": [
             ("Aldawlia", T("one word; not Al Dawlia, Al-Dawlia or AlDawlia", "كلمة واحدة؛ وليس Al Dawlia أو Al-Dawlia أو AlDawlia")),
-            ("Aldawlia Group · مجموعة الدولية", T("the group", "اسم المجموعة")),
-            ("Aldawlia for Cooling Corporation · المؤسسة الدولية للتبريد", T("the mother company", "اسم الشركة الأم")),
+            ("Aldawlia for Cooling Corporation · المؤسسة الدولية للتبريد", T("the mother company and the name of this website", "اسم الشركة الأم واسم هذا الموقع")),
+            ("Aldawlia Group · مجموعة الدولية", T("the family of companies as a whole", "عائلة الشركات مجتمعة")),
             ("JET Solar · جيت سولار", T("JET in capitals", "JET بحروف كبيرة")),
             ("ETS · Nova Freeze · NEO Energy · GGG · ERT", T("as written", "كما تُكتب")),
             ("ELARABY Group · مجموعة العربي", T("Nova Freeze partner", "شريك نوفا فريز")),
@@ -157,7 +157,7 @@ BRAND = {
     },
     "assets": {
         "eyebrow": T("10 · Assets", "10 · الملفات"),
-        "title": T("Files for the group signature.", "ملفات توقيع المجموعة."),
+        "title": T("Files for the signature.", "ملفات التوقيع."),
         "text": T("Vector signatures for light and dark backgrounds, the monogram and the company logos are published with this site under assets/brand and assets/logos.",
                   "تُنشر ملفات التوقيع المتجهية للخلفيات الفاتحة والداكنة والحرف المختصر وشعارات الشركات مع هذا الموقع في المجلدين assets/brand وassets/logos."),
     },

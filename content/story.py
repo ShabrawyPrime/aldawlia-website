@@ -3,7 +3,7 @@ from .common import T
 
 STORY = {
     "meta": {
-        "title": T("Our Story | Aldawlia Group", "قصتنا | مجموعة الدولية"),
+        "title": T("Our Story | Aldawlia for Cooling Corporation", "قصتنا | المؤسسة الدولية للتبريد"),
         "desc": T("From a sole proprietorship in 1983 to a group of companies in refrigeration and energy: the founder, the milestones and the next generation of Aldawlia.",
                   "من مؤسسة فردية عام 1983 إلى مجموعة شركات في التبريد والطاقة: المؤسس والمحطات الفارقة والجيل الجديد في الدولية."),
     },
@@ -54,7 +54,7 @@ STORY = {
         ("2016", "aldawlia", T("Forms a dedicated in-house industrial automation team.", "تكوين فريق داخلي متخصص في الأتمتة الصناعية.")),
         ("2018", "aldawlia", T("Delivers Egypt's first potato cold store run fully on a Siemens PLC system, designed in-house with CO₂, humidity and temperature control.", "تنفيذ أول مخزن بطاطس مبرّد في مصر يعمل بالكامل بنظام سيمنز PLC، بتصميم داخلي يتحكم في ثاني أكسيد الكربون والرطوبة والحرارة.")),
         ("2020", "jet-solar", T("JET Solar is established: Egypt's first integrated solar panel manufacturing facility.", "تأسيس جيت سولار: أول منشأة متكاملة لتصنيع الألواح الشمسية في مصر.")),
-        ("2022", "ert", T("ERT, Egypt for Refrigeration Technology, is established.", "تأسيس ERT، مصر لتكنولوجيا التبريد.")),
+        ("2022", "ert", T("ERT, Egypt for Refrigeration Technology, is established in 10th of Ramadan City as a local refrigeration contractor.", "تأسيس ERT، مصر لتكنولوجيا التبريد، في مدينة العاشر من رمضان مقاولًا محليًا لأعمال التبريد.")),
         ("2023", "ets", T("ETS is established in Ras Al Khaimah as the group's technical and strategic arm, and Aldawlia starts delivering turnkey EPC projects from empty land.", "تأسيس ETS في رأس الخيمة ذراعًا فنية واستراتيجية للمجموعة، وبدء الدولية تنفيذ مشروعات تسليم المفتاح بنظام EPC من الأرض الفضاء.")),
         ("2025", "nova-freeze", T("Nova Freeze is founded with ELARABY Group for strategic, mega and state-led projects.", "تأسيس نوفا فريز مع مجموعة العربي للمشروعات الاستراتيجية والكبرى والمشروعات التي تقودها الدولة.")),
     ],

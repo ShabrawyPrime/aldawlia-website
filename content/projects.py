@@ -7,13 +7,25 @@ CATS = {
     "supply": T("Solar distribution", "توزيع منتجات الطاقة الشمسية"),
 }
 
-# Featured projects with detail. Facts from the profiles, the deck and the legacy aldawlia.org portfolio.
+# Featured projects with detail. Facts from the profiles, the deck (R4.0) and the legacy aldawlia.org portfolio.
+# "big" is a headline figure; a figure with a unit is T(en, ar) and the Arabic is rendered right to left.
 PROJECTS = [
-    {"key": "frosty", "cat": "cooling", "cos": ["ets", "aldawlia", "jet-solar"], "imgs": ["frosty_roof", "frosty_machine", "frosty_line"],
-     "title": T("Frosty Foods", "فروستي فودز"), "place": T("Egypt", "مصر"),
+    {"key": "future-egypt", "cat": "cooling", "cos": ["nova-freeze", "aldawlia"], "imgs": [], "big": T("58,000+ t", "+58,000 طن"), "year": "2026",
+     "status": T("Running since February 2026", "يعمل منذ فبراير 2026"),
+     "title": T("Future of Egypt cold stores", "ثلاجات مستقبل مصر"), "place": T("Future of Egypt Authority", "جهاز مستقبل مصر"),
+     "metric": T("of cold storage · two projects, over €25M", "سعة تخزين مبرّد · مشروعان بأكثر من 25 مليون يورو"),
+     "text": T("Two projects for the Future of Egypt Authority, worth over €25M: more than 58,000 t of cold storage and a 10 t/h strawberry line, running since February 2026.",
+               "مشروعان لجهاز مستقبل مصر بأكثر من 25 مليون يورو: أكثر من 58,000 طن سعة تخزين مبرّد وخط فراولة بطاقة 10 طن/ساعة، يعملان منذ فبراير 2026.")},
+    {"key": "frosty", "cat": "cooling", "cos": ["ets", "aldawlia", "jet-solar"], "imgs": ["frosty_roof", "r3d_frosty", "frosty_machine"],
+     "title": T("Frosty Foods", "فروستي فودز"), "place": T("Noubaria City, Cairo–Alexandria Desert Road", "مدينة النوبارية، طريق القاهرة–الإسكندرية الصحراوي"),
      "metric": T("Refrigeration + solar", "تبريد + طاقة شمسية"),
-     "text": T("Supplied and built by ETS, with Aldawlia as consultant for refrigeration, civil and MEP works and a rooftop solar array by JET Solar. Cooling and energy on one roof.",
-               "وردتها ETS ونفذتها، وكانت الدولية استشاري أعمال التبريد والأعمال المدنية والكهروميكانيكية، وركّبت جيت سولار منظومتها الشمسية على السطح. التبريد والطاقة تحت سقف واحد.")},
+     "text": T("ETS supplied and built the refrigeration plant, Aldawlia was the consultant for refrigeration, civil and MEP works, and JET Solar installed the rooftop solar. Cooling and energy, designed together.",
+               "ورّدت ETS محطة التبريد ونفّذتها، وكانت الدولية الاستشاري لأعمال التبريد والأعمال المدنية والكهروميكانيكية، وركّبت جيت سولار المحطة الشمسية على السطح. التبريد والطاقة مصممان معًا.")},
+    {"key": "dabaa", "cat": "cooling", "cos": ["aldawlia"], "imgs": ["r3d_dabaa"], "year": "2023",
+     "title": T("Al Dabaa cold-store complex", "مجمع ثلاجات الضبعة"), "place": T("Al Dabaa · Future of Egypt", "الضبعة · مستقبل مصر"),
+     "metric": T("Consultant · general layout and 3D design", "الاستشاري · المخطط العام والتصميم ثلاثي الأبعاد"),
+     "text": T("A national project for the Egyptian Air Force and Future of Egypt: a frozen-food block and two potato sorting and cold-store blocks. Aldawlia was the consultant and produced the general layout and the 3D design (March 2023); Johnson Controls was the refrigeration contractor.",
+               "مشروع قومي للقوات الجوية المصرية ومستقبل مصر: مجمع للأغذية المجمدة ومجمعان لفرز البطاطس وتخزينها بالتبريد. كانت الدولية الاستشاري وأعدّت المخطط العام والتصميم ثلاثي الأبعاد (مارس 2023)، وكانت جونسون كنترولز مقاول التبريد.")},
     {"key": "plc-potato", "cat": "cooling", "cos": ["aldawlia"], "imgs": ["panels"], "year": "2018",
      "title": T("Egypt's first PLC-run potato store", "أول مخزن بطاطس يعمل بنظام PLC في مصر"), "place": T("Egypt", "مصر"),
      "metric": T("Siemens PLC · CO₂, RH, °C", "سيمنز PLC · CO₂ والرطوبة والحرارة"),
@@ -24,11 +36,11 @@ PROJECTS = [
      "metric": T("Process cooling", "تبريد العمليات"),
      "text": T("Process cooling for the Mars chocolate factory, including evaporative condensers craned onto the roof and installed by Aldawlia's site team.",
                "تبريد العمليات لمصنع مارس للشوكولاتة، بما في ذلك رفع المكثفات التبخيرية إلى السطح وتركيبها بواسطة فريق الدولية في الموقع.")},
-    {"key": "frozena", "cat": "cooling", "cos": ["aldawlia"], "imgs": ["frozena_potato", "frozena_room"],
-     "title": T("Frozena", "فروزينا"), "place": T("Wadi El Natrun, Egypt", "وادي النطرون، مصر"),
-     "metric": T("Potato storage · Mayekawa", "تخزين بطاطس · مايكاوا"),
-     "text": T("Bulk potato storage with under-floor ventilation ducts and a Mayekawa compressor plant.",
-               "تخزين بطاطس سائب بمجاري تهوية أرضية ومحطة ضواغط مايكاوا.")},
+    {"key": "frozena", "cat": "cooling", "cos": ["aldawlia"], "imgs": ["frozena_aerial", "frozena_potato", "frozena_room"],
+     "title": T("Frozena plant", "مصنع فروزينا"), "place": T("Wadi El Natrun, Egypt", "وادي النطرون، مصر"),
+     "metric": T("Frozen vegetables · cold stores · Mayekawa", "خضروات مجمدة · ثلاجات · مايكاوا"),
+     "text": T("Industrial refrigeration and cold stores for a frozen vegetables plant, with reefer docks for export, bulk potato storage with under-floor ventilation and a Mayekawa compressor plant.",
+               "تبريد صناعي وثلاجات لمصنع خضروات مجمدة، مع أرصفة تحميل مبرّدة للتصدير، وتخزين بطاطس سائب بمجاري تهوية أرضية، ومحطة ضواغط مايكاوا.")},
     {"key": "el-gammal", "cat": "cooling", "cos": ["aldawlia"], "imgs": ["elgammal_room", "elgammal_founder"],
      "title": T("El Gammal", "الجمّال"), "place": T("Wadi El Natrun, Egypt", "وادي النطرون، مصر"),
      "metric": T("Machine room and controls", "غرفة ماكينات وأنظمة تحكم"),
@@ -110,9 +122,9 @@ REFERENCES = [
 ]
 
 PROJECTS_PAGE = {
-    "meta": {"title": T("Projects | Aldawlia Group", "المشروعات | مجموعة الدولية"),
-             "desc": T("Selected refrigeration, solar and distribution projects by the Aldawlia Group companies, from Frosty Foods and Mars Egypt to the 5.5 MW Wadi El Natrun plant.",
-                       "مشروعات مختارة في التبريد والطاقة الشمسية والتوزيع لشركات مجموعة الدولية، من فروستي فودز ومارس مصر إلى محطة وادي النطرون بقدرة 5.5 ميجاواط.")},
+    "meta": {"title": T("Projects | Aldawlia for Cooling Corporation", "المشروعات | المؤسسة الدولية للتبريد"),
+             "desc": T("Selected refrigeration, solar and distribution projects by Aldawlia and its group companies, from the Future of Egypt cold stores and Frosty Foods to the 5.5 MW Wadi El Natrun plant.",
+                       "مشروعات مختارة في التبريد والطاقة الشمسية والتوزيع للدولية وشركات مجموعتها، من ثلاجات مستقبل مصر وفروستي فودز إلى محطة وادي النطرون بقدرة 5.5 ميجاواط.")},
     "hero": {"eyebrow": T("Projects", "المشروعات"),
              "title": T("References that tell the story.", "مشروعات تروي القصة."),
              "lead": T("Machine rooms, cold stores, factories and solar plants delivered by the companies of the group, in Egypt and across the region.",

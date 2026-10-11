@@ -2,9 +2,9 @@
 from .common import T
 
 SOLUTIONS = {
-    "meta": {"title": T("Solutions | Aldawlia Group", "الحلول | مجموعة الدولية"),
-             "desc": T("Industrial refrigeration, turnkey EPC, natural refrigerants, automation, maintenance and global supply; solar manufacturing, distribution and EPC; and hybrid power for cold chains.",
-                       "التبريد الصناعي ومشروعات تسليم المفتاح وغازات التبريد الطبيعية والأتمتة والصيانة والتوريد العالمي؛ وتصنيع الطاقة الشمسية وتوزيعها وتنفيذ محطاتها؛ والطاقة الهجينة لسلاسل التبريد.")},
+    "meta": {"title": T("Solutions | Aldawlia for Cooling Corporation", "الحلول | المؤسسة الدولية للتبريد"),
+             "desc": T("Industrial refrigeration consultancy and contracting, turnkey EPC, natural refrigerants, automation, maintenance and global supply; solar manufacturing, distribution and EPC; and hybrid power for cold chains.",
+                       "استشارات التبريد الصناعي ومقاولاته ومشروعات تسليم المفتاح وغازات التبريد الطبيعية والأتمتة والصيانة والتوريد العالمي؛ وتصنيع الطاقة الشمسية وتوزيعها وتنفيذ محطاتها؛ والطاقة الهجينة لسلاسل التبريد.")},
     "hero": {"eyebrow": T("Solutions", "الحلول"),
              "title": T("From concept to operation, in cooling and in energy.", "من الفكرة إلى التشغيل، في التبريد وفي الطاقة."),
              "lead": T("The group covers the full lifecycle of an industrial cooling project and the full value chain of solar energy, and it brings the two together where a plant needs both.",
@@ -12,8 +12,8 @@ SOLUTIONS = {
     "cooling": {
         "eyebrow": T("Cooling &amp; refrigeration", "التبريد والتجميد"),
         "title": T("One accountable partner, from feasibility to lifetime maintenance.", "شريك واحد مسؤول، من دراسة الجدوى حتى الصيانة مدى الحياة."),
-        "lead": T("Delivered by Aldawlia with ETS for supply, Nova Freeze for national-scale projects and ERT for supply and installation.",
-                  "تنفّذها الدولية، مع ETS للتوريد، ونوفا فريز للمشروعات القومية الكبرى، وERT للتوريد والتركيب."),
+        "lead": T("Aldawlia leads with consultancy, design and local contracting, with ERT for local installation works, ETS for equipment supply and Nova Freeze for national-scale projects.",
+                  "تقود الدولية بالاستشارات والتصميم والمقاولات المحلية، مع ERT لأعمال التركيب المحلية، وETS لتوريد المعدات، ونوفا فريز للمشروعات القومية الكبرى."),
     },
     "capabilities": [
         {"icon": "building", "img": "epc1", "title": T("Turnkey EPC from empty land", "تسليم مفتاح بنظام EPC من الأرض الفضاء"),
@@ -23,7 +23,7 @@ SOLUTIONS = {
         {"icon": "snow", "img": "machine_room", "title": T("Industrial refrigeration plants", "محطات التبريد الصناعي"),
          "text": T("Cold stores, pre-coolers, blast and spiral freezers, IQF and production lines, concentrate and juice plants and vacuum freeze-drying, designed around each product.",
                    "مخازن تبريد ومبردات أولية وأنفاق تجميد سريع ومجمدات حلزونية وIQF وخطوط إنتاج ومصانع مركّزات وعصائر وتجفيف بالتجميد، مصممة حول كل منتج."),
-         "cos": ["aldawlia", "nova-freeze"]},
+         "cos": ["aldawlia", "nova-freeze", "ert"]},
         {"icon": "molecule", "img": "piping", "title": T("Natural refrigerants", "غازات التبريد الطبيعية"),
          "text": T("Ammonia (NH₃, R717) and carbon dioxide (CO₂, R744). Ammonia has zero ozone depletion and zero global warming potential, and ammonia plants use 15–20% less energy than Freon systems in industrial applications.",
                    "الأمونيا (NH₃، R717) وثاني أكسيد الكربون (CO₂، R744). لا تستنزف الأمونيا طبقة الأوزون ولا تسهم في الاحترار العالمي، وتستهلك محطاتها طاقة أقل بنسبة 15–20% من أنظمة الفريون في التطبيقات الصناعية."),
@@ -39,7 +39,7 @@ SOLUTIONS = {
         {"icon": "globe", "img": "ets_compressor", "title": T("Global supply", "التوريد العالمي"),
          "text": T("Premium equipment from Europe, China and Japan, procured strategically and delivered as EPC, with transparent bottom-line offers.",
                    "معدات متميزة من أوروبا والصين واليابان، تُورَّد وفق استراتيجية مدروسة وتُسلَّم بنظام EPC، مع عروض أسعار نهائية واضحة."),
-         "cos": ["ets", "ert"]},
+         "cos": ["ets"]},
     ],
     "energy": {
         "eyebrow": T("Energy &amp; renewables", "الطاقة والطاقة المتجددة"),
@@ -65,7 +65,7 @@ SOLUTIONS = {
     },
     "industries": {
         "eyebrow": T("Industries", "القطاعات"),
-        "title": T("Thirteen sectors, each with its own biology.", "ثلاثة عشر قطاعًا، لكلٍّ منها طبيعته."),
+        "title": T("Fourteen sectors, each with its own demands.", "أربعة عشر قطاعًا، لكلٍّ منها متطلباته."),
         "cta_eyebrow": T("Another product?", "منتج آخر؟"),
         "cta_title": T("We start from the product, not the catalogue.", "نبدأ من المنتج، لا من الكتالوج."),
         "cta_text": T("If your sector is not listed, our engineers begin with what you store or process: its temperature curve, humidity, airflow and shelf life. Then they design the plant around it.",
@@ -74,9 +74,9 @@ SOLUTIONS = {
 }
 
 SUSTAIN = {
-    "meta": {"title": T("Sustainability and Quality | Aldawlia Group", "الاستدامة والجودة | مجموعة الدولية"),
-             "desc": T("Natural refrigerants, energy-efficient design, solar generation, local manufacturing and international standards across the Aldawlia Group.",
-                       "غازات تبريد طبيعية وتصميم موفر للطاقة وتوليد شمسي وتصنيع محلي ومعايير دولية في شركات مجموعة الدولية.")},
+    "meta": {"title": T("Sustainability and Quality | Aldawlia for Cooling Corporation", "الاستدامة والجودة | المؤسسة الدولية للتبريد"),
+             "desc": T("Natural refrigerants, energy-efficient design, solar generation, local manufacturing and international standards across the Aldawlia family of companies.",
+                       "غازات تبريد طبيعية وتصميم موفر للطاقة وتوليد شمسي وتصنيع محلي ومعايير دولية في عائلة شركات الدولية.")},
     "hero": {"eyebrow": T("Sustainability, quality and safety", "الاستدامة والجودة والسلامة"),
              "title": T("Cooling the region with less energy and no harm to the climate.", "نبرّد المنطقة بطاقة أقل ودون إضرار بالمناخ."),
              "lead": T("Natural refrigerants, efficiency designed in from the first drawing, solar power made and built in Egypt, and plants engineered to international standards.",
@@ -138,9 +138,9 @@ SUSTAIN = {
 }
 
 CONTACT = {
-    "meta": {"title": T("Contact | Aldawlia Group", "تواصل معنا | مجموعة الدولية"),
-             "desc": T("Contact the Aldawlia Group: offices in 6th of October City, Mansoura, Sheikh Zayed, 10th of Ramadan and Ras Al Khaimah.",
-                       "تواصل مع مجموعة الدولية: مكاتب في مدينة السادس من أكتوبر والمنصورة والشيخ زايد والعاشر من رمضان ورأس الخيمة.")},
+    "meta": {"title": T("Contact | Aldawlia for Cooling Corporation", "تواصل معنا | المؤسسة الدولية للتبريد"),
+             "desc": T("Contact Aldawlia for Cooling Corporation and its group companies: offices in 6th of October City, Mansoura, Sheikh Zayed, 10th of Ramadan, Ras Al Khaimah and Dubai.",
+                       "تواصل مع المؤسسة الدولية للتبريد وشركات مجموعتها: مكاتب في مدينة السادس من أكتوبر والمنصورة والشيخ زايد والعاشر من رمضان ورأس الخيمة ودبي.")},
     "hero": {"eyebrow": T("Contact", "تواصل معنا"),
              "title": T("Let's build your next success story together.", "لنبنِ قصة نجاحك القادمة معًا."),
              "lead": T("Tell us what you are planning. Your enquiry goes straight to the company in the group that handles it.",
@@ -156,7 +156,7 @@ CONTACT = {
         "need_ph": T("Choose a topic", "اختر الموضوع"),
         "message": T("Project details", "تفاصيل المشروع"),
         "message_ph": T("Location, products, capacities, timeline…", "الموقع والمنتجات والقدرات والجدول الزمني…"),
-        "consent": T("I agree that the Aldawlia Group may use these details to answer my enquiry.", "أوافق على أن تستخدم مجموعة الدولية هذه البيانات للرد على استفساري."),
+        "consent": T("I agree that Aldawlia and its group companies may use these details to answer my enquiry.", "أوافق على أن تستخدم الدولية وشركات مجموعتها هذه البيانات للرد على استفساري."),
         "required": T("Required", "مطلوب"),
         "submit": T("Prepare my enquiry", "جهّز استفساري"),
         "routes_to": T("Your enquiry goes to", "سيصل استفسارك إلى"),
@@ -179,7 +179,7 @@ CONTACT = {
         ("service", T("Maintenance, overhauls or automation", "صيانة أو عَمرات أو أتمتة"), "aldawlia"),
         ("strategic", T("A strategic, mega or state-led project", "مشروع استراتيجي أو كبير أو تقوده الدولة"), "nova-freeze"),
         ("supply", T("Refrigeration equipment or spare parts", "معدات تبريد أو قطع غيار"), "ets"),
-        ("install", T("Refrigeration supply and installation (10th of Ramadan)", "توريد وتركيب أنظمة التبريد (العاشر من رمضان)"), "ert"),
+        ("install", T("Refrigeration installation works (local contracting)", "أعمال تركيب أنظمة التبريد (مقاولات محلية)"), "ert"),
         ("modules", T("Solar modules or BIPV", "ألواح شمسية أو حلول BIPV"), "jet-solar"),
         ("components", T("Solar components, inverters or storage", "مكونات طاقة شمسية أو عواكس أو تخزين"), "neo-energy"),
         ("plant", T("A solar power plant for my facility", "محطة طاقة شمسية لمنشأتي"), "ggg"),

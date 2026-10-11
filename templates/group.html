@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, tel with context -%}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, tel, fig3d with context -%}
 {% block content %}
 {%- set PH = {'img': 'frosty_roof', 'crumb': D.hero.eyebrow, 'eyebrow': D.hero.eyebrow, 'title': D.hero.title, 'lead': D.hero.lead} -%}
 {% include 'phero.html' %}
@@ -82,14 +82,30 @@
         <p>{{ t(D.synergy.case) }}</p>
         <p><a class="tlink" href="projects.html#p-frosty" style="--accent:var(--frost)">{{ t(UI.see_all_projects) }} {{ icon('arrow') }}</a></p>
       </div>
-      <div class="meet__img">{{ img('frosty_roof', '(max-width:960px) 100vw, 50vw') }}</div>
+      <div class="meet__img">{{ img('r3d_frosty', '(max-width:960px) 100vw, 50vw') }}</div>
     </div>
+  </div>
+</section>
+
+{%- set F = FIG3D.site %}
+<section class="s s--night s--fig" aria-labelledby="h-site">
+  <div class="gridbg"></div>
+  <div class="wrap" style="position:relative">
+    {{ sh(t(F.eyebrow), t(F.title), id='h-site') }}
+    {{ fig3d(F, 'h-site') }}
   </div>
 </section>
 
 <section class="s s--ice" aria-labelledby="h-vis">
   <div class="wrap">
-    {{ sh(t(D.visions.eyebrow), t(D.visions.title), id='h-vis') }}
+    {{ sh(t(D.visions.eyebrow), t(STRATEGY.title), id='h-vis') }}
+    <div class="strat">
+      <p class="strat__label"><span>{{ t(STRATEGY.label) }}</span><span class="num">2030</span></p>
+      <ol class="strat__items">
+        {%- for a, b in STRATEGY['items'] %}<li><span class="n">{{ '%02d' % loop.index }}</span><h3>{{ t(a) }}</h3><p>{{ t(b) }}</p></li>{% endfor %}
+      </ol>
+    </div>
+    <h3 class="h3 strat__sub">{{ t(D.visions.title) }}</h3>
     <div class="visions">
       {%- for k, txt in D.visions['items'] %}{% set c = COMPANY[k] %}
       <figure class="vision" style="{{ costyle(c) }}">{{ logo(c) }}<blockquote><p>{{ t(txt) }}</p></blockquote></figure>

@@ -1,4 +1,4 @@
-/* Aldawlia Group — site.js (v1.0). No dependencies. */
+/* Aldawlia for Cooling Corporation — site.js (v1.1). No dependencies. */
 (function () {
   "use strict";
   var d = document, w = window, root = d.documentElement;
@@ -224,6 +224,25 @@
     var cm = qs("[data-copy-msg]", form); if (cm) cm.addEventListener("click", function () { copyText(cm.getAttribute("data-copy"), cm); });
     var ed = qs("[data-edit]", form); if (ed) ed.addEventListener("click", function () { ready.hidden = true; qs("#f-msg", form).focus(); });
   }
+
+  /* ---------- 3D drawings: a callout in the key lights its marker on the image, and the other way round ---------- */
+  qsa("[data-f3d]").forEach(function (f) {
+    var mks = qsa(".f3d__mk", f), items = qsa(".f3d__list li", f);
+    function hot(n) {
+      mks.forEach(function (m) { m.classList.toggle("is-hot", m.getAttribute("data-n") === n); });
+      items.forEach(function (li) { li.classList.toggle("is-hot", li.getAttribute("data-n") === n); });
+    }
+    items.forEach(function (li) {
+      var n = li.getAttribute("data-n");
+      li.addEventListener("mouseenter", function () { hot(n); });
+      li.addEventListener("mouseleave", function () { hot(null); });
+    });
+    mks.forEach(function (m) {
+      var n = m.getAttribute("data-n");
+      m.addEventListener("mouseenter", function () { hot(n); });
+      m.addEventListener("mouseleave", function () { hot(null); });
+    });
+  });
 
   /* ---------- brand TOC highlight ---------- */
   var toc = qs("[data-toc]");

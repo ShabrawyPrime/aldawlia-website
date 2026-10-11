@@ -33,7 +33,7 @@
             {%- endfor %}
           </div>
         </div>
-        <p class="fine"><strong>{{ t(D.architecture.endorse_label) }}:</strong> “An Aldawlia Group company” · «إحدى شركات مجموعة الدولية»</p>
+        <p class="fine"><strong>{{ t(D.architecture.endorse_label) }}:</strong> “{{ UI.group_company.en }}” · «{{ UI.group_company.ar }}»</p>
         {%- set style_logo = 'max-height:30px;width:auto' %}
       </section>
 
@@ -106,7 +106,7 @@
         {{ eyebrow(t(D.layout.eyebrow)) }}<h2 class="h2" id="h-lay">{{ t(D.layout.title) }}</h2>
         <div class="cards {{ cardcols(D.layout['items']|length) }}">{% for k, v in D.layout['items'] %}<div class="card"><h3>{{ t(k) }}</h3><p>{{ t(v) }}</p></div>{% endfor %}</div>
         <div class="demo demo--d" style="position:relative;overflow:hidden;min-height:160px;align-items:flex-end;justify-content:flex-end"><div class="gridbg" style="-webkit-mask-image:none;mask-image:none"></div>
-          <dl class="tblock" style="position:relative"><div><dt>{{ t(TB.project) }}</dt><dd>{{ t(SITE.name) }}</dd></div><div><dt>{{ t(UI.drawing) }}</dt><dd dir="ltr">AG-WEB-14</dd></div><div><dt>{{ t(UI.sheet) }}</dt><dd dir="ltr">14 / 14</dd></div><div><dt>{{ t(UI.rev) }}</dt><dd dir="ltr">1.0</dd></div><div><dt>{{ t(TB.date) }}</dt><dd dir="ltr">2026-10</dd></div></dl>
+          <dl class="tblock" style="position:relative"><div><dt>{{ t(TB.project) }}</dt><dd>{{ t(SITE.short) }}</dd></div><div><dt>{{ t(UI.drawing) }}</dt><dd dir="ltr">AG-WEB-14</dd></div><div><dt>{{ t(UI.sheet) }}</dt><dd dir="ltr">14 / 14</dd></div><div><dt>{{ t(UI.rev) }}</dt><dd dir="ltr">1.0</dd></div><div><dt>{{ t(TB.date) }}</dt><dd dir="ltr">2026-10</dd></div></dl>
         </div>
       </section>
 
@@ -154,7 +154,7 @@
         {{ eyebrow(t(D.assets.eyebrow)) }}<h2 class="h2" id="h-assets">{{ t(D.assets.title) }}</h2>
         <p class="prose">{{ t(D.assets.text) }}</p>
         <div class="assets">
-          {%- for f, dark in [('group-en-light.svg', True), ('group-en-dark.svg', False), ('group-ar-light.svg', True), ('group-ar-dark.svg', False), ('monogram.svg', False)] %}
+          {%- for f, dark in [('aldawlia-en-light.svg', True), ('aldawlia-en-dark.svg', False), ('aldawlia-ar-light.svg', True), ('aldawlia-ar-dark.svg', False), ('aldawlia-en-compact-light.svg', True), ('monogram.svg', False)] %}
           <div class="asset"><div class="asset__p{{ ' d' if dark else '' }}"><img src="{{ A }}brand/{{ f }}" alt="{{ f }}" loading="lazy"></div><div class="asset__b" dir="ltr">{% if MODE == 'prod' %}<a href="{{ A }}brand/{{ f }}" download>assets/brand/<wbr>{{ f }}</a>{% else %}assets/brand/<wbr>{{ f }}{% endif %}</div></div>
           {%- endfor %}
           {%- for c in COMPANIES if c.logo %}

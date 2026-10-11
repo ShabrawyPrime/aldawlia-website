@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Aldawlia Group website generator.
+"""Aldawlia for Cooling Corporation website generator.
 
     python3 build.py            -> docs/ (the website: external CSS/JS, self-hosted fonts; served by GitHub Pages)
                                    dist-artifact/ (single-folder preview: inline CSS/JS, Google Fonts; not committed)
@@ -20,6 +20,7 @@ from content.companies import COMPANY_PAGES, SERVICES
 from content.projects import PROJECTS, PROJECT, REFERENCES, PROJECTS_PAGE, CATS
 from content.solutions import SOLUTIONS, SUSTAIN, CONTACT
 from content.brand import BRAND
+from content.figures import FIG3D, STAGES, STRATEGY
 
 BUILD = os.path.join(ROOT, "build")
 FONTS = os.path.join(BUILD, "fonts")            # vendored woff2 files + unicode ranges (from @fontsource)
@@ -32,8 +33,8 @@ IMGALT = {k: v[2] for k, v in IMAGES.items()}
 
 EXTRA = {
     "MEGA_TEXT": T("Aldawlia and the companies built on its legacy, in cooling and in energy.", "الدولية والشركات التي قامت على إرثها، في التبريد وفي الطاقة."),
-    "FOOT_TEXT": T("Industrial refrigeration since 1983, and a new generation of companies in solar energy and global supply.",
-                   "تبريد صناعي منذ 1983، وجيل جديد من الشركات في الطاقة الشمسية والتوريد العالمي."),
+    "FOOT_TEXT": T("Industrial refrigeration since 1983, and a new generation of companies in solar energy, refrigeration contracting and global supply.",
+                   "تبريد صناعي منذ 1983، وجيل جديد من الشركات في الطاقة الشمسية ومقاولات التبريد والتوريد العالمي."),
     "TB": {"project": T("Project", "المشروع"), "date": T("Date", "التاريخ")},
     "POWERED": T("Powered by", "بقوة"),
     "EPCY": {"civil": T("Civil Department established", "تأسيس القسم المدني"), "epc": T("Turnkey EPC from empty land", "تسليم مفتاح من الأرض الفضاء")},
@@ -72,8 +73,10 @@ def url(lang, file):
 def read(p):
     return open(p, encoding="utf-8").read()
 
-def svg_inline(path, uid):
+def svg_inline(path, uid, cls=None):
     s = read(path)
+    if cls:
+        s = s.replace("<svg ", f'<svg class="{cls}" ', 1)
     s = s.replace('id="g', f'id="{uid}g').replace('url(#g', f'url(#{uid}g')
     s = s.replace('id="mg"', f'id="{uid}mg"').replace('url(#mg)', f'url(#{uid}mg)')
     s = re.sub(r'<svg ', '<svg aria-hidden="true" focusable="false" ', s, count=1)
@@ -188,19 +191,19 @@ def jsonld(lang, page):
     t = tr(lang)
     org = {
         "@context": "https://schema.org", "@type": "Organization",
-        "name": "Aldawlia Group", "alternateName": ["مجموعة الدولية", "Aldawlia for Cooling Corporation", "المؤسسة الدولية للتبريد"],
-        "url": SITE["url"] + "/", "logo": SITE["url"] + "/assets/brand/icon-512.png",
+        "name": "Aldawlia for Cooling Corporation", "alternateName": ["المؤسسة الدولية للتبريد", "Aldawlia", "Aldawlia Group", "مجموعة الدولية"],
+        "url": SITE["url"] + "/", "logo": SITE["deploy"] + "/assets/logos/aldawlia.png",
         "foundingDate": "1986", "founder": {"@type": "Person", "name": "Nabil El Shabrawy"},
         "email": "info@aldawlia.org", "telephone": "+20 2 3836 7822",
         "address": {"@type": "PostalAddress", "streetAddress": "5 Solimar Buildings, Central Axis, Office 101", "addressLocality": "6th of October City", "addressRegion": "Giza", "addressCountry": "EG"},
         "sameAs": [s["url"] for s in SOCIAL],
-        "subOrganization": [{"@type": "Organization", "name": c["short"]["en"] if c["key"] != "aldawlia" else c["name"]["en"], "url": c["url"]} for c in COMPANIES],
+        "subOrganization": [{"@type": "Organization", "name": c["name"]["en"], "url": c["url"]} for c in COMPANIES if c["key"] != "aldawlia"],
     }
-    if page in COMPANY_PAGES:
+    if page in COMPANY_PAGES and page != "aldawlia":
         c = COMPANY[page]
         org = {"@context": "https://schema.org", "@type": "Organization", "name": c["name"]["en"], "alternateName": c["name"]["ar"],
                "url": c["url"], "email": c["email"], "telephone": c["phones"][0],
-               "parentOrganization": {"@type": "Organization", "name": "Aldawlia Group", "url": SITE["url"] + "/"}}
+               "parentOrganization": {"@type": "Organization", "name": "Aldawlia for Cooling Corporation", "url": SITE["url"] + "/"}}
     return json.dumps(org, ensure_ascii=False)
 
 # ------------------------------------------------------------------ render
@@ -212,10 +215,11 @@ def render_site(out, mode, walls):
     env = Environment(loader=FileSystemLoader(os.path.join(ROOT, "templates")), undefined=DebugUndefined,
                       trim_blocks=False, lstrip_blocks=False, autoescape=False)
     lock = {
-        "en_light": svg_inline(os.path.join(BUILD, "brand", "group-en-light.svg"), "a"),
-        "en_dark": svg_inline(os.path.join(BUILD, "brand", "group-en-dark.svg"), "b"),
-        "ar_light": svg_inline(os.path.join(BUILD, "brand", "group-ar-light.svg"), "c"),
-        "ar_dark": svg_inline(os.path.join(BUILD, "brand", "group-ar-dark.svg"), "d"),
+        "en_light": svg_inline(os.path.join(BUILD, "brand", "aldawlia-en-light.svg"), "a", "lk lk-f"),
+        "en_dark": svg_inline(os.path.join(BUILD, "brand", "aldawlia-en-dark.svg"), "b"),
+        "ar_light": svg_inline(os.path.join(BUILD, "brand", "aldawlia-ar-light.svg"), "c", "lk lk-f"),
+        "ar_dark": svg_inline(os.path.join(BUILD, "brand", "aldawlia-ar-dark.svg"), "d"),
+        "en_compact": svg_inline(os.path.join(BUILD, "brand", "aldawlia-en-compact-light.svg"), "h", "lk lk-c"),
         "monogram": svg_inline(os.path.join(BUILD, "brand", "monogram.svg"), "e"),
     }
     project_cos = sorted({k for p in PROJECTS for k in p["cos"]})
@@ -254,10 +258,11 @@ def render_site(out, mode, walls):
                 PROJECTS=PROJECTS, PROJECT=PROJECT, REFERENCES=REFERENCES, CATS=CATS, PROJECT_COS=project_cos,
                 COUNTRIES=COUNTRIES, MARKETS=MARKETS, MARKET_NAMES=market_names, GROUP_PAGES=GROUP_PAGES,
                 CTA=HOME["cta"], WALLS=walls, D=D, meta=D["meta"], CO=COMPANY.get(page),
-                LOCKUP_LIGHT=lock[f"{lang}_light"], BRAND_SVGS=lock,
+                LOCKUP_LIGHT=lock[f"{lang}_light"], LOCKUP_COMPACT=lock["en_compact"] if lang == "en" else "", BRAND_SVGS=lock,
                 HEAD_ASSETS=head_assets, FOOT_ASSETS=foot_assets, JSONLD=jsonld(lang, page),
                 MAP_SVG=map_svg(lang) if page == "index" else "", MAP_JSON=map_json(lang) if page == "index" else "{}",
                 ROUTE_JSON=json.dumps(route, ensure_ascii=False), FORM_ENDPOINT=FORM_ENDPOINT,
+                FIG3D=FIG3D, STAGES=STAGES, STRATEGY=STRATEGY,
                 **EXTRA,
             )
             html = env.get_template(tpl).render(**ctx)
@@ -269,8 +274,9 @@ def render_site(out, mode, walls):
         gate_fonts = ('<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>'
                       '<style>' + fonts_css_root() + '</style>')
     gctx = dict(ARTIFACT=(mode != "prod"), SITE=SITE, GATE_FONTS=gate_fonts,
-                LOCKUP_EN=svg_inline(os.path.join(BUILD, "brand", "group-en-light.svg"), "x"),
-                LOCKUP_AR=svg_inline(os.path.join(BUILD, "brand", "group-ar-light.svg"), "y"),
+                LOCKUP_EN=svg_inline(os.path.join(BUILD, "brand", "aldawlia-en-light.svg"), "x"),
+                LOCKUP_AR=svg_inline(os.path.join(BUILD, "brand", "aldawlia-ar-light.svg"), "y"),
+                LOGO_W=LOGO["aldawlia"]["w"], LOGO_H=LOGO["aldawlia"]["h"],
                 ARAB_JSON=json.dumps(ARABIC_COUNTRIES), TZ_JSON=json.dumps(TZ_ARAB), AMBIG_JSON=json.dumps(TZ_AMBIG))
     open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(env.get_template("gateway.html").render(**gctx))
     return files
@@ -307,7 +313,7 @@ def write_extras(out, files):
     open(os.path.join(out, "sitemap.xml"), "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(urls) + "\n</urlset>\n")
     open(os.path.join(out, "robots.txt"), "w", encoding="utf-8").write(f"User-agent: *\nAllow: /\n\nSitemap: {S}/sitemap.xml\n")
     open(os.path.join(out, "site.webmanifest"), "w", encoding="utf-8").write(json.dumps({
-        "name": "Aldawlia Group", "short_name": "Aldawlia", "start_url": "/", "display": "standalone",
+        "name": "Aldawlia for Cooling Corporation", "short_name": "Aldawlia", "start_url": "/", "display": "standalone",
         "background_color": "#070B14", "theme_color": "#070B14",
         "icons": [{"src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png"},
                   {"src": "/assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, indent=1))
@@ -322,12 +328,12 @@ def write_extras(out, files):
     shutil.copy2(os.path.join(ROOT, "README.md"), os.path.join(out, "README.md"))
 
 NOT_FOUND = """<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found · Aldawlia Group</title><meta name="robots" content="noindex"><link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" data-p="assets/brand/favicon.svg">
+<title>Page not found · Aldawlia for Cooling Corporation</title><meta name="robots" content="noindex"><link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" data-p="assets/brand/favicon.svg">
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#070B14;color:#EEF3FA;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;padding:24px}
 h1{font-size:clamp(2rem,6vw,3.4rem);margin:0 0 8px}p{color:#93A4BD;margin:0 0 24px}a{display:inline-block;margin:6px;padding:12px 20px;border:1px solid rgba(255,255,255,.25);border-radius:4px;color:#EEF3FA;text-decoration:none}a:hover{border-color:#22D3EE;color:#22D3EE}
 .ar{direction:rtl;font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif}</style></head>
 <body><main><h1>404</h1><p>This page could not be found.</p><p class="ar">تعذّر العثور على هذه الصفحة.</p>
-<a href="/en/" data-p="en/">Aldawlia Group</a><a class="ar" href="/ar/" data-p="ar/">مجموعة الدولية</a></main>
+<a href="/en/" data-p="en/">Aldawlia for Cooling Corporation</a><a class="ar" href="/ar/" data-p="ar/">المؤسسة الدولية للتبريد</a></main>
 <script>(function(){var b="/";if(/\\.github\\.io$/.test(location.hostname)){var s=location.pathname.split("/")[1];if(s)b="/"+s+"/";}document.querySelectorAll("[data-p]").forEach(function(e){e.setAttribute("href",b+e.getAttribute("data-p"));});})();</script></body></html>
 """
 

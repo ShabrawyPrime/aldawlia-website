@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Shared, bilingual content for the Aldawlia Group website.
+"""Shared, bilingual content for the Aldawlia for Cooling Corporation website (the group's home on aldawlia.org).
 
-Every user-facing string is T(en, ar). Facts come from: Group Presentation R3.0,
+Every user-facing string is T(en, ar). Facts come from: Group Presentation R4.0,
 the six company profiles (Aldawlia 2026, ETS brochure, JET Solar profile and brochure,
 Nova Freeze profile v6 and brochure, NEO Energy flyer/profile, GGG flyer), the live
 aldawlia.org site and the Test_project site, plus notes the user gave.
@@ -13,7 +13,11 @@ def T(en, ar):
 
 SITE = {
     "url": "https://www.aldawlia.org",          # production origin used for canonical/hreflang/sitemap
-    "name": T("Aldawlia Group", "مجموعة الدولية"),
+    # where the site is served today; link previews fetch their image from here (GitHub Pages forwards to the
+    # custom domain once it is set, so this keeps working after the move)
+    "deploy": "https://shabrawyprime.github.io/aldawlia-website",
+    "name": T("Aldawlia for Cooling Corporation", "المؤسسة الدولية للتبريد"),
+    "short": T("Aldawlia", "الدولية"),
     "legal": T("Aldawlia for Cooling Corporation", "المؤسسة الدولية للتبريد"),
     "tagline": T("We build the infrastructure of the future.", "نبني البنية التحتية للمستقبل."),
     "since": "1983",
@@ -27,6 +31,7 @@ ARABIC_COUNTRIES = ["DZ", "BH", "KM", "DJ", "EG", "IQ", "JO", "KW", "LB", "LY", 
                     "OM", "PS", "QA", "SA", "SO", "SD", "SY", "TN", "AE", "YE", "EH", "TD"]
 
 NAV = [
+    {"key": "index", "href": "index.html", "label": T("Home", "الرئيسية")},
     {"key": "story", "href": "story.html", "label": T("Our Story", "قصتنا")},
     {"key": "group", "href": "group.html", "label": T("The Group", "المجموعة"), "mega": True},
     {"key": "solutions", "href": "solutions.html", "label": T("Solutions", "الحلول")},
@@ -58,7 +63,7 @@ UI = {
     "copied": T("Copied", "تم النسخ"),
     "open_map": T("Open in Maps", "افتح في الخرائط"),
     "all": T("All", "الكل"),
-    "group_company": T("An Aldawlia Group company", "إحدى شركات مجموعة الدولية"),
+    "group_company": T("Aldawlia family of companies", "من عائلة شركات الدولية"),
     "back_to_group": T("All group companies", "جميع شركات المجموعة"),
     "other_companies": T("More from the group", "المزيد من شركات المجموعة"),
     "rights": T("All rights reserved.", "جميع الحقوق محفوظة."),
@@ -86,6 +91,7 @@ UI = {
     "slide_label": T("Slide", "الشريحة"),
     "pause": T("Pause slideshow", "إيقاف العرض"),
     "play": T("Play slideshow", "تشغيل العرض"),
+    "legend": T("Key to the drawing", "دليل الرسم"),
 }
 
 # Accent colours per company: brand (logo colour), on_dark (accent on night backgrounds),
@@ -98,8 +104,8 @@ COMPANIES = [
         "est": "1986", "est_short": T("1986", "1986"), "est_label": T("1986 · since 1983", "1986 · منذ 1983"),
         "role": T("Mother company · industrial refrigeration", "الشركة الأم · التبريد الصناعي"),
         "verb": T("Engineers and builds", "تصمّم وتنفّذ"),
-        "line": T("Design, contracting, automation and maintenance of large-scale industrial refrigeration since 1986.",
-                  "تصميم أنظمة التبريد الصناعي الكبرى وتنفيذها وأتمتتها وصيانتها منذ 1986."),
+        "line": T("Consultancy, design, local contracting, automation and maintenance of large-scale industrial refrigeration since 1986.",
+                  "استشارات أنظمة التبريد الصناعي الكبرى وتصميمها ومقاولاتها المحلية وأتمتتها وصيانتها منذ 1986."),
         "led": T("Eng. Nabil El Shabrawy, Founder, Chairman &amp; CEO", "م. نبيل الشبراوي، المؤسس ورئيس مجلس الإدارة والرئيس التنفيذي"),
         "web": "aldawlia.org", "url": "https://www.aldawlia.org",
         "email": "info@aldawlia.org",
@@ -110,14 +116,14 @@ COMPANIES = [
         "color": "#1F5AA6", "on_dark": "#6FB6FF", "on_light": "#1F5AA6",
     },
     {
-        "key": "ert", "page": None, "logo": None, "sector": "cooling",
+        "key": "ert", "page": None, "logo": "ert", "sector": "cooling",
         "name": T("Egypt for Refrigeration Technology", "مصر لتكنولوجيا التبريد"),
         "short": T("ERT", "ERT"),
         "est": "2022", "est_short": T("2022", "2022"), "est_label": T("2022", "2022"),
-        "role": T("Refrigeration supply &amp; installation", "توريد وتركيب أنظمة التبريد"),
+        "role": T("Local refrigeration contracting", "مقاولات التبريد المحلية"),
         "verb": T("Installs", "تركّب"),
-        "line": T("Refrigeration supply and installation from its base in 10th of Ramadan City.",
-                  "توريد أنظمة التبريد وتركيبها من مقرها في مدينة العاشر من رمضان."),
+        "line": T("A local contractor for refrigeration installation works, based in 10th of Ramadan City.",
+                  "مقاول محلي لأعمال تركيب أنظمة التبريد، مقره مدينة العاشر من رمضان."),
         "web": "ert-eg.com", "url": "https://www.ert-eg.com",
         "email": "info@ert-eg.com",
         "phones": ["+20 109 300 0773", "+20 55 446 7403"],
@@ -232,13 +238,15 @@ SOCIAL = [
     {"name": "Instagram", "url": "https://www.instagram.com/aldawliaforcooling/", "icon": "instagram"},
 ]
 
-# Headline figures (all from the profiles; the solar total is the deck's derived figure).
+# Headline figures: the group at a glance (deck R4.0). A figure with a unit is T(en, ar);
+# the Arabic keeps the deck's order ("+750,000 طن") and is rendered right to left.
 KPIS = [
-    {"n": "40+", "l": T("years of engineering, since 1983", "عامًا من الهندسة منذ 1983")},
-    {"n": "3,000+", "l": T("people at Aldawlia", "موظف في الدولية")},
+    {"n": "40+", "l": T("years of excellence, since 1983", "عامًا من التميز منذ 1983")},
+    {"n": "500+", "l": T("projects delivered", "مشروع منفّذ")},
+    {"n": T("750,000+ t", "+750,000 طن"), "l": T("of cold storage supplied and serviced", "سعة ثلاجات ورّدناها وخدمناها")},
+    {"n": T("800+ t/h", "+800 طن/ساعة"), "l": T("of production lines supplied and serviced", "خطوط إنتاج ورّدناها وخدمناها")},
+    {"n": "165+ MW", "l": T("of solar by the energy division", "من الطاقة الشمسية لقطاع الطاقة")},
     {"n": "17", "l": T("countries across the Middle East and Africa", "دولة في الشرق الأوسط وإفريقيا")},
-    {"n": "13", "l": T("industry sectors served", "قطاعًا صناعيًا نخدمه")},
-    {"n": "165+ MW", "l": T("of solar supplied and built", "من الطاقة الشمسية وُرّدت ونُفّذت")},
 ]
 
 PAGES = ["index", "story", "group", "aldawlia", "jet-solar", "ets", "nova-freeze", "neo-energy", "ggg",

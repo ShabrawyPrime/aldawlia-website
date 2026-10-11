@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard, cotags with context -%}
+{%- from 'macros.html' import icon, eyebrow, img, logo, costyle, cohref, sh, pcard, cotags, numv with context -%}
 {% block content %}
 {%- set H = D.hero -%}
 <section class="hero" data-hero aria-label="{{ t(SITE.name) }}">
@@ -27,7 +27,7 @@
       </div>
     </div>
     <ul class="kpis">
-      {%- for k in KPIS %}<li><span class="num">{{ k.n }}</span><span class="lbl">{{ t(k.l) }}</span></li>{% endfor %}
+      {%- for k in KPIS %}<li>{{ numv(k.n) }}<span class="lbl">{{ t(k.l) }}</span></li>{% endfor %}
     </ul>
     <div class="hero__cap">
       <span class="cap-t" data-cap aria-live="polite">{{ t(H.slides[0].cap) }}</span>
